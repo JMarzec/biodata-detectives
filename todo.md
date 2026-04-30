@@ -49,3 +49,14 @@
 - [x] Final checkpoint and deployment
 - [x] README with stand operation guide
 - [x] QR code for production URL
+
+
+## Expert Mode Feature
+- [x] Create expert-level questions (24+ questions, EN/PT)
+- [x] Add game difficulty selector to welcome screen
+- [x] Implement faster timer for Expert Mode (15s vs 30s standard)
+- [x] Add Expert Mode badge/indicator on results screen
+- [x] Create separate leaderboard for Expert Mode scores
+- [x] Update scoring multiplier for Expert Mode (+50% bonus)
+- [x] Add Expert Mode to admin panel statistics
+- [x] Write tests for Expert Mode logic (12 tests passing)

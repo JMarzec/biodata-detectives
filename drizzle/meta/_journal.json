@@ -15,6 +15,13 @@
       "when": 1777543504556,
       "tag": "0001_fuzzy_mandarin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1777546631013,
+      "tag": "0002_smooth_next_avengers",
+      "breakpoints": true
     }
   ]
 }

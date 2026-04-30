@@ -14,6 +14,7 @@ interface GameRoundProps {
   onAnswer: (answerId: string, isCorrect: boolean, timeSpent: number) => void;
   onNext: () => void;
   teamScore: number;
+  isExpertMode?: boolean;
 }
 
 export default function GameRound({
@@ -25,11 +26,15 @@ export default function GameRound({
   onAnswer,
   onNext,
   teamScore,
+  isExpertMode = false,
 }: GameRoundProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [timeSpent, setTimeSpent] = useState(0);
   const [startTime] = useState(Date.now());
+
+  // Timer threshold: 15 seconds for expert mode, 30 for normal
+  const timerThreshold = isExpertMode ? 15 : 30;
 
   useEffect(() => {
     const timer = setInterval(() => {

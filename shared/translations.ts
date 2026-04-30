@@ -26,6 +26,10 @@ export const translations = {
       leaderboard: { en: "Leaderboard", pt: "Classificação" },
       language: { en: "Language", pt: "Idioma" },
     },
+    expertMode: {
+      en: "⚡ Expert Mode (Harder Questions, Faster Timer)",
+      pt: "⚡ Modo Especialista (Perguntas Mais Difíceis, Cronómetro Mais Rápido)",
+    },
     footer: {
       en: "Disease Transcriptomics · NOVA Medical School",
       pt: "Disease Transcriptomics · NOVA Medical School",
@@ -39,6 +43,16 @@ export const translations = {
     randomNameButton: { en: "Random Name", pt: "Nome Aleatório" },
     startButton: { en: "Start Mission", pt: "Iniciar Missão" },
     backButton: { en: "Back", pt: "Voltar" },
+    expertModeIndicator: {
+      en: "Expert Mode - Advanced Questions & Faster Timer (15s per question)",
+      pt: "Modo Especialista - Perguntas Avançadas e Cronómetro Mais Rápido (15s por pergunta)",
+    },
+  },
+
+  // ===== EXPERT MODE BADGE =====
+  expertBadge: {
+    en: "Expert Mode",
+    pt: "Modo Especialista",
   },
 
   // ===== RANDOM TEAM NAMES =====

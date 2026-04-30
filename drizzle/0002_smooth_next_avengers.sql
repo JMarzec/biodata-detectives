@@ -1,0 +1,1 @@
+ALTER TABLE `scores` ADD `isExpertMode` enum('true','false') DEFAULT 'false' NOT NULL;

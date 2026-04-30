@@ -9,6 +9,7 @@ type Screen = "welcome" | "teamSetup" | "playWithoutTeam";
 export default function Welcome() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
   const [language, setLanguage] = useState<Language>("en");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<"normal" | "expert">("normal");
   const [, setLocation] = useLocation();
 
   const t = (key: string) => {
@@ -20,7 +21,8 @@ export default function Welcome() {
     return typeof value === "object" && value !== null && language in value ? value[language] : key;
   };
 
-  const handleCreateTeam = () => {
+  const handleCreateTeam = (difficulty: "normal" | "expert" = "normal") => {
+    setSelectedDifficulty(difficulty);
     setCurrentScreen("teamSetup");
   };
 
@@ -39,6 +41,7 @@ export default function Welcome() {
         language={language}
         onLanguageChange={setLanguage}
         onBack={() => setCurrentScreen("welcome")}
+        difficulty={selectedDifficulty}
       />
     );
   }
@@ -89,10 +92,18 @@ export default function Welcome() {
         {/* Action Buttons */}
         <div className="space-y-4 mb-8">
           <Button
-            onClick={handleCreateTeam}
+            onClick={() => handleCreateTeam("normal")}
             className="w-full py-6 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all transform hover:scale-105"
           >
             {t("teamSetup.title")}
+          </Button>
+
+          <Button
+            onClick={() => handleCreateTeam("expert")}
+            className="w-full py-6 text-lg font-semibold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+          >
+            <span>⚡</span>
+            {t("welcome.expertMode")}
           </Button>
 
           <Button

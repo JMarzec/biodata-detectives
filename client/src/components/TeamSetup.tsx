@@ -9,9 +9,10 @@ interface TeamSetupProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onBack?: () => void;
+  difficulty?: "normal" | "expert";
 }
 
-export default function TeamSetup({ language, onLanguageChange, onBack }: TeamSetupProps) {
+export default function TeamSetup({ language, onLanguageChange, onBack, difficulty = "normal" }: TeamSetupProps) {
   const [teamName, setTeamName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [, setLocation] = useLocation();
@@ -43,11 +44,13 @@ export default function TeamSetup({ language, onLanguageChange, onBack }: TeamSe
       const result = await createTeamMutation.mutateAsync({
         teamName: teamName.trim(),
         language,
+        isExpertMode: difficulty === "expert",
       });
 
       // Navigate to game page with team info
       const params = new URLSearchParams({
         teamId: result.teamId,
+        isExpertMode: difficulty === "expert" ? "true" : "false",
         teamName: teamName.trim(),
         language,
       });

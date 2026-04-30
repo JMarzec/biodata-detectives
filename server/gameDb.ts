@@ -47,7 +47,8 @@ export async function recordScore(
   accuracy: number,
   timeTaken: number,
   answers: any[],
-  rank: string
+  rank: string,
+  isExpertMode: boolean = false
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -61,6 +62,7 @@ export async function recordScore(
     timeTaken,
     answers: JSON.stringify(answers),
     rank,
+    isExpertMode: isExpertMode ? "true" : "false",
     completedAt: new Date(),
   });
 
@@ -74,11 +76,17 @@ export async function recordScore(
 }
 
 /**
- * Get all scores (leaderboard)
+ * Get all scores (leaderboard) - optionally filtered by mode
  */
-export async function getAllScores() {
+export async function getAllScores(expertMode?: boolean) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+
+  let whereCondition = undefined;
+  if (expertMode !== undefined) {
+    const modeValue = expertMode ? "true" : "false";
+    whereCondition = eq(scores.isExpertMode, modeValue as any);
+  }
 
   const result = await db
     .select({
@@ -89,21 +97,29 @@ export async function getAllScores() {
       accuracy: scores.accuracy,
       timeTaken: scores.timeTaken,
       rank: scores.rank,
+      isExpertMode: scores.isExpertMode,
       completedAt: scores.completedAt,
     })
     .from(scores)
     .innerJoin(teams, eq(scores.teamId, teams.id))
+    .where(whereCondition || undefined)
     .orderBy(desc(scores.totalScore), scores.timeTaken);
 
   return result;
 }
 
 /**
- * Get top N scores
+ * Get top N scores - optionally filtered by mode
  */
-export async function getTopScores(limit: number = 10) {
+export async function getTopScores(limit: number = 10, expertMode?: boolean) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+
+  let whereCondition = undefined;
+  if (expertMode !== undefined) {
+    const modeValue = expertMode ? "true" : "false";
+    whereCondition = eq(scores.isExpertMode, modeValue as any);
+  }
 
   const result = await db
     .select({
@@ -114,10 +130,12 @@ export async function getTopScores(limit: number = 10) {
       accuracy: scores.accuracy,
       timeTaken: scores.timeTaken,
       rank: scores.rank,
+      isExpertMode: scores.isExpertMode,
       completedAt: scores.completedAt,
     })
     .from(scores)
     .innerJoin(teams, eq(scores.teamId, teams.id))
+    .where(whereCondition || undefined)
     .orderBy(desc(scores.totalScore), scores.timeTaken)
     .limit(limit);
 

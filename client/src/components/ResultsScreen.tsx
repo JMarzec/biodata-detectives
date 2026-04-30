@@ -12,6 +12,7 @@ interface ResultsScreenProps {
   language: Language;
   onPlayAgain: () => void;
   onViewLeaderboard: () => void;
+  isExpertMode?: boolean;
 }
 
 export default function ResultsScreen({
@@ -24,6 +25,7 @@ export default function ResultsScreen({
   language,
   onPlayAgain,
   onViewLeaderboard,
+  isExpertMode = false,
 }: ResultsScreenProps) {
   const t = (key: string) => {
     const keys = key.split(".");

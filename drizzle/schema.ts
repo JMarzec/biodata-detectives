@@ -45,6 +45,7 @@ export const scores = mysqlTable("scores", {
   timeTaken: int("timeTaken").notNull().default(0), // seconds
   answers: json("answers").notNull(), // JSON array of {questionId, answerId, isCorrect, timeSpent}
   rank: varchar("rank", { length: 100 }), // e.g., "Senior BioData Investigators"
+  isExpertMode: mysqlEnum("isExpertMode", ["true", "false"]).default("false").notNull(), // Expert Mode flag
   completedAt: timestamp("completedAt").defaultNow().notNull(),
 });
 

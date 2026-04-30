@@ -7,6 +7,7 @@ import { TRPCError } from "@trpc/server";
 import { createTeam, recordScore, getAllScores, getTopScores, deleteAllScores, exportScoresAsCSV } from "./gameDb";
 import { calculateFinalScore, selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
+import { expertQuestions } from "@shared/expertQuestions";
 
 export const appRouter = router({
   system: systemRouter,
@@ -29,18 +30,22 @@ export const appRouter = router({
         z.object({
           teamName: z.string().min(1).max(255),
           language: z.enum(["en", "pt"]).default("en"),
+          isExpertMode: z.boolean().default(false),
         })
       )
       .mutation(async ({ input }) => {
         const teamId = await createTeam(input.teamName, input.language);
-        return { teamId };
+        return { teamId, isExpertMode: input.isExpertMode };
       }),
 
     // Get questions for a game session
-    getQuestions: publicProcedure.query(async () => {
-      const selectedQuestions = selectGameQuestions(questions);
-      return selectedQuestions;
-    }),
+    getQuestions: publicProcedure
+      .input(z.object({ isExpertMode: z.boolean().default(false) }).optional())
+      .query(async ({ input }) => {
+        const difficulty = input?.isExpertMode ? "hard" : undefined;
+        const selectedQuestions = selectGameQuestions(questions, difficulty);
+        return selectedQuestions;
+      }),
 
     // Submit game results
     submitScore: publicProcedure
@@ -56,17 +61,19 @@ export const appRouter = router({
             })
           ),
           startTime: z.number(),
+          isExpertMode: z.boolean().default(false),
         })
       )
       .mutation(async ({ input }) => {
-        const finalScore = calculateFinalScore(input.answers, input.startTime);
+        const finalScore = calculateFinalScore(input.answers, input.startTime, input.isExpertMode);
         const scoreId = await recordScore(
           input.teamId,
           finalScore.totalScore,
           finalScore.accuracy,
           finalScore.timeTaken,
           input.answers,
-          finalScore.rank
+          finalScore.rank,
+          input.isExpertMode
         );
 
         return {

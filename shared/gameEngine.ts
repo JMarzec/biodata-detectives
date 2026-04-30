@@ -20,6 +20,7 @@ export type GameSession = {
   startTime: number; // timestamp
   roundStartTime: number; // timestamp
   isComplete: boolean;
+  isExpertMode?: boolean; // Expert Mode flag
 };
 
 export type FinalScore = {
@@ -28,6 +29,7 @@ export type FinalScore = {
   timeTaken: number; // seconds
   rank: string;
   rankKey: string; // for translation
+  isExpertMode?: boolean; // Expert Mode flag
 };
 
 /**
@@ -51,18 +53,25 @@ export function calculateRank(accuracy: number): { rank: string; rankKey: string
  * Calculate total score from answers
  * Base: +100 for correct answer
  * Speed bonus: +20 if answered in under 30 seconds
+ * Expert Mode: 1.5x multiplier for all points
  */
-export function calculateScore(answers: GameAnswer[]): number {
+export function calculateScore(answers: GameAnswer[], isExpertMode?: boolean): number {
   let score = 0;
 
   for (const answer of answers) {
     if (answer.isCorrect) {
       score += 100;
-      // Speed bonus: if answered in under 30 seconds
-      if (answer.timeSpent < 30) {
+      // Speed bonus: if answered in under 30 seconds (or 15s in Expert Mode)
+      const speedThreshold = isExpertMode ? 15 : 30;
+      if (answer.timeSpent < speedThreshold) {
         score += 20;
       }
     }
+  }
+
+  // Apply Expert Mode multiplier (1.5x)
+  if (isExpertMode) {
+    score = Math.round(score * 1.5);
   }
 
   return score;
@@ -81,8 +90,8 @@ export function calculateAccuracy(answers: GameAnswer[]): number {
 /**
  * Calculate final score object
  */
-export function calculateFinalScore(answers: GameAnswer[], startTime: number): FinalScore {
-  const totalScore = calculateScore(answers);
+export function calculateFinalScore(answers: GameAnswer[], startTime: number, isExpertMode?: boolean): FinalScore {
+  const totalScore = calculateScore(answers, isExpertMode);
   const accuracy = calculateAccuracy(answers);
   const timeTaken = Math.round((Date.now() - startTime) / 1000);
   const { rank, rankKey } = calculateRank(accuracy);
@@ -93,6 +102,7 @@ export function calculateFinalScore(answers: GameAnswer[], startTime: number): F
     timeTaken,
     rank,
     rankKey,
+    isExpertMode,
   };
 }
 
@@ -124,11 +134,19 @@ export function shuffleArray<T>(array: T[]): T[] {
 /**
  * Select random questions for each round
  * Returns 3 questions per round (9 total)
+ * Can filter by difficulty for Expert Mode
  */
-export function selectGameQuestions(allQuestions: any[]): any[] {
-  const round1 = allQuestions.filter((q) => q.round === 1);
-  const round2 = allQuestions.filter((q) => q.round === 2);
-  const round3 = allQuestions.filter((q) => q.round === 3);
+export function selectGameQuestions(allQuestions: any[], difficulty?: string): any[] {
+  let round1 = allQuestions.filter((q) => q.round === 1);
+  let round2 = allQuestions.filter((q) => q.round === 2);
+  let round3 = allQuestions.filter((q) => q.round === 3);
+
+  // Filter by difficulty if specified (Expert Mode)
+  if (difficulty === "hard") {
+    round1 = round1.filter((q) => q.difficulty === "hard");
+    round2 = round2.filter((q) => q.difficulty === "hard");
+    round3 = round3.filter((q) => q.difficulty === "hard");
+  }
 
   const selected = [
     ...shuffleArray(round1).slice(0, 3),

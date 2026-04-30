@@ -4,6 +4,7 @@ import { Language } from "@shared/translations";
 import { trpc } from "@/lib/trpc";
 import { selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
+import { expertQuestions } from "@shared/expertQuestions";
 import MissionBriefing from "@/components/MissionBriefing";
 import GameRound from "@/components/GameRound";
 import ResultsScreen from "@/components/ResultsScreen";
@@ -22,6 +23,7 @@ export default function Game() {
   const [teamId, setTeamId] = useState<string>("");
   const [teamName, setTeamName] = useState<string>("");
   const [language, setLanguage] = useState<Language>("en");
+  const [isExpertMode, setIsExpertMode] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<GameScreen>("mission");
   const [gameQuestions, setGameQuestions] = useState<any[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -132,6 +134,7 @@ export default function Game() {
         onAnswer={handleAnswer}
         onNext={handleNextQuestion}
         teamScore={calculateTeamScore()}
+        isExpertMode={isExpertMode}
       />
     );
   }
@@ -148,6 +151,7 @@ export default function Game() {
         language={language}
         onPlayAgain={handlePlayAgain}
         onViewLeaderboard={handleViewLeaderboard}
+        isExpertMode={isExpertMode}
       />
     );
   }
