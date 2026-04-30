@@ -70,7 +70,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Cancer only affects the skin", textPt: "O cancro afeta apenas a pele" },
       { id: "a3", text: "Cancer is always inherited from parents", textPt: "O cancro é sempre herdado dos pais" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Correct! When cells grow without control, they can form tumors and interfere with normal body functions. Early detection and treatment are very important.",
     explanationPt:
@@ -95,7 +95,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "The cells are not working at all", textPt: "As células não estão funcionando" },
       { id: "a3", text: "The body is fighting an infection", textPt: "O corpo está a combater uma infecção" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Good! A high protein level means that protein is being produced a lot in the cells. This can be important for understanding how cells are behaving.",
     explanationPt:
@@ -118,7 +118,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Protein synthesis", textPt: "Síntese de proteína" },
       { id: "a3", text: "DNA replication", textPt: "Replicação de DNA" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Excellent! Antioxidants are compounds that help prevent cell damage. Foods like berries, nuts, and leafy greens are rich in antioxidants.",
     explanationPt:
@@ -141,7 +141,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Cells become very small and disappear", textPt: "As células ficam muito pequenas e desaparecem" },
       { id: "a3", text: "Cells change color and become visible", textPt: "As células mudam de cor e tornam-se visíveis" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Correct! When growth control breaks down, cells can divide uncontrollably. This is one of the key features of cancer. Understanding this helps scientists develop better treatments.",
     explanationPt:
@@ -164,7 +164,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Digest food in the stomach", textPt: "Digerir alimentos no estômago" },
       { id: "a3", text: "Pump blood around the body", textPt: "Bombear sangue pelo corpo" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Perfect! The immune system includes white blood cells and other defenders that patrol your body looking for threats. A strong immune system is crucial for health.",
     explanationPt:
@@ -187,7 +187,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "To make medicine more expensive", textPt: "Para tornar a medicina mais cara" },
       { id: "a3", text: "To prove that all diseases are genetic", textPt: "Para provar que todas as doenças são genéticas" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Excellent! By understanding the biology of diseases, scientists can create targeted treatments that work better and have fewer side effects. This is personalized medicine.",
     explanationPt:
@@ -240,7 +240,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "The protein is broken and not working", textPt: "A proteína está quebrada e não funciona" },
       { id: "a3", text: "The measurement is wrong", textPt: "A medição está errada" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Good! A medium level (around 50%) means the protein is present at a balanced amount. Not too much, not too little. This can be normal or important depending on the context.",
     explanationPt:
@@ -294,7 +294,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Ignore the data and guess", textPt: "Ignorar os dados e adivinhar" },
       { id: "a3", text: "Assume the first measurement is always right", textPt: "Assumir que a primeira medição está sempre certa" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Perfect! Mixed signals require careful analysis. Scientists look for patterns, consider what each signal means, and think about how they relate to each other. This is critical thinking in science!",
     explanationPt:
@@ -320,7 +320,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "The measurement equipment is broken", textPt: "O equipamento de medição está quebrado" },
       { id: "a3", text: "Nothing important happened", textPt: "Nada importante aconteceu" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Good thinking! A dramatic change like this suggests something significant is happening - maybe the immune system is responding to a threat, or the patient started a new treatment. Scientists would investigate further.",
     explanationPt:
@@ -371,7 +371,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Immune markers have nothing to do with health", textPt: "Os marcadores imunitários não têm nada a ver com a saúde" },
       { id: "a3", text: "Sick people always have high immune markers", textPt: "Pessoas doentes sempre têm marcadores imunitários elevados" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Great insight! This observation shows why scientists study these markers - they often correlate with health outcomes. A strong immune system, indicated by high markers, helps your body fight off illness.",
     explanationPt:
@@ -394,7 +394,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Publish their guess immediately", textPt: "Publicar a sua suposição imediatamente" },
       { id: "a3", text: "Give up and stop researching", textPt: "Desistir e parar de investigar" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Perfect! This is how real science works. When you find something interesting but aren't sure, you design more experiments to test your ideas. This is called the scientific method.",
     explanationPt:
@@ -442,7 +442,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "It's only useful if you already feel sick", textPt: "É apenas útil se já se sente doente" },
       { id: "a3", text: "Blood tests can't detect anything useful", textPt: "Os testes de sangue não podem detetar nada útil" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Perfect! Early detection is a game-changer. When cancer is caught early, treatment is often more effective and less invasive. This is why regular health check-ups are so important.",
     explanationPt:
@@ -465,7 +465,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "To waste time before releasing the drug", textPt: "Para perder tempo antes de lançar o medicamento" },
       { id: "a3", text: "Testing is not necessary for new drugs", textPt: "O teste não é necessário para novos medicamentos" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Great! Lab testing is a crucial safety step. It helps scientists understand how the drug works, if it's effective, and if there are any serious side effects before testing on humans.",
     explanationPt:
@@ -511,7 +511,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "One person can do all the work alone", textPt: "Uma pessoa pode fazer todo o trabalho sozinha" },
       { id: "a3", text: "Teamwork slows down research", textPt: "O trabalho em equipa atrasa a investigação" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a3",
     explanation:
       "Perfect! Science is collaborative. A biologist understands cells, a computer scientist analyzes big data, a doctor knows patient needs, and a statistician ensures results are reliable. Together, they solve complex problems.",
     explanationPt:
@@ -534,7 +534,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Privacy doesn't matter in medical research", textPt: "A privacidade não importa na investigação médica" },
       { id: "a3", text: "All patient data should be public", textPt: "Todos os dados dos pacientes devem ser públicos" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Excellent! Privacy is a fundamental right. Scientists use techniques like anonymization (removing names and personal details) to protect patients while still advancing research. Trust is essential.",
     explanationPt:
@@ -557,7 +557,7 @@ export const beginnerQuestions: Question[] = [
       { id: "a2", text: "Technology makes cancer research impossible", textPt: "A tecnologia torna a investigação do cancro impossível" },
       { id: "a3", text: "AI cannot help with medical research", textPt: "A IA não pode ajudar na investigação médica" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Perfect! Technology is revolutionizing medicine. AI can spot patterns in huge datasets that humans might miss. This leads to faster, more accurate diagnoses and better-targeted treatments.",
     explanationPt:

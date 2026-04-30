@@ -27,7 +27,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Certain therapeutic response", textPt: "Resposta terapêutica certa" },
       { id: "a3", text: "No meaningful pattern", textPt: "Nenhum padrão significativo" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Advanced insight. This pattern may suggest BRCA1 upregulation attempting to compensate for TP53 dysfunction. However, low DNA damage response raises concerns about genomic instability. This requires functional validation and multi-omics integration.",
     explanationPt:
@@ -108,7 +108,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Treatment success", textPt: "Sucesso do tratamento" },
       { id: "a3", text: "Normal response pattern", textPt: "Padrão de resposta normal" },
     ],
-    correctAnswerId: "a1",
+    correctAnswerId: "a2",
     explanation:
       "Excellent temporal analysis. The initial immune response followed by rapid decline with rising tumor markers suggests potential immune escape. This dynamic pattern is more informative than single timepoints and critical for predicting treatment resistance.",
     explanationPt:
@@ -135,7 +135,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Account for stromal composition; may affect interpretation", textPt: "Contabilizar composição do estroma; pode afetar interpretação" },
       { id: "a3", text: "Stromal genes are irrelevant", textPt: "Genes do estroma são irrelevantes" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Critical insight. Tumor microenvironment composition significantly affects bulk RNA-seq results. High CAF (cancer-associated fibroblast) signature can confound cancer cell-intrinsic signals. Proper deconvolution or single-cell analysis is essential for accurate interpretation.",
     explanationPt:
@@ -162,7 +162,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Investigate and correct for batch effects before interpretation", textPt: "Investigar e corrigir efeitos de lote antes da interpretação" },
       { id: "a3", text: "Average the values", textPt: "Fazer a média dos valores" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Essential for rigorous science. Batch effects from technical differences can easily overwhelm biological signals. Proper quality control, batch correction (e.g., ComBat), and validation across batches are mandatory before drawing biological conclusions.",
     explanationPt:
@@ -189,7 +189,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Validate with targeted methods; may be clinically actionable", textPt: "Validar com métodos direcionados; pode ser clinicamente acionável" },
       { id: "a3", text: "Definitely report without validation", textPt: "Definitivamente reportar sem validação" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Sophisticated judgment. Even rare transcripts can be functionally important if they encode oncogenic fusions. However, bulk RNA-seq sensitivity is limited. Validation with targeted methods (qPCR, digital PCR, or long-read sequencing) is essential before clinical reporting.",
     explanationPt:
@@ -245,7 +245,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Understand context; may need multi-target approach", textPt: "Compreender contexto; pode precisar abordagem multi-alvo" },
       { id: "a3", text: "Increase glucose supply", textPt: "Aumentar fornecimento de glicose" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Sophisticated reasoning. While Warburg effect targeting is promising, cancer cells are metabolically plastic. Effective strategies often require multi-target approaches (e.g., glycolysis + glutaminolysis inhibition) and consideration of tumor microenvironment.",
     explanationPt:
@@ -272,7 +272,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Context-dependent; can promote survival or death", textPt: "Dependente do contexto; pode promover sobrevivência ou morte" },
       { id: "a3", text: "Always beneficial for treatment", textPt: "Sempre benéfico para o tratamento" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Critical nuance. Autophagy is a double-edged sword in cancer. It can suppress early tumorigenesis but promote survival under stress. The outcome depends on tumor type, genetic context, and timing. This complexity explains why autophagy inhibitors show mixed clinical results.",
     explanationPt:
@@ -299,7 +299,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Metabolic flexibility may limit diet efficacy; requires validation", textPt: "Flexibilidade metabólica pode limitar eficácia da dieta; requer validação" },
       { id: "a3", text: "No metabolic relevance", textPt: "Sem relevância metabólica" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Nuanced understanding. While ketogenic diets show promise in preclinical models, cancer cells often display metabolic flexibility—adapting to use ketones when glucose is limited. This adaptation limits diet efficacy alone. Combination approaches (diet + targeted therapy) may be more effective.",
     explanationPt:
@@ -326,7 +326,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Consider metabolic plasticity; may need combination therapy", textPt: "Considerar plasticidade metabólica; pode precisar terapia combinada" },
       { id: "a3", text: "Increase glutamine supply", textPt: "Aumentar fornecimento de glutamina" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Advanced strategic thinking. While glutaminase inhibitors are rationally designed, cancer cells often escape through metabolic reprogramming (e.g., upregulating alternative amino acid transporters). Combination approaches targeting multiple metabolic nodes are more likely to succeed.",
     explanationPt:
@@ -353,7 +353,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Increased biosynthetic demand; may indicate rapid growth", textPt: "Demanda biossintética aumentada; pode indicar crescimento rápido" },
       { id: "a3", text: "No prognostic significance", textPt: "Sem significância prognóstica" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Sophisticated interpretation. De novo lipogenesis is energetically expensive but enables rapid membrane synthesis for fast-growing tumors. This metabolic shift often correlates with aggressive phenotype and may identify tumors vulnerable to fatty acid synthase (FASN) inhibition.",
     explanationPt:
@@ -380,7 +380,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Controlled ROS for signaling; vulnerability to ROS-targeting drugs", textPt: "ROS controlado para sinalização; vulnerabilidade a drogas direcionadas a ROS" },
       { id: "a3", text: "Antioxidants are always protective", textPt: "Antioxidantes são sempre protetores" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Excellent redox biology insight. Modern understanding recognizes that moderate ROS levels drive oncogenic signaling. Tumors maintain elevated antioxidant defenses to keep ROS in a 'sweet spot' for growth. This creates vulnerability to ROS-inducing therapies or antioxidant inhibitors.",
     explanationPt:
@@ -434,7 +434,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Restore ACSL4 + GPX4 inhibition for synthetic lethality", textPt: "Restaurar ACSL4 + inibição de GPX4 para letalidade sintética" },
       { id: "a3", text: "Ferroptosis is not viable", textPt: "Ferroptose não é viável" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Advanced therapeutic reasoning. Ferroptosis requires both lipid peroxidation (ACSL4-dependent) and failed antioxidant defense (GPX4). Tumors resistant through high GPX4 + low ACSL4 require dual targeting: ACSL4 restoration + GPX4 inhibition for effective ferroptosis induction.",
     explanationPt:
@@ -463,7 +463,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Possible subclonal mutation; indicates tumor heterogeneity", textPt: "Possível mutação subclonal; indica heterogeneidade tumoral" },
       { id: "a3", text: "Tissue biopsy is always correct", textPt: "Biópsia de tecido é sempre correta" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Sophisticated understanding of tumor heterogeneity. ctDNA can detect subclonal mutations absent from the sampled tissue biopsy. This discordance is informative: it reveals clonal diversity and may identify emerging resistance mutations before they dominate the tumor.",
     explanationPt:
@@ -517,7 +517,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "TMB alone insufficient; immune infiltration and checkpoint status also critical", textPt: "TMB sozinho insuficiente; infiltração imunitária e status de checkpoint também críticos" },
       { id: "a3", text: "Measurement error", textPt: "Erro de medição" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Critical biomarker insight. High TMB generates neoantigens, but immunotherapy requires immune infiltration and permissive checkpoint status. 'Cold' tumors with high TMB but low immune infiltration are immunotherapy-resistant. Multi-parameter assessment is essential.",
     explanationPt:
@@ -544,7 +544,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Investigate post-translational regulation; protein level may be more predictive", textPt: "Investigar regulação pós-translacional; nível de proteína pode ser mais preditivo" },
       { id: "a3", text: "Marker is unreliable", textPt: "Marcador é pouco confiável" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a1",
     explanation:
       "Sophisticated biomarker development. mRNA-protein discordance reveals post-translational regulation (phosphorylation, ubiquitination, localization). Protein levels often better predict phenotype than mRNA. Clinical biomarkers should be validated at the protein level using immunoassays or mass spectrometry.",
     explanationPt:
@@ -598,7 +598,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Clonal evolution and selection may alter biomarker landscape", textPt: "Evolução clonal e seleção podem alterar paisagem de biomarcador" },
       { id: "a3", text: "Measurement drift", textPt: "Desvio de medição" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Sophisticated longitudinal biomarker understanding. Treatment selects for resistant clones with different biomarker profiles. Baseline biomarkers may not predict response of emerging resistant populations. Dynamic biomarker monitoring (ctDNA, circulating proteins) is essential for tracking clonal evolution.",
     explanationPt:
@@ -625,7 +625,7 @@ export const expertQuestions: Question[] = [
       { id: "a2", text: "Likely overfitting; requires external validation and regularization", textPt: "Provável overfitting; requer validação externa e regularização" },
       { id: "a3", text: "New patients are different", textPt: "Novos pacientes são diferentes" },
     ],
-    correctAnswerId: "a2",
+    correctAnswerId: "a3",
     explanation:
       "Critical AI literacy. Large performance gaps between training and validation sets indicate overfitting. The model learned training data noise rather than generalizable patterns. Rigorous external validation, cross-validation, and regularization are essential before clinical deployment.",
     explanationPt:
