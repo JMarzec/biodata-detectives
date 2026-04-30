@@ -4,7 +4,7 @@ import { translations, Language } from "@shared/translations";
 import TeamSetup from "@/components/TeamSetup";
 import { useLocation } from "wouter";
 
-type Screen = "welcome" | "teamSetup" | "playWithoutTeam";
+type Screen = "welcome" | "teamSetup" | "playWithoutTeam" | "joinTeam" | "createTeamSession";
 
 export default function Welcome() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
@@ -35,6 +35,15 @@ export default function Welcome() {
     setLocation("/leaderboard");
   };
 
+  const handleJoinTeam = () => {
+    setCurrentScreen("joinTeam");
+  };
+
+  const handleCreateTeamSession = (difficulty: "normal" | "expert" = "normal") => {
+    setSelectedDifficulty(difficulty);
+    setCurrentScreen("createTeamSession");
+  };
+
   if (currentScreen === "teamSetup") {
     return (
       <TeamSetup
@@ -53,6 +62,28 @@ export default function Welcome() {
         onLanguageChange={setLanguage}
         onBack={() => setCurrentScreen("welcome")}
         difficulty="normal"
+      />
+    );
+  }
+
+  if (currentScreen === "joinTeam") {
+    const JoinTeamCode = require("@/components/JoinTeamCode").default;
+    return (
+      <JoinTeamCode
+        language={language}
+        onBack={() => setCurrentScreen("welcome")}
+      />
+    );
+  }
+
+  if (currentScreen === "createTeamSession") {
+    const CreateTeamSession = require("@/components/CreateTeamSession").default;
+    return (
+      <CreateTeamSession
+        language={language}
+        teamName="Team"
+        isExpertMode={selectedDifficulty === "expert"}
+        onBack={() => setCurrentScreen("welcome")}
       />
     );
   }
@@ -123,6 +154,24 @@ export default function Welcome() {
           >
             {t("welcome.buttons.playWithoutTeam")}
           </Button>
+
+          <div className="border-t border-slate-700 my-4 pt-4">
+            <p className="text-slate-400 text-sm mb-3 text-center">Multi-Player Team Mode</p>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                onClick={() => handleCreateTeamSession("normal")}
+                className="py-4 text-sm font-semibold bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all"
+              >
+                👥 Create Team
+              </Button>
+              <Button
+                onClick={handleJoinTeam}
+                className="py-4 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all"
+              >
+                🔗 Join Team
+              </Button>
+            </div>
+          </div>
 
           <Button
             onClick={handleViewLeaderboard}

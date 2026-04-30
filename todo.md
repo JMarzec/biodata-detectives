@@ -83,3 +83,19 @@
   - Added timer display to GameRound with color warnings for expert mode
   - Updated server routers to accept expertMode parameter in getLeaderboard
   - All 38 tests passing
+
+
+## Phase 9: Team Joining Feature
+- [x] Update database schema to support team sessions and join codes
+- [x] Create team session management API procedures
+- [x] Build "Create Team Session" component with join code generation
+- [x] Build "Join Team" component with code input
+- [x] Implement real-time team member list display
+- [x] Add team member status tracking (waiting/playing/completed)
+- [x] Create team lobby screen showing all members
+- [x] Implement synchronized game start for all team members
+- [x] Add team member disconnect handling
+- [x] Write tests for team joining logic (16 tests passing)
+- [x] Update documentation with team joining instructions
+- [x] Integrate team joining components into Welcome flow
+- [x] Add Create Team and Join Team buttons to welcome screen

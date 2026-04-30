@@ -249,6 +249,45 @@ export const translations = {
     seconds: { en: "seconds", pt: "segundos" },
     percent: { en: "%", pt: "%" },
   },
+
+  // ===== TEAM JOINING =====
+  teamJoining: {
+    title: { en: "Join a Team", pt: "Juntar-se a uma Equipa" },
+    subtitle: { en: "Enter the 6-character join code", pt: "Introduz o código de 6 caracteres" },
+    codeLabel: { en: "Join Code", pt: "Código de Entrada" },
+    codePlaceholder: { en: "e.g., ABC123", pt: "ex., ABC123" },
+    joinButton: { en: "Join Team", pt: "Juntar à Equipa" },
+    backButton: { en: "Back", pt: "Voltar" },
+    error: {
+      invalidCode: { en: "Invalid join code. Please try again.", pt: "Código inválido. Por favor, tenta novamente." },
+      sessionExpired: { en: "This team session has expired.", pt: "Esta sessão de equipa expirou." },
+      sessionFull: { en: "This team is full. Maximum 10 members.", pt: "Esta equipa está cheia. Máximo de 10 membros." },
+    },
+  },
+
+  teamLobby: {
+    title: { en: "Team Lobby", pt: "Sala de Equipa" },
+    joinCode: { en: "Join Code: ", pt: "Código de Entrada: " },
+    members: { en: "Team Members", pt: "Membros da Equipa" },
+    waiting: { en: "Waiting for team to start...", pt: "À espera que a equipa comece..." },
+    startButton: { en: "Start Game", pt: "Iniciar Jogo" },
+    memberStatus: {
+      joined: { en: "Joined", pt: "Entrou" },
+      playing: { en: "Playing", pt: "A Jogar" },
+      completed: { en: "Completed", pt: "Concluído" },
+      disconnected: { en: "Disconnected", pt: "Desconectado" },
+    },
+  },
+
+  createTeamSession: {
+    title: { en: "Create Team Session", pt: "Criar Sessão de Equipa" },
+    subtitle: { en: "Share the join code with your teammates", pt: "Partilha o código de entrada com os teus colegas de equipa" },
+    generatedCode: { en: "Your Join Code:", pt: "O Teu Código de Entrada:" },
+    copyButton: { en: "Copy Code", pt: "Copiar Código" },
+    copiedMessage: { en: "Copied!", pt: "Copiado!" },
+    waitingForMembers: { en: "Waiting for teammates to join...", pt: "À espera que os colegas de equipa entrem..." },
+    continueButton: { en: "Continue with Current Team", pt: "Continuar com Equipa Atual" },
+  },
 };
 
 /**

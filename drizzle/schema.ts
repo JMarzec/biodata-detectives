@@ -51,3 +51,34 @@ export const scores = mysqlTable("scores", {
 
 export type Score = typeof scores.$inferSelect;
 export type InsertScore = typeof scores.$inferInsert;
+
+// Team joining feature tables
+export const teamSessions = mysqlTable("teamSessions", {
+  id: varchar("id", { length: 64 }).primaryKey(), // nanoid
+  joinCode: varchar("joinCode", { length: 6 }).notNull().unique(), // 6-character code like "ABC123"
+  teamName: varchar("teamName", { length: 255 }).notNull(),
+  language: varchar("language", { length: 10 }).default("en").notNull(),
+  isExpertMode: mysqlEnum("isExpertMode", ["true", "false"]).default("false").notNull(),
+  status: mysqlEnum("status", ["waiting", "playing", "completed"]).default("waiting").notNull(),
+  createdBy: varchar("createdBy", { length: 64 }).notNull(), // Session creator's device ID
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  startedAt: timestamp("startedAt"),
+  completedAt: timestamp("completedAt"),
+  expiresAt: timestamp("expiresAt").notNull(), // Sessions expire after 1 hour
+});
+
+export type TeamSession = typeof teamSessions.$inferSelect;
+export type InsertTeamSession = typeof teamSessions.$inferInsert;
+
+export const teamMembers = mysqlTable("teamMembers", {
+  id: varchar("id", { length: 64 }).primaryKey(), // nanoid
+  sessionId: varchar("sessionId", { length: 64 }).notNull(),
+  deviceId: varchar("deviceId", { length: 64 }).notNull(), // Unique device identifier
+  memberName: varchar("memberName", { length: 255 }), // Optional display name
+  status: mysqlEnum("status", ["joined", "playing", "completed", "disconnected"]).default("joined").notNull(),
+  joinedAt: timestamp("joinedAt").defaultNow().notNull(),
+  lastSeenAt: timestamp("lastSeenAt").defaultNow().notNull(),
+});
+
+export type TeamMember = typeof teamMembers.$inferSelect;
+export type InsertTeamMember = typeof teamMembers.$inferInsert;

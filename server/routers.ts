@@ -8,9 +8,11 @@ import { createTeam, recordScore, getAllScores, getTopScores, deleteAllScores, e
 import { calculateFinalScore, selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
 import { expertQuestions } from "@shared/expertQuestions";
+import { teamJoiningRouter } from "./teamJoiningRouter";
 
 export const appRouter = router({
   system: systemRouter,
+  teamJoining: teamJoiningRouter,
   auth: router({
     me: publicProcedure.query((opts) => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

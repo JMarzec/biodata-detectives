@@ -26,6 +26,8 @@ The game teaches 17-year-olds (and anyone interested in Medicine or Nutrition) a
    - **Create Your Team** (Normal Mode) - 30-second timer per question
    - **Expert Mode** (⚡ Harder Questions, Faster Timer) - 15-second timer, 1.5x score multiplier
    - **Play Without Team** - Quick play without team name
+   - **Create Team Session** (Multi-Player) - Create a session and share join code with teammates
+   - **Join Team** (Multi-Player) - Join an existing team using a 6-character code
    - **Leaderboard** - View live rankings
 
 ### **For Staff/Organizers:**
@@ -60,6 +62,8 @@ The game teaches 17-year-olds (and anyone interested in Medicine or Nutrition) a
   - **Create Your Team** - Enter a team name (or get a random science-themed name)
   - **Expert Mode** - Same as above but with harder questions and faster timer
   - **Play Without Team** - Quick play without team setup
+  - **Create Team Session** (Multi-Player) - Create a session and share join code
+  - **Join Team** (Multi-Player) - Join using a 6-character code
   - **Leaderboard** - View top scores
 
 ### **Step 2: Team Setup** (if creating a team)
@@ -387,3 +391,51 @@ BioData Detectives is designed to make learning about biomedical research engagi
 *BioData Detectives: Cancer & Nutrition Lab*  
 *Disease Transcriptomics · NOVA Medical School*  
 *Version 1.0 - April 2026*
+
+
+---
+
+## 👥 **Multi-Player Team Joining (NEW!)**
+
+### **What is Team Joining?**
+
+Team Joining allows multiple players on different phones to play together as a single team. One player creates a session and shares a 6-character join code with teammates. All team members see each other in the lobby and can start the game together.
+
+### **How to Create a Team Session:**
+
+1. Click **"👥 Create Team"** button on the welcome screen
+2. Enter your **team name** (or use a random suggestion)
+3. Choose your **difficulty** (Normal or Expert Mode)
+4. A unique **6-character join code** is generated (e.g., `ABC123`)
+5. **Share the code** with your teammates (copy button available)
+6. Teammates join using the code (see below)
+7. When all teammates are ready, click **"Start Game"**
+8. All team members play together and their scores are combined
+
+### **How to Join a Team Session:**
+
+1. Click **"🔗 Join Team"** button on the welcome screen
+2. Enter the **6-character join code** provided by your team leader
+3. You'll see the **Team Lobby** with all joined members
+4. Wait for the team leader to start the game
+5. When the game starts, you'll play the same questions as your teammates
+6. Your individual score contributes to the team's final score
+
+### **Team Joining Features:**
+
+- **Real-time member list**: See who has joined your team
+- **Member status tracking**: Know who is playing, completed, or disconnected
+- **Synchronized game start**: All team members start at the same time
+- **Shared session**: One session code works for up to 10 team members
+- **Session expiration**: Sessions expire after 1 hour of inactivity
+- **Bilingual support**: Create and join sessions in English or Portuguese
+
+### **Tips for Team Play:**
+
+- **Discuss answers**: Talk with your teammates before answering
+- **Divide and conquer**: Assign different questions to different members
+- **Speed matters**: Faster answers earn bonus points
+- **Expert Mode challenge**: Try Expert Mode for harder questions and faster timer
+- **Share the code**: Use chat, QR code, or verbal communication to share the join code
+
+---
