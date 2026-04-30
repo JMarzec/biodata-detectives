@@ -3,7 +3,7 @@ import { Language } from "@shared/translations";
 import AdminPanel from "@/components/AdminPanel";
 
 export default function AdminPage() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("pt");
 
   return (
     <AdminPanel

@@ -17,9 +17,10 @@ export default function Leaderboard({
 }: LeaderboardProps) {
   const [autoRefresh, setAutoRefresh] = useState(displayMode === "large");
   const [showTeamSessions, setShowTeamSessions] = useState(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<"beginner" | "normal" | "expert" | undefined>(undefined);
   
   // Use team session leaderboard if toggled, otherwise use individual scores
-  const { data: leaderboard, isLoading: leaderboardLoading, refetch } = trpc.game.getLeaderboard.useQuery();
+  const { data: leaderboard, isLoading: leaderboardLoading, refetch } = trpc.game.getLeaderboard.useQuery({ difficulty: selectedDifficulty });
   const { data: teamSessions, isLoading: teamSessionsLoading } = trpc.game.getTeamSessionLeaderboard.useQuery();
   
   const isLoading = showTeamSessions ? teamSessionsLoading : leaderboardLoading;
@@ -88,6 +89,52 @@ export default function Leaderboard({
               Team Scores
             </button>
           </div>
+          
+          {/* Difficulty Filter */}
+          {!showTeamSessions && (
+            <div className="mt-6 flex justify-center gap-3">
+              <button
+                onClick={() => setSelectedDifficulty(undefined)}
+                className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
+                  selectedDifficulty === undefined
+                    ? "bg-blue-500 text-white"
+                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                }`}
+              >
+                All
+              </button>
+              <button
+                onClick={() => setSelectedDifficulty("beginner")}
+                className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
+                  selectedDifficulty === "beginner"
+                    ? "bg-green-500 text-white"
+                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                }`}
+              >
+                🌱 Beginner
+              </button>
+              <button
+                onClick={() => setSelectedDifficulty("normal")}
+                className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
+                  selectedDifficulty === "normal"
+                    ? "bg-cyan-500 text-white"
+                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                }`}
+              >
+                Normal
+              </button>
+              <button
+                onClick={() => setSelectedDifficulty("expert")}
+                className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
+                  selectedDifficulty === "expert"
+                    ? "bg-purple-500 text-white"
+                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                }`}
+              >
+                ⚡ Expert
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Leaderboard Table - Large Display */}

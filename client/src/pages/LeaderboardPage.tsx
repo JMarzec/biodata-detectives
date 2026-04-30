@@ -3,7 +3,7 @@ import { Language } from "@shared/translations";
 import Leaderboard from "@/components/Leaderboard";
 
 export default function LeaderboardPage() {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("pt");
   const isLargeDisplay = typeof window !== "undefined" && window.innerWidth > 1200;
 
   return (

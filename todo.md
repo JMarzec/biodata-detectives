@@ -150,5 +150,8 @@
 - [x] Update database schema to track difficulty level
 - [x] Update leaderboard to show Beginner Mode scores separately
 - [x] Update tRPC procedures to support difficulty filtering
-- [x] Verify all 83 tests still passing
+- [x] Add difficulty filtering buttons to Leaderboard component
+- [x] Update LeaderboardPage and AdminPage with PT default language
+- [x] Create comprehensive beginner mode tests (13 tests)
+- [x] Verify all 96 tests passing (83 original + 13 beginner mode)
 - [x] Verify dev server running cleanly with no errors
