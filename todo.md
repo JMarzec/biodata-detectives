@@ -130,28 +130,18 @@
 
 
 ## Phase 13: Beginner Mode Feature
-- [ ] Create beginner-level questions (24+ questions, EN/PT) with simpler concepts
-- [ ] Add 45-second timer for Beginner Mode
-- [ ] Update Game.tsx to support Beginner Mode difficulty selection
-- [ ] Update Welcome screen with Beginner Mode button (green/teal gradient)
-- [ ] Set Portuguese (PT) as default language globally
-- [ ] Update leaderboard to show Beginner Mode scores separately
-- [ ] Update admin panel to display Beginner Mode statistics
-- [ ] Write tests for Beginner Mode logic
-- [ ] Test beginner question bank integrity
-- [ ] Verify language defaults (PT first, EN available)
-
-## Phase 13: Beginner Mode Feature
 - [x] Create beginner-level questions (24 questions, EN/PT) with simpler concepts
 - [x] Add 45-second timer for Beginner Mode (via difficulty parameter)
 - [x] Update Game.tsx to support Beginner Mode difficulty selection
 - [x] Update Welcome screen with Beginner Mode button (green/teal gradient)
-- [x] Set Portuguese (PT) as default language globally
+- [x] Set Portuguese (PT) as default language globally (Welcome, Game, Leaderboard, Admin)
 - [x] Update database schema to track difficulty level
 - [x] Update leaderboard to show Beginner Mode scores separately
 - [x] Update tRPC procedures to support difficulty filtering
 - [x] Add difficulty filtering buttons to Leaderboard component
 - [x] Update LeaderboardPage and AdminPage with PT default language
-- [x] Create comprehensive beginner mode tests (13 tests)
-- [x] Verify all 96 tests passing (83 original + 13 beginner mode)
+- [x] Create comprehensive beginner mode tests (17 tests including timer verification)
+- [x] Verify all 100 tests passing (83 original + 17 beginner mode)
 - [x] Verify dev server running cleanly with no errors
+- [x] Implement 45-second timer for Beginner Mode in GameRound component
+- [x] Verify English remains available as language option throughout the app

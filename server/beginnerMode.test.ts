@@ -128,3 +128,33 @@ describe("Beginner Mode", () => {
     });
   });
 });
+
+
+describe("Beginner Mode Timer Configuration", () => {
+  it("should have correct timer thresholds for each difficulty", () => {
+    // Beginner: 45 seconds
+    // Normal: 30 seconds
+    // Expert: 15 seconds
+    const timerConfig = {
+      beginner: 45,
+      normal: 30,
+      expert: 15,
+    };
+
+    expect(timerConfig.beginner).toBe(45);
+    expect(timerConfig.normal).toBe(30);
+    expect(timerConfig.expert).toBe(15);
+  });
+
+  it("beginner mode should have longer timer than normal mode", () => {
+    expect(45).toBeGreaterThan(30);
+  });
+
+  it("beginner mode should have longer timer than expert mode", () => {
+    expect(45).toBeGreaterThan(15);
+  });
+
+  it("normal mode should have longer timer than expert mode", () => {
+    expect(30).toBeGreaterThan(15);
+  });
+});

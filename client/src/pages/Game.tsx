@@ -40,8 +40,9 @@ export default function Game() {
     const params = new URLSearchParams(window.location.search);
     const tid = params.get("teamId");
     const tn = params.get("teamName");
-    const lang = (params.get("language") || "en") as Language;
-    const expertMode = params.get("isExpertMode") === "true";
+    const lang = (params.get("language") || "pt") as Language;
+    const diff = (params.get("difficulty") || "normal") as "beginner" | "normal" | "expert";
+    const expertMode = params.get("isExpertMode") === "true" || diff === "expert";
     const sid = params.get("sessionId") || undefined;
 
     if (!tid || !tn) {
@@ -53,11 +54,18 @@ export default function Game() {
     setTeamName(tn);
     setLanguage(lang);
     setIsExpertMode(expertMode);
+    setDifficulty(diff);
     setSessionId(sid);
     setStartTime(Date.now());
 
     // Select random questions based on difficulty
-    const questionBank = expertMode ? expertQuestions : questions;
+    let questionBank = questions;
+    if (diff === "expert") {
+      questionBank = expertQuestions;
+    } else if (diff === "beginner") {
+      const { beginnerQuestions } = require("@shared/beginnerQuestions");
+      questionBank = beginnerQuestions;
+    }
     const selected = selectGameQuestions(questionBank);
     setGameQuestions(selected);
   }, [setLocation]);
@@ -150,6 +158,7 @@ export default function Game() {
         onQuit={handleQuitGame}
         teamScore={calculateTeamScore()}
         isExpertMode={isExpertMode}
+        difficulty={difficulty}
       />
     );
   }
