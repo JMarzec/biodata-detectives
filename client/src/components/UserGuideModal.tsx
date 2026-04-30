@@ -23,16 +23,16 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
 
   const guideContent = language === "pt" ? (
     <>
-      <h2 className="text-2xl font-bold mb-4 text-blue-400">Como Jogar</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-900">Como Jogar</h2>
       
-      <div className="space-y-4 text-slate-200">
+      <div className="space-y-4 text-slate-800">
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🎯 Objetivo</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🎯 Objetivo</h3>
           <p>Responda perguntas sobre genética, transcriptômica e nutrição para ganhar pontos. Quanto mais rápido responder, mais pontos bônus você ganha!</p>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">📊 Estrutura do Jogo</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">📊 Estrutura do Jogo</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>3 Rodadas</strong> - 9 perguntas no total (3 por rodada)</li>
             <li><strong>Rodada 1:</strong> RNA Detective - Expressão gênica e resposta ao tratamento</li>
@@ -42,7 +42,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">⏱️ Temporizador</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">⏱️ Temporizador</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>Modo Normal:</strong> 30 segundos por pergunta</li>
             <li><strong>Modo Especialista:</strong> 15 segundos por pergunta (mais desafiador!)</li>
@@ -51,7 +51,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🏆 Pontuação</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🏆 Pontuação</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>+100 pontos</strong> por resposta correta</li>
             <li><strong>+20 pontos</strong> bônus de velocidade (resposta em menos de 30s)</li>
@@ -61,7 +61,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">👥 Modo Equipe</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">👥 Modo Equipe</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>Crie uma sessão de equipe e compartilhe o código com amigos</li>
             <li>Cada membro joga individualmente em seu telefone</li>
@@ -71,7 +71,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🎖️ Classificações</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🎖️ Classificações</h3>
           <p>Sua classificação é baseada em quantas perguntas você acertou:</p>
           <ul className="list-disc list-inside space-y-1">
             <li>90-100%: Senior BioData Investigators</li>
@@ -83,7 +83,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">💡 Dicas</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">💡 Dicas</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>Leia cada pergunta com cuidado - as palavras importam!</li>
             <li>Use os gráficos de sinal para entender os dados</li>
@@ -95,16 +95,16 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
     </>
   ) : (
     <>
-      <h2 className="text-2xl font-bold mb-4 text-blue-400">How to Play</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-900">How to Play</h2>
       
-      <div className="space-y-4 text-slate-200">
+      <div className="space-y-4 text-slate-800">
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🎯 Objective</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🎯 Objective</h3>
           <p>Answer questions about genetics, transcriptomics, and nutrition to earn points. The faster you answer, the more bonus points you earn!</p>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">📊 Game Structure</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">📊 Game Structure</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>3 Rounds</strong> - 9 questions total (3 per round)</li>
             <li><strong>Round 1:</strong> RNA Detective - Gene expression and treatment response</li>
@@ -114,7 +114,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">⏱️ Timer</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">⏱️ Timer</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>Normal Mode:</strong> 30 seconds per question</li>
             <li><strong>Expert Mode:</strong> 15 seconds per question (more challenging!)</li>
@@ -123,7 +123,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🏆 Scoring</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🏆 Scoring</h3>
           <ul className="list-disc list-inside space-y-1">
             <li><strong>+100 points</strong> per correct answer</li>
             <li><strong>+20 points</strong> speed bonus (answer in under 30s)</li>
@@ -133,7 +133,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">👥 Team Mode</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">👥 Team Mode</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>Create a team session and share the code with friends</li>
             <li>Each member plays individually on their phone</li>
@@ -143,7 +143,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">🎖️ Ranks</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">🎖️ Ranks</h3>
           <p>Your rank is based on how many questions you answered correctly:</p>
           <ul className="list-disc list-inside space-y-1">
             <li>90-100%: Senior BioData Investigators</li>
@@ -155,7 +155,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold text-blue-400 mb-2">💡 Tips</h3>
+          <h3 className="text-lg font-semibold text-blue-900 mb-2">💡 Tips</h3>
           <ul className="list-disc list-inside space-y-1">
             <li>Read each question carefully - wording matters!</li>
             <li>Use the signal graphs to understand the data</li>
