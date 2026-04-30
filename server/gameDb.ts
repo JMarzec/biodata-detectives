@@ -48,7 +48,8 @@ export async function recordScore(
   timeTaken: number,
   answers: any[],
   rank: string,
-  isExpertMode: boolean = false
+  isExpertMode: boolean = false,
+  sessionId?: string
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -57,6 +58,7 @@ export async function recordScore(
   await db.insert(scores).values({
     id: scoreId,
     teamId,
+    sessionId: sessionId || null,
     totalScore,
     accuracy,
     timeTaken,
@@ -206,4 +208,148 @@ export async function exportScoresAsCSV() {
   const csv = [headers, ...rows].map((row) => row.map((cell) => `"${cell}"`).join(",")).join("\n");
 
   return csv;
+}
+
+
+/**
+ * Get aggregated team score for a session (sum of all members' scores)
+ */
+export async function getTeamSessionScore(sessionId: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  // Get all scores for this session
+  const sessionScores = await db
+    .select({
+      totalScore: scores.totalScore,
+      accuracy: scores.accuracy,
+      timeTaken: scores.timeTaken,
+      isExpertMode: scores.isExpertMode,
+    })
+    .from(scores)
+    .where(eq(scores.sessionId, sessionId as any));
+
+  if (sessionScores.length === 0) {
+    return null;
+  }
+
+  // Aggregate scores
+  const totalScore = sessionScores.reduce((sum, s) => sum + s.totalScore, 0);
+  const avgAccuracy = sessionScores.reduce((sum, s) => sum + s.accuracy, 0) / sessionScores.length;
+  const maxTimeTaken = Math.max(...sessionScores.map(s => s.timeTaken));
+  const isExpertMode = sessionScores[0]?.isExpertMode === "true";
+
+  return {
+    totalScore,
+    avgAccuracy,
+    maxTimeTaken,
+    isExpertMode,
+    memberCount: sessionScores.length,
+  };
+}
+
+/**
+ * Get leaderboard with team session aggregation
+ */
+export async function getTeamSessionLeaderboard(expertMode?: boolean) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  let whereCondition = undefined;
+  if (expertMode !== undefined) {
+    const modeValue = expertMode ? "true" : "false";
+    whereCondition = eq(scores.isExpertMode, modeValue as any);
+  }
+
+  // Get all scores grouped by session
+  const allScores = await db
+    .select({
+      id: scores.id,
+      sessionId: scores.sessionId,
+      teamId: scores.teamId,
+      teamName: teams.teamName,
+      totalScore: scores.totalScore,
+      accuracy: scores.accuracy,
+      timeTaken: scores.timeTaken,
+      isExpertMode: scores.isExpertMode,
+      completedAt: scores.completedAt,
+    })
+    .from(scores)
+    .innerJoin(teams, eq(scores.teamId, teams.id))
+    .where(whereCondition || undefined)
+    .orderBy(desc(scores.completedAt));
+
+  // Group by sessionId (for multi-player) or teamId (for single-player)
+  const leaderboard: any[] = [];
+  const sessionMap = new Map();
+  const teamMap = new Map();
+
+  for (const score of allScores) {
+    if (score.sessionId) {
+      // Multi-player session
+      if (!sessionMap.has(score.sessionId)) {
+        sessionMap.set(score.sessionId, {
+          sessionId: score.sessionId,
+          teamId: score.teamId,
+          teamName: score.teamName,
+          totalScore: 0,
+          accuracy: 0,
+          timeTaken: 0,
+          memberCount: 0,
+          isExpertMode: score.isExpertMode,
+          completedAt: score.completedAt,
+          scores: [],
+        });
+      }
+      const session = sessionMap.get(score.sessionId);
+      session.scores.push(score);
+      session.totalScore += score.totalScore;
+      session.accuracy += score.accuracy;
+      session.timeTaken = Math.max(session.timeTaken, score.timeTaken);
+      session.memberCount++;
+    } else {
+      // Single-player team
+      if (!teamMap.has(score.teamId)) {
+        teamMap.set(score.teamId, {
+          sessionId: null,
+          teamId: score.teamId,
+          teamName: score.teamName,
+          totalScore: score.totalScore,
+          accuracy: score.accuracy,
+          timeTaken: score.timeTaken,
+          memberCount: 1,
+          isExpertMode: score.isExpertMode,
+          completedAt: score.completedAt,
+        });
+      }
+    }
+  }
+
+  // Combine and sort
+  sessionMap.forEach(session => {
+    session.accuracy = session.accuracy / session.memberCount;
+    leaderboard.push(session);
+  });
+
+  teamMap.forEach(team => {
+    leaderboard.push(team);
+  });
+
+  // Sort by score descending, then by time ascending
+  leaderboard.sort((a, b) => {
+    if (b.totalScore !== a.totalScore) {
+      return b.totalScore - a.totalScore;
+    }
+    return a.timeTaken - b.timeTaken;
+  });
+
+  return leaderboard;
+}
+
+/**
+ * Get top N team sessions with aggregated scores
+ */
+export async function getTopTeamSessions(limit: number = 10, expertMode?: boolean) {
+  const leaderboard = await getTeamSessionLeaderboard(expertMode);
+  return leaderboard.slice(0, limit);
 }

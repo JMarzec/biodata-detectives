@@ -1,0 +1,1 @@
+ALTER TABLE `scores` ADD `sessionId` varchar(64);

@@ -99,3 +99,14 @@
 - [x] Update documentation with team joining instructions
 - [x] Integrate team joining components into Welcome flow
 - [x] Add Create Team and Join Team buttons to welcome screen
+
+
+## Phase 10: Team Score Aggregation
+- [x] Update database schema to link scores to team sessions (added sessionId column)
+- [x] Create team score aggregation query in gameDb.ts (getTeamSessionScore, getTeamSessionLeaderboard)
+- [x] Update leaderboard to show team scores (sum of all members)
+- [x] Update admin panel to show team vs individual scores
+- [x] Update Game.tsx to submit scores with session ID
+- [x] Update results screen to show team vs individual scores
+- [x] Write tests for team score aggregation logic (8 tests passing)
+- [x] Test leaderboard with multi-member teams

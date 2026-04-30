@@ -30,6 +30,7 @@ export default function Game() {
   const [answers, setAnswers] = useState<GameAnswer[]>([]);
   const [startTime, setStartTime] = useState<number>(0);
   const [finalScore, setFinalScore] = useState<any>(null);
+  const [sessionId, setSessionId] = useState<string | undefined>(undefined);
 
   const submitScoreMutation = trpc.game.submitScore.useMutation();
 
@@ -40,6 +41,7 @@ export default function Game() {
     const tn = params.get("teamName");
     const lang = (params.get("language") || "en") as Language;
     const expertMode = params.get("isExpertMode") === "true";
+    const sid = params.get("sessionId") || undefined;
 
     if (!tid || !tn) {
       setLocation("/");
@@ -50,6 +52,7 @@ export default function Game() {
     setTeamName(tn);
     setLanguage(lang);
     setIsExpertMode(expertMode);
+    setSessionId(sid);
     setStartTime(Date.now());
 
     // Select random questions based on difficulty
@@ -89,6 +92,7 @@ export default function Game() {
         answers, // Use current answers array
         startTime,
         isExpertMode,
+        sessionId, // Include session ID if part of a team session
       });
       setFinalScore(result);
       setCurrentScreen("results");

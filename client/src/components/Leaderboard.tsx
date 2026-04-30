@@ -16,7 +16,14 @@ export default function Leaderboard({
   displayMode = "mobile",
 }: LeaderboardProps) {
   const [autoRefresh, setAutoRefresh] = useState(displayMode === "large");
-  const { data: leaderboard, isLoading, refetch } = trpc.game.getLeaderboard.useQuery();
+  const [showTeamSessions, setShowTeamSessions] = useState(false);
+  
+  // Use team session leaderboard if toggled, otherwise use individual scores
+  const { data: leaderboard, isLoading: leaderboardLoading, refetch } = trpc.game.getLeaderboard.useQuery();
+  const { data: teamSessions, isLoading: teamSessionsLoading } = trpc.game.getTeamSessionLeaderboard.useQuery();
+  
+  const isLoading = showTeamSessions ? teamSessionsLoading : leaderboardLoading;
+  const scores = showTeamSessions ? (teamSessions || []) : (leaderboard || []);
 
   useEffect(() => {
     if (!autoRefresh) return;
@@ -45,7 +52,7 @@ export default function Leaderboard({
     );
   }
 
-  const scores = leaderboard || [];
+
 
   if (displayMode === "large") {
     // Large display mode for stand/projector
@@ -57,6 +64,30 @@ export default function Leaderboard({
             {t("leaderboard.title")}
           </h1>
           <p className="text-3xl text-cyan-300">{t("welcome.footer")}</p>
+          
+          {/* Team Session Toggle */}
+          <div className="mt-6 flex justify-center gap-4">
+            <button
+              onClick={() => setShowTeamSessions(false)}
+              className={`px-6 py-2 text-xl rounded-lg font-semibold transition ${
+                !showTeamSessions
+                  ? "bg-cyan-500 text-white"
+                  : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              }`}
+            >
+              Individual Scores
+            </button>
+            <button
+              onClick={() => setShowTeamSessions(true)}
+              className={`px-6 py-2 text-xl rounded-lg font-semibold transition ${
+                showTeamSessions
+                  ? "bg-cyan-500 text-white"
+                  : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              }`}
+            >
+              Team Scores
+            </button>
+          </div>
         </div>
 
         {/* Leaderboard Table - Large Display */}
@@ -69,6 +100,7 @@ export default function Leaderboard({
                 <tr className="border-b-2 border-cyan-500 text-cyan-300">
                   <th className="text-left py-4 px-4">{t("leaderboard.rank")}</th>
                   <th className="text-left py-4 px-4">{t("leaderboard.teamName")}</th>
+                  {showTeamSessions && <th className="text-center py-4 px-4">Members</th>}
                   <th className="text-center py-4 px-4">{t("leaderboard.score")}</th>
                   <th className="text-center py-4 px-4">{t("leaderboard.accuracy")}</th>
                   <th className="text-center py-4 px-4">{t("leaderboard.time")}</th>
@@ -85,8 +117,13 @@ export default function Leaderboard({
                         {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : idx + 1}
                       </td>
                       <td className="py-4 px-4 text-white font-semibold">{score.teamName}</td>
+                      {showTeamSessions && (
+                        <td className="py-4 px-4 text-center text-purple-400 font-bold">
+                          {score.memberCount || 1}
+                        </td>
+                      )}
                       <td className="py-4 px-4 text-center text-cyan-400 font-bold">{score.totalScore}</td>
-                      <td className="py-4 px-4 text-center text-blue-400 font-bold">{score.accuracy}%</td>
+                      <td className="py-4 px-4 text-center text-blue-400 font-bold">{Math.round(score.accuracy)}%</td>
                       <td className="py-4 px-4 text-center text-green-400 font-bold">{formatTime(score.timeTaken)}</td>
                       <td className="py-4 px-4 text-slate-300 text-lg">{score.rank}</td>
                     </tr>

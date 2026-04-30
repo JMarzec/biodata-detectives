@@ -4,7 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { createTeam, recordScore, getAllScores, getTopScores, deleteAllScores, exportScoresAsCSV } from "./gameDb";
+import { createTeam, recordScore, getAllScores, getTopScores, deleteAllScores, exportScoresAsCSV, getTeamSessionLeaderboard, getTopTeamSessions } from "./gameDb";
 import { calculateFinalScore, selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
 import { expertQuestions } from "@shared/expertQuestions";
@@ -64,6 +64,7 @@ export const appRouter = router({
           ),
           startTime: z.number(),
           isExpertMode: z.boolean().default(false),
+          sessionId: z.string().optional(), // Optional: for team joining sessions
         })
       )
       .mutation(async ({ input }) => {
@@ -75,7 +76,8 @@ export const appRouter = router({
           finalScore.timeTaken,
           input.answers,
           finalScore.rank,
-          input.isExpertMode
+          input.isExpertMode,
+          input.sessionId
         );
 
         return {
@@ -101,6 +103,26 @@ export const appRouter = router({
         return topScores.map((score, index) => ({
           leaderboardRank: index + 1,
           ...score,
+        }));
+      }),
+
+    // Get team session leaderboard (aggregated scores for multi-player sessions)
+    getTeamSessionLeaderboard: publicProcedure.query(async () => {
+      const leaderboard = await getTeamSessionLeaderboard();
+      return leaderboard.map((entry, index) => ({
+        leaderboardRank: index + 1,
+        ...entry,
+      }));
+    }),
+
+    // Get top team sessions
+    getTopTeamSessions: publicProcedure
+      .input(z.object({ limit: z.number().default(10) }))
+      .query(async ({ input }) => {
+        const topSessions = await getTopTeamSessions(input.limit);
+        return topSessions.map((session, index) => ({
+          leaderboardRank: index + 1,
+          ...session,
         }));
       }),
 

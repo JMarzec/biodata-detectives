@@ -40,6 +40,7 @@ export type InsertTeam = typeof teams.$inferInsert;
 export const scores = mysqlTable("scores", {
   id: varchar("id", { length: 64 }).primaryKey(), // nanoid
   teamId: varchar("teamId", { length: 64 }).notNull(),
+  sessionId: varchar("sessionId", { length: 64 }), // Optional: links to team session for multi-player games
   totalScore: int("totalScore").notNull().default(0),
   accuracy: float("accuracy").notNull().default(0), // percentage 0-100
   timeTaken: int("timeTaken").notNull().default(0), // seconds
