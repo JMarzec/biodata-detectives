@@ -223,3 +223,29 @@
 - [x] Changed all section headers from text-blue-400 to text-blue-900
 - [x] Verified user guide is now readable against light background
 - [x] All 168 tests still passing with no regressions
+
+
+## Phase 20: CRITICAL BUGS - Fix Answer Options, Score, and Feedback
+- [ ] Fix generic answer options - implement question-specific options for each question
+- [ ] Fix score increment bug - ensure scoring function is called and matches answers correctly
+- [ ] Fix feedback header/body mismatch - separate correct and incorrect explanations
+- [ ] Verify all three issues are resolved with end-to-end testing
+
+
+## Phase 21: CRITICAL BUG - Answer Randomizer Not Working
+- [ ] Debug: Verify randomizeAnswerOptions is being called in GameRound
+- [ ] Debug: Check if randomizer is returning shuffled options
+- [ ] Debug: Verify shuffled options are being used in render
+- [ ] Fix randomizer implementation if needed
+- [ ] Test that answers appear in different positions across questions
+- [ ] Test that answers are randomized on each game session
+- [ ] Verify correctAnswerId tracking works with randomization
+
+
+## Phase 22: CRITICAL BUG - Same Answer Options on Every Question
+- [ ] Add debug logging to GameRound to log question ID and answer options
+- [ ] Verify questions are being loaded correctly from question bank
+- [ ] Identify why same three options appear on every question
+- [ ] Fix question data loading/passing issue
+- [ ] Test that each question has its own unique answer options
+- [ ] Verify randomization still works with correct answer options
