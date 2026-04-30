@@ -158,3 +158,15 @@
 - [x] Verify all game flows work correctly with new color scheme
 - [x] Test team creation, gameplay, and leaderboard with new design
 - [x] Verify all 100 tests still pass
+
+
+## Phase 15: UX Improvements & Answer Randomization
+- [x] Add "Return to Home" button on Leaderboard screen (both mobile and large display modes)
+- [x] Create answerRandomizer.ts utility with Fisher-Yates shuffle algorithm
+- [x] Randomize answer positions in all question sets (Beginner, Normal, Expert)
+- [x] Remove pre-selected answers from GameRound component
+- [x] Update GameRound to use randomized answers and track correct answer by ID
+- [x] Verify answer randomization works correctly across all difficulty levels
+- [x] Test that users must click to select an answer (no pre-selection)
+- [x] Verify all 100 tests still pass
+- [x] Verify dev server running cleanly with no errors

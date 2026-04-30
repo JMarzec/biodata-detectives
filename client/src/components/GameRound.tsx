@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { translations, Language } from "@shared/translations";
-import { Question } from "@shared/questions";
+import { Question, AnswerOption } from "@shared/questions";
+import { randomizeAnswerOptions } from "@shared/answerRandomizer";
 import SignalBars from "@/components/SignalBars";
 import FeedbackModal from "@/components/FeedbackModal";
 import QuitGameDialog from "@/components/QuitGameDialog";
@@ -38,6 +39,7 @@ export default function GameRound({
   const [timeSpent, setTimeSpent] = useState(0);
   const [startTime] = useState(Date.now());
   const [showQuitDialog, setShowQuitDialog] = useState(false);
+  const [randomizedQuestion] = useState(() => randomizeAnswerOptions(question));
 
   // Timer threshold: 45 seconds for beginner, 30 for normal, 15 for expert
   const timerThreshold = difficulty === "beginner" ? 45 : difficulty === "expert" ? 15 : 30;
@@ -67,15 +69,15 @@ export default function GameRound({
     return language === "en" ? question.title : question.titlePt;
   };
 
-  const getAnswerOptions = () => {
-    return question.answerOptions;
+  const getAnswerOptions = (): AnswerOption[] => {
+    return randomizedQuestion.randomizedAnswerOptions;
   };
 
   const getExplanation = () => {
     return language === "en" ? question.explanation : question.explanationPt;
   };
 
-  const isCorrect = selectedAnswer === question.correctAnswerId;
+  const isCorrect = selectedAnswer === randomizedQuestion.correctAnswerId;
 
   const handleSubmit = () => {
     if (!selectedAnswer) return;
@@ -148,11 +150,11 @@ export default function GameRound({
         {getAnswerOptions().map((option) => (
           <button
             key={option.id}
-            onClick={() => setSelectedAnswer(option.id)}
+            onClick={() => !showFeedback && setSelectedAnswer(option.id)}
             disabled={showFeedback}
             className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
               selectedAnswer === option.id
-                ? "border-blue-500 bg-blue-500/10"
+                ? "border-blue-600 bg-blue-100 border-2"
                 : "border-blue-200 bg-blue-50/50 hover:border-blue-300"
             } ${showFeedback ? "cursor-not-allowed opacity-75" : "cursor-pointer"}`}
           >
@@ -168,7 +170,7 @@ export default function GameRound({
         <Button
           onClick={handleSubmit}
           disabled={!selectedAnswer || showFeedback}
-          className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 rounded-lg transition-all"
+          className="w-full py-4 text-lg font-semibold bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-all font-semibold"
         >
           {t("gameplay.submitButton")}
         </Button>

@@ -182,8 +182,14 @@ export default function Leaderboard({
         </div>
 
         {/* Footer */}
-        <div className="text-center text-slate-600 text-xl mt-8">
+        <div className="text-center text-slate-600 text-xl mt-8 flex flex-col items-center gap-4">
           <p>Auto-refreshing every 5 seconds...</p>
+          <Button
+            onClick={() => (window.location.href = "/")}
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-semibold"
+          >
+            🏠 Return to Home
+          </Button>
         </div>
       </div>
     );
@@ -258,13 +264,15 @@ export default function Leaderboard({
         )}
       </div>
 
-      {/* Back Button */}
-      <Button
-        onClick={() => (window.location.href = "/")}
-        className="mt-8 px-6 py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
-      >
-        ← Back to Game
-      </Button>
+      {/* Navigation Buttons */}
+      <div className="mt-8 flex gap-4">
+        <Button
+          onClick={() => (window.location.href = "/")}
+          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-semibold"
+        >
+          🏠 Return to Home
+        </Button>
+      </div>
     </div>
   );
 }
