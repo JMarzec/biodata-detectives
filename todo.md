@@ -60,3 +60,26 @@
 - [x] Update scoring multiplier for Expert Mode (+50% bonus)
 - [x] Add Expert Mode to admin panel statistics
 - [x] Write tests for Expert Mode logic (12 tests passing)
+
+
+## Phase 8: End-to-End Testing
+- [x] Test welcome screen and language switcher
+- [x] Test team creation flow (normal and expert mode)
+- [x] Test mission briefing screen
+- [x] Test gameplay flow (all 3 rounds)
+- [x] Test answer submission and feedback
+- [x] Test scoring and final results
+- [x] Test leaderboard display and filtering
+- [x] Test admin panel (QR code, reset, CSV export)
+- [x] Test "Play Without Team" flow
+- [x] Test mobile responsiveness
+- [x] Test bilingual content (EN/PT)
+- [x] Fix bugs found during testing:
+  - Fixed Game.tsx to properly initialize isExpertMode from URL params
+  - Fixed Game.tsx to pass isExpertMode to submitScore mutation
+  - Fixed Game.tsx to select expert questions when in expert mode
+  - Fixed Welcome.tsx "Play Without Team" flow (was missing render branch)
+  - Fixed Welcome.tsx duplicate useState import
+  - Added timer display to GameRound with color warnings for expert mode
+  - Updated server routers to accept expertMode parameter in getLeaderboard
+  - All 38 tests passing

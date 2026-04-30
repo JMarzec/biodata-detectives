@@ -98,7 +98,15 @@ export default function GameRound({
           </div>
           <div className="text-right">
             <p className="text-cyan-400 font-semibold">{t("gameplay.score")}: {teamScore}</p>
-            <p className="text-slate-400 text-sm">{t("gameplay.time")}: {timeSpent}s</p>
+            <p className={`text-sm font-semibold ${
+              isExpertMode
+                ? timeSpent >= timerThreshold
+                  ? "text-red-400"
+                  : "text-yellow-400"
+                : "text-slate-400"
+            }`}>
+              {t("gameplay.time")}: {timeSpent}s {isExpertMode && `/ ${timerThreshold}s`}
+            </p>
           </div>
         </div>
 

@@ -46,6 +46,17 @@ export default function Welcome() {
     );
   }
 
+  if (currentScreen === "playWithoutTeam") {
+    return (
+      <TeamSetup
+        language={language}
+        onLanguageChange={setLanguage}
+        onBack={() => setCurrentScreen("welcome")}
+        difficulty="normal"
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4 py-8">
       {/* Animated background grid */}

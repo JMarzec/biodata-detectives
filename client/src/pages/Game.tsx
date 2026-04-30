@@ -39,6 +39,7 @@ export default function Game() {
     const tid = params.get("teamId");
     const tn = params.get("teamName");
     const lang = (params.get("language") || "en") as Language;
+    const expertMode = params.get("isExpertMode") === "true";
 
     if (!tid || !tn) {
       setLocation("/");
@@ -48,10 +49,12 @@ export default function Game() {
     setTeamId(tid);
     setTeamName(tn);
     setLanguage(lang);
+    setIsExpertMode(expertMode);
     setStartTime(Date.now());
 
-    // Select random questions
-    const selected = selectGameQuestions(questions);
+    // Select random questions based on difficulty
+    const questionBank = expertMode ? expertQuestions : questions;
+    const selected = selectGameQuestions(questionBank);
     setGameQuestions(selected);
   }, [setLocation]);
 
@@ -85,6 +88,7 @@ export default function Game() {
         teamId,
         answers, // Use current answers array
         startTime,
+        isExpertMode,
       });
       setFinalScore(result);
       setCurrentScreen("results");
