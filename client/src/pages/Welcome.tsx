@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { translations, Language } from "@shared/translations";
 import TeamSetup from "@/components/TeamSetup";
+import UserGuideModal from "@/components/UserGuideModal";
 import { useLocation } from "wouter";
 
 type Screen = "welcome" | "teamSetup" | "playWithoutTeam" | "joinTeam" | "createTeamSession";
@@ -10,6 +11,7 @@ export default function Welcome() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
   const [language, setLanguage] = useState<Language>("en");
   const [selectedDifficulty, setSelectedDifficulty] = useState<"normal" | "expert">("normal");
+  const [showGuide, setShowGuide] = useState(false);
   const [, setLocation] = useLocation();
 
   const t = (key: string) => {
@@ -42,6 +44,14 @@ export default function Welcome() {
   const handleCreateTeamSession = (difficulty: "normal" | "expert" = "normal") => {
     setSelectedDifficulty(difficulty);
     setCurrentScreen("createTeamSession");
+  };
+
+  const handleShowGuide = () => {
+    setShowGuide(true);
+  };
+
+  const handleCloseGuide = () => {
+    setShowGuide(false);
   };
 
   if (currentScreen === "teamSetup") {
@@ -179,6 +189,14 @@ export default function Welcome() {
           >
             {t("welcome.buttons.leaderboard")}
           </Button>
+
+          <Button
+            onClick={handleShowGuide}
+            className="w-full py-6 text-lg font-semibold bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all flex items-center justify-center gap-2"
+          >
+            <span>📖</span>
+            {language === "pt" ? "Como Jogar" : "How to Play"}
+          </Button>
         </div>
 
         {/* Footer */}
@@ -186,6 +204,8 @@ export default function Welcome() {
           <p>{t("welcome.footer")}</p>
         </div>
       </div>
+
+      <UserGuideModal isOpen={showGuide} onClose={handleCloseGuide} language={language} />
 
       <style>{`
         @keyframes grid-animation {

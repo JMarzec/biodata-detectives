@@ -110,3 +110,20 @@
 - [x] Update results screen to show team vs individual scores
 - [x] Write tests for team score aggregation logic (8 tests passing)
 - [x] Test leaderboard with multi-member teams
+
+
+## Phase 11: User Guide & Mid-Game Restart
+- [x] Create user guide modal component
+- [x] Add "How to Play" button to welcome screen
+- [x] Add quit/restart button to GameRound component
+- [x] Create confirmation dialog for mid-game restart
+- [x] Implement restart logic to return to welcome screen
+- [x] Test user guide display and restart flow
+
+## Phase 12: Bug Fixes & Polish
+- [x] Fix generateJoinCode to use only uppercase letters and numbers (A-Z, 0-9)
+- [x] Verify all 83 tests passing
+- [x] Verify dev server running without blocking errors
+- [x] Test 'How to Play' button rendering on Welcome screen
+- [x] Test 'Quit Game' dialog appearing during gameplay
+- [x] Verify team score aggregation on live leaderboard

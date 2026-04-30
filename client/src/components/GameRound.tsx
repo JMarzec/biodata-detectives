@@ -4,6 +4,7 @@ import { translations, Language } from "@shared/translations";
 import { Question } from "@shared/questions";
 import SignalBars from "@/components/SignalBars";
 import FeedbackModal from "@/components/FeedbackModal";
+import QuitGameDialog from "@/components/QuitGameDialog";
 
 interface GameRoundProps {
   question: Question;
@@ -13,6 +14,7 @@ interface GameRoundProps {
   language: Language;
   onAnswer: (answerId: string, isCorrect: boolean, timeSpent: number) => void;
   onNext: () => void;
+  onQuit: () => void;
   teamScore: number;
   isExpertMode?: boolean;
 }
@@ -25,6 +27,7 @@ export default function GameRound({
   language,
   onAnswer,
   onNext,
+  onQuit,
   teamScore,
   isExpertMode = false,
 }: GameRoundProps) {
@@ -32,6 +35,7 @@ export default function GameRound({
   const [showFeedback, setShowFeedback] = useState(false);
   const [timeSpent, setTimeSpent] = useState(0);
   const [startTime] = useState(Date.now());
+  const [showQuitDialog, setShowQuitDialog] = useState(false);
 
   // Timer threshold: 15 seconds for expert mode, 30 for normal
   const timerThreshold = isExpertMode ? 15 : 30;
@@ -157,14 +161,23 @@ export default function GameRound({
         ))}
       </div>
 
-      {/* Submit Button */}
-      <Button
-        onClick={handleSubmit}
-        disabled={!selectedAnswer || showFeedback}
-        className="max-w-3xl w-full py-4 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-all"
-      >
-        {t("gameplay.submitButton")}
-      </Button>
+      {/* Submit and Quit Buttons */}
+      <div className="max-w-3xl w-full space-y-3">
+        <Button
+          onClick={handleSubmit}
+          disabled={!selectedAnswer || showFeedback}
+          className="w-full py-4 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-all"
+        >
+          {t("gameplay.submitButton")}
+        </Button>
+        <Button
+          onClick={() => setShowQuitDialog(true)}
+          disabled={showFeedback}
+          className="w-full py-3 text-sm font-semibold bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-all"
+        >
+          {language === "pt" ? "Sair do Jogo" : "Quit Game"}
+        </Button>
+      </div>
 
       {/* Feedback Modal */}
       {showFeedback && selectedAnswer && (
@@ -179,6 +192,14 @@ export default function GameRound({
           onNext={handleNextQuestion}
         />
       )}
+
+      {/* Quit Game Dialog */}
+      <QuitGameDialog
+        isOpen={showQuitDialog}
+        language={language}
+        onConfirm={onQuit}
+        onCancel={() => setShowQuitDialog(false)}
+      />
     </div>
   );
 }

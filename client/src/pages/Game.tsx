@@ -110,6 +110,10 @@ export default function Game() {
     setLocation("/leaderboard");
   };
 
+  const handleQuitGame = () => {
+    setLocation("/");
+  };
+
   const calculateTeamScore = () => {
     return answers.reduce((total, answer) => {
       if (answer.isCorrect) {
@@ -141,6 +145,7 @@ export default function Game() {
         language={language}
         onAnswer={handleAnswer}
         onNext={handleNextQuestion}
+        onQuit={handleQuitGame}
         teamScore={calculateTeamScore()}
         isExpertMode={isExpertMode}
       />
