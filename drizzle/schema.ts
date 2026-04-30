@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, json, float } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -25,4 +25,28 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+// BioData Detectives game tables
+export const teams = mysqlTable("teams", {
+  id: varchar("id", { length: 64 }).primaryKey(), // nanoid
+  teamName: varchar("teamName", { length: 255 }).notNull(),
+  language: varchar("language", { length: 10 }).default("en").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
+export type Team = typeof teams.$inferSelect;
+export type InsertTeam = typeof teams.$inferInsert;
+
+export const scores = mysqlTable("scores", {
+  id: varchar("id", { length: 64 }).primaryKey(), // nanoid
+  teamId: varchar("teamId", { length: 64 }).notNull(),
+  totalScore: int("totalScore").notNull().default(0),
+  accuracy: float("accuracy").notNull().default(0), // percentage 0-100
+  timeTaken: int("timeTaken").notNull().default(0), // seconds
+  answers: json("answers").notNull(), // JSON array of {questionId, answerId, isCorrect, timeSpent}
+  rank: varchar("rank", { length: 100 }), // e.g., "Senior BioData Investigators"
+  completedAt: timestamp("completedAt").defaultNow().notNull(),
+});
+
+export type Score = typeof scores.$inferSelect;
+export type InsertScore = typeof scores.$inferInsert;
