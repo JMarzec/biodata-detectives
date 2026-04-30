@@ -127,3 +127,28 @@
 - [x] Test 'How to Play' button rendering on Welcome screen
 - [x] Test 'Quit Game' dialog appearing during gameplay
 - [x] Verify team score aggregation on live leaderboard
+
+
+## Phase 13: Beginner Mode Feature
+- [ ] Create beginner-level questions (24+ questions, EN/PT) with simpler concepts
+- [ ] Add 45-second timer for Beginner Mode
+- [ ] Update Game.tsx to support Beginner Mode difficulty selection
+- [ ] Update Welcome screen with Beginner Mode button (green/teal gradient)
+- [ ] Set Portuguese (PT) as default language globally
+- [ ] Update leaderboard to show Beginner Mode scores separately
+- [ ] Update admin panel to display Beginner Mode statistics
+- [ ] Write tests for Beginner Mode logic
+- [ ] Test beginner question bank integrity
+- [ ] Verify language defaults (PT first, EN available)
+
+## Phase 13: Beginner Mode Feature
+- [x] Create beginner-level questions (24 questions, EN/PT) with simpler concepts
+- [x] Add 45-second timer for Beginner Mode (via difficulty parameter)
+- [x] Update Game.tsx to support Beginner Mode difficulty selection
+- [x] Update Welcome screen with Beginner Mode button (green/teal gradient)
+- [x] Set Portuguese (PT) as default language globally
+- [x] Update database schema to track difficulty level
+- [x] Update leaderboard to show Beginner Mode scores separately
+- [x] Update tRPC procedures to support difficulty filtering
+- [x] Verify all 83 tests still passing
+- [x] Verify dev server running cleanly with no errors

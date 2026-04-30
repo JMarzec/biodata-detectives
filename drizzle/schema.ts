@@ -47,6 +47,7 @@ export const scores = mysqlTable("scores", {
   answers: json("answers").notNull(), // JSON array of {questionId, answerId, isCorrect, timeSpent}
   rank: varchar("rank", { length: 100 }), // e.g., "Senior BioData Investigators"
   isExpertMode: mysqlEnum("isExpertMode", ["true", "false"]).default("false").notNull(), // Expert Mode flag
+  difficulty: mysqlEnum("difficulty", ["beginner", "normal", "expert"]).default("normal").notNull(), // Difficulty level
   completedAt: timestamp("completedAt").defaultNow().notNull(),
 });
 
@@ -60,6 +61,7 @@ export const teamSessions = mysqlTable("teamSessions", {
   teamName: varchar("teamName", { length: 255 }).notNull(),
   language: varchar("language", { length: 10 }).default("en").notNull(),
   isExpertMode: mysqlEnum("isExpertMode", ["true", "false"]).default("false").notNull(),
+  difficulty: mysqlEnum("difficulty", ["beginner", "normal", "expert"]).default("normal").notNull(), // Difficulty level
   status: mysqlEnum("status", ["waiting", "playing", "completed"]).default("waiting").notNull(),
   createdBy: varchar("createdBy", { length: 64 }).notNull(), // Session creator's device ID
   createdAt: timestamp("createdAt").defaultNow().notNull(),

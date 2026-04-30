@@ -9,7 +9,7 @@ interface TeamSetupProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onBack?: () => void;
-  difficulty?: "normal" | "expert";
+  difficulty?: "beginner" | "normal" | "expert" | undefined;
 }
 
 export default function TeamSetup({ language, onLanguageChange, onBack, difficulty = "normal" }: TeamSetupProps) {
@@ -45,6 +45,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
         teamName: teamName.trim(),
         language,
         isExpertMode: difficulty === "expert",
+        difficulty,
       });
 
       // Navigate to game page with team info
@@ -53,6 +54,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
         isExpertMode: difficulty === "expert" ? "true" : "false",
         teamName: teamName.trim(),
         language,
+        difficulty,
       });
       setLocation(`/game?${params.toString()}`);
     } catch (error) {

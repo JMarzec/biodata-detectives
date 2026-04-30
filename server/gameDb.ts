@@ -49,7 +49,8 @@ export async function recordScore(
   answers: any[],
   rank: string,
   isExpertMode: boolean = false,
-  sessionId?: string
+  sessionId?: string,
+  difficulty: "beginner" | "normal" | "expert" = "normal"
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -65,6 +66,7 @@ export async function recordScore(
     answers: JSON.stringify(answers),
     rank,
     isExpertMode: isExpertMode ? "true" : "false",
+    difficulty,
     completedAt: new Date(),
   });
 
@@ -78,14 +80,16 @@ export async function recordScore(
 }
 
 /**
- * Get all scores (leaderboard) - optionally filtered by mode
+ * Get all scores (leaderboard) - optionally filtered by mode or difficulty
  */
-export async function getAllScores(expertMode?: boolean) {
+export async function getAllScores(expertMode?: boolean, difficulty?: "beginner" | "normal" | "expert") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
   let whereCondition = undefined;
-  if (expertMode !== undefined) {
+  if (difficulty !== undefined) {
+    whereCondition = eq(scores.difficulty, difficulty);
+  } else if (expertMode !== undefined) {
     const modeValue = expertMode ? "true" : "false";
     whereCondition = eq(scores.isExpertMode, modeValue as any);
   }
@@ -111,14 +115,16 @@ export async function getAllScores(expertMode?: boolean) {
 }
 
 /**
- * Get top N scores - optionally filtered by mode
+ * Get top N scores - optionally filtered by mode or difficulty
  */
-export async function getTopScores(limit: number = 10, expertMode?: boolean) {
+export async function getTopScores(limit: number = 10, expertMode?: boolean, difficulty?: "beginner" | "normal" | "expert") {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
 
   let whereCondition = undefined;
-  if (expertMode !== undefined) {
+  if (difficulty !== undefined) {
+    whereCondition = eq(scores.difficulty, difficulty);
+  } else if (expertMode !== undefined) {
     const modeValue = expertMode ? "true" : "false";
     whereCondition = eq(scores.isExpertMode, modeValue as any);
   }

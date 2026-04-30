@@ -8,6 +8,7 @@ import { createTeam, recordScore, getAllScores, getTopScores, deleteAllScores, e
 import { calculateFinalScore, selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
 import { expertQuestions } from "@shared/expertQuestions";
+import { beginnerQuestions } from "@shared/beginnerQuestions";
 import { teamJoiningRouter } from "./teamJoiningRouter";
 
 export const appRouter = router({
@@ -31,22 +32,28 @@ export const appRouter = router({
       .input(
         z.object({
           teamName: z.string().min(1).max(255),
-          language: z.enum(["en", "pt"]).default("en"),
+          language: z.enum(["en", "pt"]).default("pt"),
           isExpertMode: z.boolean().default(false),
+          difficulty: z.enum(["beginner", "normal", "expert"]).default("normal"),
         })
       )
       .mutation(async ({ input }) => {
         const teamId = await createTeam(input.teamName, input.language);
-        return { teamId, isExpertMode: input.isExpertMode };
+        return { teamId, isExpertMode: input.isExpertMode, difficulty: input.difficulty };
       }),
 
     // Get questions for a game session
     getQuestions: publicProcedure
-      .input(z.object({ isExpertMode: z.boolean().default(false) }).optional())
+      .input(z.object({ isExpertMode: z.boolean().default(false), difficulty: z.enum(["beginner", "normal", "expert"]).default("normal") }).optional())
       .query(async ({ input }) => {
-        const difficulty = input?.isExpertMode ? "hard" : undefined;
-        const selectedQuestions = selectGameQuestions(questions, difficulty);
-        return selectedQuestions;
+        const difficulty = input?.difficulty || (input?.isExpertMode ? "expert" : "normal");
+        if (difficulty === "beginner") {
+          return selectGameQuestions(beginnerQuestions, "easy");
+        } else if (difficulty === "expert") {
+          return selectGameQuestions(expertQuestions, "hard");
+        } else {
+          return selectGameQuestions(questions, "medium");
+        }
       }),
 
     // Submit game results
@@ -64,6 +71,7 @@ export const appRouter = router({
           ),
           startTime: z.number(),
           isExpertMode: z.boolean().default(false),
+          difficulty: z.enum(["beginner", "normal", "expert"]).default("normal"),
           sessionId: z.string().optional(), // Optional: for team joining sessions
         })
       )
@@ -77,7 +85,8 @@ export const appRouter = router({
           input.answers,
           finalScore.rank,
           input.isExpertMode,
-          input.sessionId
+          input.sessionId,
+          input.difficulty
         );
 
         return {
@@ -87,19 +96,21 @@ export const appRouter = router({
       }),
 
     // Get leaderboard
-    getLeaderboard: publicProcedure.query(async () => {
-      const allScores = await getAllScores();
-      return allScores.map((score, index) => ({
-        leaderboardRank: index + 1,
-        ...score,
-      }));
-    }),
+    getLeaderboard: publicProcedure
+      .input(z.object({ difficulty: z.enum(["beginner", "normal", "expert"]).optional() }).optional())
+      .query(async ({ input }) => {
+        const allScores = await getAllScores(undefined, input?.difficulty);
+        return allScores.map((score, index) => ({
+          leaderboardRank: index + 1,
+          ...score,
+        }));
+      }),
 
     // Get top scores
     getTopScores: publicProcedure
-      .input(z.object({ limit: z.number().default(10) }))
+      .input(z.object({ limit: z.number().default(10), difficulty: z.enum(["beginner", "normal", "expert"]).optional() }))
       .query(async ({ input }) => {
-        const topScores = await getTopScores(input.limit);
+        const topScores = await getTopScores(input.limit, undefined, input.difficulty);
         return topScores.map((score, index) => ({
           leaderboardRank: index + 1,
           ...score,

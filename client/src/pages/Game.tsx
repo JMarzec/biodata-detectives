@@ -22,8 +22,9 @@ export default function Game() {
   const [, setLocation] = useLocation();
   const [teamId, setTeamId] = useState<string>("");
   const [teamName, setTeamName] = useState<string>("");
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("pt");
   const [isExpertMode, setIsExpertMode] = useState(false);
+  const [difficulty, setDifficulty] = useState<"beginner" | "normal" | "expert">("normal");
   const [currentScreen, setCurrentScreen] = useState<GameScreen>("mission");
   const [gameQuestions, setGameQuestions] = useState<any[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -92,6 +93,7 @@ export default function Game() {
         answers, // Use current answers array
         startTime,
         isExpertMode,
+        difficulty,
         sessionId, // Include session ID if part of a team session
       });
       setFinalScore(result);

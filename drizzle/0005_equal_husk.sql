@@ -1,0 +1,2 @@
+ALTER TABLE `scores` ADD `difficulty` enum('beginner','normal','expert') DEFAULT 'normal' NOT NULL;--> statement-breakpoint
+ALTER TABLE `teamSessions` ADD `difficulty` enum('beginner','normal','expert') DEFAULT 'normal' NOT NULL;

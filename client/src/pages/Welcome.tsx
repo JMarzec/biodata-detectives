@@ -6,11 +6,12 @@ import UserGuideModal from "@/components/UserGuideModal";
 import { useLocation } from "wouter";
 
 type Screen = "welcome" | "teamSetup" | "playWithoutTeam" | "joinTeam" | "createTeamSession";
+type Difficulty = "beginner" | "normal" | "expert";
 
 export default function Welcome() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
-  const [language, setLanguage] = useState<Language>("en");
-  const [selectedDifficulty, setSelectedDifficulty] = useState<"normal" | "expert">("normal");
+  const [language, setLanguage] = useState<Language>("pt");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>("normal");
   const [showGuide, setShowGuide] = useState(false);
   const [, setLocation] = useLocation();
 
@@ -23,7 +24,7 @@ export default function Welcome() {
     return typeof value === "object" && value !== null && language in value ? value[language] : key;
   };
 
-  const handleCreateTeam = (difficulty: "normal" | "expert" = "normal") => {
+  const handleCreateTeam = (difficulty: Difficulty = "normal") => {
     setSelectedDifficulty(difficulty);
     setCurrentScreen("teamSetup");
   };
@@ -41,7 +42,7 @@ export default function Welcome() {
     setCurrentScreen("joinTeam");
   };
 
-  const handleCreateTeamSession = (difficulty: "normal" | "expert" = "normal") => {
+  const handleCreateTeamSession = (difficulty: Difficulty = "normal") => {
     setSelectedDifficulty(difficulty);
     setCurrentScreen("createTeamSession");
   };
@@ -143,6 +144,14 @@ export default function Welcome() {
 
         {/* Action Buttons */}
         <div className="space-y-4 mb-8">
+          <Button
+            onClick={() => handleCreateTeam("beginner")}
+            className="w-full py-6 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white rounded-lg transition-all transform hover:scale-105 flex items-center justify-center gap-2"
+          >
+            <span>🌱</span>
+            {language === "pt" ? "Modo Iniciante" : "Beginner Mode"}
+          </Button>
+
           <Button
             onClick={() => handleCreateTeam("normal")}
             className="w-full py-6 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all transform hover:scale-105"
