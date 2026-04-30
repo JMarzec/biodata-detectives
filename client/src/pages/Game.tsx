@@ -5,6 +5,7 @@ import { trpc } from "@/lib/trpc";
 import { selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
 import { expertQuestions } from "@shared/expertQuestions";
+import { beginnerQuestions } from "@shared/beginnerQuestions";
 import MissionBriefing from "@/components/MissionBriefing";
 import GameRound from "@/components/GameRound";
 import ResultsScreen from "@/components/ResultsScreen";
@@ -63,7 +64,6 @@ export default function Game() {
     if (diff === "expert") {
       questionBank = expertQuestions;
     } else if (diff === "beginner") {
-      const { beginnerQuestions } = require("@shared/beginnerQuestions");
       questionBank = beginnerQuestions;
     }
     const selected = selectGameQuestions(questionBank);

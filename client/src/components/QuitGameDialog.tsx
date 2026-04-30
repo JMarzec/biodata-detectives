@@ -21,20 +21,20 @@ export default function QuitGameDialog({ isOpen, language, onConfirm, onCancel }
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 rounded-lg max-w-sm w-full border border-cyan-500/30 p-6">
-        <h2 className="text-2xl font-bold text-cyan-400 mb-4">{title}</h2>
+      <div className="bg-gradient-to-br from-white via-blue-50 to-white rounded-lg max-w-sm w-full border border-blue-500/30 p-6">
+        <h2 className="text-2xl font-bold text-blue-400 mb-4">{title}</h2>
         <p className="text-slate-200 mb-6">{message}</p>
         
         <div className="flex gap-3">
           <Button
             onClick={onCancel}
-            className="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 rounded-lg"
+            className="flex-1 bg-blue-100 hover:bg-slate-600 text-slate-900 font-semibold py-2 rounded-lg"
           >
             {cancelText}
           </Button>
           <Button
             onClick={onConfirm}
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg"
+            className="flex-1 bg-red-600 hover:bg-red-700 text-slate-900 font-semibold py-2 rounded-lg"
           >
             {confirmText}
           </Button>

@@ -75,20 +75,20 @@ export default function JoinTeamCode({ language, onBack }: JoinTeamCodeProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center justify-center px-4">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
           <div className="text-5xl mb-4">🔗</div>
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {t("teamJoining.title")}
           </h1>
-          <p className="text-cyan-300 text-lg">{t("teamJoining.subtitle")}</p>
+          <p className="text-blue-300 text-lg">{t("teamJoining.subtitle")}</p>
         </div>
 
         {/* Join Code Input */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 space-y-4">
-          <label className="block text-white font-medium">{t("teamJoining.codeLabel")}</label>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-6 space-y-4">
+          <label className="block text-slate-900 font-medium">{t("teamJoining.codeLabel")}</label>
           <input
             type="text"
             value={joinCode.toUpperCase()}
@@ -98,7 +98,7 @@ export default function JoinTeamCode({ language, onBack }: JoinTeamCodeProps) {
             }}
             placeholder={t("teamJoining.codePlaceholder")}
             maxLength={6}
-            className="w-full px-4 py-3 rounded-lg bg-slate-900 border border-slate-600 text-white text-center text-2xl font-bold tracking-widest focus:outline-none focus:border-cyan-500 transition-colors"
+            className="w-full px-4 py-3 rounded-lg bg-blue-900 border border-blue-300 text-slate-900 text-center text-2xl font-bold tracking-widest focus:outline-none focus:border-blue-500 transition-colors"
           />
 
           {error && <p className="text-red-400 text-sm text-center">{error}</p>}
@@ -106,7 +106,7 @@ export default function JoinTeamCode({ language, onBack }: JoinTeamCodeProps) {
           <Button
             onClick={handleJoin}
             disabled={joinCode.length !== 6 || isLoading}
-            className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-slate-900 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? "Joining..." : t("teamJoining.joinButton")}
           </Button>
@@ -115,7 +115,7 @@ export default function JoinTeamCode({ language, onBack }: JoinTeamCodeProps) {
         {/* Back Button */}
         <Button
           onClick={onBack}
-          className="w-full py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all"
+          className="w-full py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
         >
           ← {t("teamJoining.backButton")}
         </Button>

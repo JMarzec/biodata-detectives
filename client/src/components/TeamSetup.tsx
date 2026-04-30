@@ -73,15 +73,15 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center justify-center px-4 py-8">
       {/* Language Switcher */}
       <div className="absolute top-4 right-4 flex gap-2">
         <button
           onClick={() => onLanguageChange("en")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "en"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           EN
@@ -90,8 +90,8 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
           onClick={() => onLanguageChange("pt")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "pt"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           PT
@@ -101,7 +101,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
       {/* Back Button */}
       <button
         onClick={handleBack}
-        className="absolute top-4 left-4 px-4 py-2 text-sm font-medium bg-slate-700 hover:bg-slate-600 text-white rounded transition-all"
+        className="absolute top-4 left-4 px-4 py-2 text-sm font-medium bg-blue-100 hover:bg-slate-600 text-slate-900 rounded transition-all"
       >
         ← {t("teamSetup.backButton")}
       </button>
@@ -110,7 +110,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
       <div className="relative z-10 max-w-md w-full">
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">👥</div>
-          <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {t("teamSetup.title")}
           </h2>
         </div>
@@ -128,7 +128,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
                   handleStartMission();
                 }
               }}
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/50"
+              className="w-full px-4 py-3 bg-blue-50 border border-blue-200 text-slate-900 placeholder-slate-500 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-cyan-500/50"
               disabled={isLoading}
             />
           </div>
@@ -137,7 +137,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
           <Button
             onClick={handleRandomName}
             disabled={isLoading}
-            className="w-full py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all"
+            className="w-full py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
           >
             🎲 {t("teamSetup.randomNameButton")}
           </Button>
@@ -146,15 +146,15 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
           <Button
             onClick={handleStartMission}
             disabled={!teamName.trim() || isLoading}
-            className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-all transform hover:scale-105"
+            className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-cyan-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 rounded-lg transition-all transform hover:scale-105"
           >
             {isLoading ? t("common.loading") : t("teamSetup.startButton")}
           </Button>
         </div>
 
         {/* Suggested Names */}
-        <div className="mt-8 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-          <p className="text-sm text-slate-400 mb-3">💡 {t("common.success")} suggestions:</p>
+        <div className="mt-8 p-4 bg-blue-50/50 rounded-lg border border-blue-200">
+          <p className="text-sm text-slate-600 mb-3">💡 {t("common.success")} suggestions:</p>
           <div className="flex flex-wrap gap-2">
             {translations.teamNames[language]
               .slice(0, 5)
@@ -162,7 +162,7 @@ export default function TeamSetup({ language, onLanguageChange, onBack, difficul
                 <button
                   key={idx}
                   onClick={() => setTeamName(name)}
-                  className="px-3 py-1 text-xs bg-slate-700 hover:bg-cyan-600 text-white rounded transition-all"
+                  className="px-3 py-1 text-xs bg-blue-100 hover:bg-blue-600 text-slate-900 rounded transition-all"
                 >
                   {name}
                 </button>

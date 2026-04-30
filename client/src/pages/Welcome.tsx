@@ -100,7 +100,7 @@ export default function Welcome() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center justify-center px-4 py-8">
       {/* Animated background grid */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-grid-pattern"></div>
@@ -112,8 +112,8 @@ export default function Welcome() {
           onClick={() => setLanguage("en")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "en"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-600 text-white"
+              : "bg-blue-100 text-blue-700 hover:bg-blue-200"
           }`}
         >
           EN
@@ -122,8 +122,8 @@ export default function Welcome() {
           onClick={() => setLanguage("pt")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "pt"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-600 text-white"
+              : "bg-blue-100 text-blue-700 hover:bg-blue-200"
           }`}
         >
           PT
@@ -135,11 +135,11 @@ export default function Welcome() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="text-6xl mb-4 animate-pulse">🧬</div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {t("welcome.title")}
           </h1>
-          <p className="text-2xl md:text-3xl text-cyan-300 mb-6">{t("welcome.subtitle")}</p>
-          <p className="text-lg text-slate-300 mb-8">{t("welcome.description")}</p>
+          <p className="text-2xl md:text-3xl text-blue-600 mb-6">{t("welcome.subtitle")}</p>
+          <p className="text-lg text-slate-600 mb-8">{t("welcome.description")}</p>
         </div>
 
         {/* Action Buttons */}

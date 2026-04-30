@@ -72,34 +72,34 @@ export default function CreateTeamSession({ language, teamName, isExpertMode, on
 
   if (joinCode && sessionId) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4">
+      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center justify-center px-4">
         <div className="max-w-md w-full space-y-8">
           {/* Header */}
           <div className="text-center">
             <div className="text-5xl mb-4">✨</div>
-            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               {t("createTeamSession.title")}
             </h1>
-            <p className="text-cyan-300">{t("createTeamSession.subtitle")}</p>
+            <p className="text-blue-300">{t("createTeamSession.subtitle")}</p>
           </div>
 
           {/* Join Code Display */}
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 text-center space-y-4">
-            <p className="text-slate-400">{t("createTeamSession.generatedCode")}</p>
-            <div className="text-5xl font-bold text-cyan-400 tracking-widest">{joinCode}</div>
+          <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-8 text-center space-y-4">
+            <p className="text-slate-600">{t("createTeamSession.generatedCode")}</p>
+            <div className="text-5xl font-bold text-blue-400 tracking-widest">{joinCode}</div>
             <Button
               onClick={handleCopyCode}
-              className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-all"
+              className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-slate-900 rounded-lg transition-all"
             >
               {copied ? t("createTeamSession.copiedMessage") : t("createTeamSession.copyButton")}
             </Button>
-            <p className="text-sm text-slate-400">{t("createTeamSession.waitingForMembers")}</p>
+            <p className="text-sm text-slate-600">{t("createTeamSession.waitingForMembers")}</p>
           </div>
 
           {/* Continue Button */}
           <Button
             onClick={handleContinue}
-            className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all text-lg font-bold"
+            className="w-full py-3 bg-green-600 hover:bg-green-700 text-slate-900 rounded-lg transition-all text-lg font-bold"
           >
             {t("createTeamSession.continueButton")}
           </Button>
@@ -109,26 +109,26 @@ export default function CreateTeamSession({ language, teamName, isExpertMode, on
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center justify-center px-4">
       <div className="max-w-md w-full space-y-8">
         {/* Header */}
         <div className="text-center">
           <div className="text-5xl mb-4">👥</div>
-          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {t("createTeamSession.title")}
           </h1>
-          <p className="text-cyan-300">{t("createTeamSession.subtitle")}</p>
+          <p className="text-blue-300">{t("createTeamSession.subtitle")}</p>
         </div>
 
         {/* Team Info */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 space-y-3">
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-6 space-y-3">
           <div>
-            <p className="text-slate-400 text-sm">Team Name</p>
-            <p className="text-xl font-bold text-cyan-400">{teamName}</p>
+            <p className="text-slate-600 text-sm">Team Name</p>
+            <p className="text-xl font-bold text-blue-400">{teamName}</p>
           </div>
           <div>
-            <p className="text-slate-400 text-sm">Mode</p>
-            <p className="text-xl font-bold text-cyan-400">{isExpertMode ? "Expert Mode ⚡" : "Normal Mode"}</p>
+            <p className="text-slate-600 text-sm">Mode</p>
+            <p className="text-xl font-bold text-blue-400">{isExpertMode ? "Expert Mode ⚡" : "Normal Mode"}</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ export default function CreateTeamSession({ language, teamName, isExpertMode, on
         <Button
           onClick={handleCreateSession}
           disabled={isLoading}
-          className="w-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-slate-900 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? "Creating..." : "Create Team Session"}
         </Button>
@@ -144,7 +144,7 @@ export default function CreateTeamSession({ language, teamName, isExpertMode, on
         {/* Back Button */}
         <Button
           onClick={onBack}
-          className="w-full py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all"
+          className="w-full py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
         >
           ← Back
         </Button>

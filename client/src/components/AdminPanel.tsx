@@ -68,15 +68,15 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center px-4 py-8">
       {/* Language Switcher */}
       <div className="absolute top-4 right-4 flex gap-2">
         <button
           onClick={() => onLanguageChange("en")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "en"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           EN
@@ -85,8 +85,8 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
           onClick={() => onLanguageChange("pt")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "pt"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           PT
@@ -96,26 +96,26 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
       {/* Header */}
       <div className="text-center mb-12 mt-8">
         <div className="text-5xl mb-4">⚙️</div>
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
           {t("admin.title")}
         </h1>
       </div>
 
       <div className="max-w-4xl w-full space-y-8">
         {/* QR Code Section */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4 text-cyan-300">{t("admin.qrCode")}</h2>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-8">
+          <h2 className="text-2xl font-bold mb-4 text-blue-300">{t("admin.qrCode")}</h2>
           <div className="flex flex-col items-center space-y-4">
             {showQRCode && (
               <div className="bg-white p-4 rounded-lg">
                 <div ref={qrRef}></div>
               </div>
             )}
-            <p className="text-slate-300 text-center">{t("admin.scanToPlay")}</p>
-            <p className="text-sm text-slate-400 break-all">{gameUrl}</p>
+            <p className="text-slate-700 text-center">{t("admin.scanToPlay")}</p>
+            <p className="text-sm text-slate-600 break-all">{gameUrl}</p>
             <Button
               onClick={() => setShowQRCode(!showQRCode)}
-              className="bg-slate-700 hover:bg-slate-600 text-white"
+              className="bg-blue-100 hover:bg-slate-600 text-slate-900"
             >
               {showQRCode ? "Hide QR Code" : "Show QR Code"}
             </Button>
@@ -123,16 +123,16 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
         </div>
 
         {/* Leaderboard Stats */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4 text-cyan-300">{t("admin.viewScores")}</h2>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-8">
+          <h2 className="text-2xl font-bold mb-4 text-blue-300">{t("admin.viewScores")}</h2>
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-slate-900/50 rounded-lg p-4 text-center">
-              <p className="text-slate-400 text-sm mb-2">Total Teams</p>
-              <p className="text-3xl font-bold text-cyan-400">{leaderboard?.length || 0}</p>
+            <div className="bg-blue-900/50 rounded-lg p-4 text-center">
+              <p className="text-slate-600 text-sm mb-2">Total Teams</p>
+              <p className="text-3xl font-bold text-blue-400">{leaderboard?.length || 0}</p>
             </div>
-            <div className="bg-slate-900/50 rounded-lg p-4 text-center">
-              <p className="text-slate-400 text-sm mb-2">Top Score</p>
-              <p className="text-3xl font-bold text-cyan-400">
+            <div className="bg-blue-900/50 rounded-lg p-4 text-center">
+              <p className="text-slate-600 text-sm mb-2">Top Score</p>
+              <p className="text-3xl font-bold text-blue-400">
                 {leaderboard && leaderboard.length > 0 ? leaderboard[0].totalScore : 0}
               </p>
             </div>
@@ -142,35 +142,35 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
           <div className="space-y-2">
             {leaderboard && leaderboard.length > 0 ? (
               leaderboard.slice(0, 5).map((score: any, idx: number) => (
-                <div key={idx} className="bg-slate-900/50 p-3 rounded flex justify-between">
+                <div key={idx} className="bg-blue-900/50 p-3 rounded flex justify-between">
                   <span className="font-semibold">
                     {idx + 1}. {score.teamName}
                   </span>
-                  <span className="text-cyan-400">{score.totalScore} pts</span>
+                  <span className="text-blue-400">{score.totalScore} pts</span>
                 </div>
               ))
             ) : (
-              <p className="text-slate-400">No scores yet</p>
+              <p className="text-slate-600">No scores yet</p>
             )}
           </div>
         </div>
 
         {/* Admin Controls */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8 space-y-4">
-          <h2 className="text-2xl font-bold mb-4 text-cyan-300">Controls</h2>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-8 space-y-4">
+          <h2 className="text-2xl font-bold mb-4 text-blue-300">Controls</h2>
 
           <Button
             onClick={handleExportCSV}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all"
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-slate-900 rounded-lg transition-all"
           >
             {t("admin.exportCSV")}
           </Button>
 
-          <div className="flex items-center justify-between bg-slate-900/50 p-4 rounded-lg">
-            <label className="text-white font-medium">{t("admin.demoMode")}</label>
+          <div className="flex items-center justify-between bg-blue-900/50 p-4 rounded-lg">
+            <label className="text-slate-900 font-medium">{t("admin.demoMode")}</label>
             <button
               onClick={() => setDemoMode(!demoMode)}
-              className={`px-4 py-2 rounded ${demoMode ? "bg-green-600" : "bg-slate-700"} text-white`}
+              className={`px-4 py-2 rounded ${demoMode ? "bg-green-600" : "bg-blue-100"} text-slate-900`}
             >
               {demoMode ? "ON" : "OFF"}
             </button>
@@ -178,16 +178,16 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
 
           <Button
             onClick={handleResetLeaderboard}
-            className="w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all"
+            className="w-full py-3 bg-red-600 hover:bg-red-700 text-slate-900 rounded-lg transition-all"
           >
             {t("admin.resetLeaderboard")}
           </Button>
         </div>
 
         {/* Instructions */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4 text-cyan-300">{t("admin.instructions")}</h2>
-          <div className="space-y-3 text-slate-300">
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-8">
+          <h2 className="text-2xl font-bold mb-4 text-blue-300">{t("admin.instructions")}</h2>
+          <div className="space-y-3 text-slate-700">
             <p>{t("adminInstructions.step1")}</p>
             <p>{t("adminInstructions.step2")}</p>
             <p>{t("adminInstructions.step3")}</p>
@@ -200,7 +200,7 @@ export default function AdminPanel({ language, onLanguageChange }: AdminPanelPro
         {/* Back Button */}
         <Button
           onClick={() => (window.location.href = "/")}
-          className="w-full py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all"
+          className="w-full py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
         >
           ← Back to Game
         </Button>

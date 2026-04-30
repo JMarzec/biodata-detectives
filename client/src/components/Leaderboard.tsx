@@ -47,7 +47,7 @@ export default function Leaderboard({
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex items-center justify-center">
         <p className="text-xl">{t("common.loading")}</p>
       </div>
     );
@@ -58,13 +58,13 @@ export default function Leaderboard({
   if (displayMode === "large") {
     // Large display mode for stand/projector
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col p-8">
+      <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col p-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {t("leaderboard.title")}
           </h1>
-          <p className="text-3xl text-cyan-300">{t("welcome.footer")}</p>
+          <p className="text-3xl text-blue-300">{t("welcome.footer")}</p>
           
           {/* Team Session Toggle */}
           <div className="mt-6 flex justify-center gap-4">
@@ -72,8 +72,8 @@ export default function Leaderboard({
               onClick={() => setShowTeamSessions(false)}
               className={`px-6 py-2 text-xl rounded-lg font-semibold transition ${
                 !showTeamSessions
-                  ? "bg-cyan-500 text-white"
-                  : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                  ? "bg-blue-500 text-slate-900"
+                  : "bg-blue-100 text-slate-700 hover:bg-slate-600"
               }`}
             >
               Individual Scores
@@ -82,8 +82,8 @@ export default function Leaderboard({
               onClick={() => setShowTeamSessions(true)}
               className={`px-6 py-2 text-xl rounded-lg font-semibold transition ${
                 showTeamSessions
-                  ? "bg-cyan-500 text-white"
-                  : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                  ? "bg-blue-500 text-slate-900"
+                  : "bg-blue-100 text-slate-700 hover:bg-slate-600"
               }`}
             >
               Team Scores
@@ -97,8 +97,8 @@ export default function Leaderboard({
                 onClick={() => setSelectedDifficulty(undefined)}
                 className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
                   selectedDifficulty === undefined
-                    ? "bg-blue-500 text-white"
-                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                    ? "bg-blue-500 text-slate-900"
+                    : "bg-blue-100 text-slate-700 hover:bg-slate-600"
                 }`}
               >
                 All
@@ -107,8 +107,8 @@ export default function Leaderboard({
                 onClick={() => setSelectedDifficulty("beginner")}
                 className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
                   selectedDifficulty === "beginner"
-                    ? "bg-green-500 text-white"
-                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                    ? "bg-green-500 text-slate-900"
+                    : "bg-blue-100 text-slate-700 hover:bg-slate-600"
                 }`}
               >
                 🌱 Beginner
@@ -117,8 +117,8 @@ export default function Leaderboard({
                 onClick={() => setSelectedDifficulty("normal")}
                 className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
                   selectedDifficulty === "normal"
-                    ? "bg-cyan-500 text-white"
-                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                    ? "bg-blue-500 text-slate-900"
+                    : "bg-blue-100 text-slate-700 hover:bg-slate-600"
                 }`}
               >
                 Normal
@@ -127,8 +127,8 @@ export default function Leaderboard({
                 onClick={() => setSelectedDifficulty("expert")}
                 className={`px-4 py-2 text-lg rounded-lg font-semibold transition ${
                   selectedDifficulty === "expert"
-                    ? "bg-purple-500 text-white"
-                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+                    ? "bg-purple-500 text-slate-900"
+                    : "bg-blue-100 text-slate-700 hover:bg-slate-600"
                 }`}
               >
                 ⚡ Expert
@@ -140,11 +140,11 @@ export default function Leaderboard({
         {/* Leaderboard Table - Large Display */}
         <div className="flex-1 overflow-auto">
           {scores.length === 0 ? (
-            <div className="text-center text-2xl text-slate-400 py-12">{t("leaderboard.noScores")}</div>
+            <div className="text-center text-2xl text-slate-600 py-12">{t("leaderboard.noScores")}</div>
           ) : (
             <table className="w-full text-2xl">
               <thead>
-                <tr className="border-b-2 border-cyan-500 text-cyan-300">
+                <tr className="border-b-2 border-blue-500 text-blue-300">
                   <th className="text-left py-4 px-4">{t("leaderboard.rank")}</th>
                   <th className="text-left py-4 px-4">{t("leaderboard.teamName")}</th>
                   {showTeamSessions && <th className="text-center py-4 px-4">Members</th>}
@@ -159,20 +159,20 @@ export default function Leaderboard({
                   const bgClass =
                     idx === 0 ? "bg-yellow-500/10" : idx === 1 ? "bg-slate-500/10" : idx === 2 ? "bg-orange-500/10" : "";
                   return (
-                    <tr key={idx} className={`border-b border-slate-700 ${bgClass}`}>
-                      <td className="py-4 px-4 font-bold text-cyan-400">
+                    <tr key={idx} className={`border-b border-blue-200 ${bgClass}`}>
+                      <td className="py-4 px-4 font-bold text-blue-400">
                         {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : idx + 1}
                       </td>
-                      <td className="py-4 px-4 text-white font-semibold">{score.teamName}</td>
+                      <td className="py-4 px-4 text-slate-900 font-semibold">{score.teamName}</td>
                       {showTeamSessions && (
                         <td className="py-4 px-4 text-center text-purple-400 font-bold">
                           {score.memberCount || 1}
                         </td>
                       )}
-                      <td className="py-4 px-4 text-center text-cyan-400 font-bold">{score.totalScore}</td>
+                      <td className="py-4 px-4 text-center text-blue-400 font-bold">{score.totalScore}</td>
                       <td className="py-4 px-4 text-center text-blue-400 font-bold">{Math.round(score.accuracy)}%</td>
                       <td className="py-4 px-4 text-center text-green-400 font-bold">{formatTime(score.timeTaken)}</td>
-                      <td className="py-4 px-4 text-slate-300 text-lg">{score.rank}</td>
+                      <td className="py-4 px-4 text-slate-700 text-lg">{score.rank}</td>
                     </tr>
                   );
                 })}
@@ -182,7 +182,7 @@ export default function Leaderboard({
         </div>
 
         {/* Footer */}
-        <div className="text-center text-slate-400 text-xl mt-8">
+        <div className="text-center text-slate-600 text-xl mt-8">
           <p>Auto-refreshing every 5 seconds...</p>
         </div>
       </div>
@@ -191,15 +191,15 @@ export default function Leaderboard({
 
   // Mobile display mode
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center px-4 py-8">
       {/* Language Switcher */}
       <div className="absolute top-4 right-4 flex gap-2">
         <button
           onClick={() => onLanguageChange("en")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "en"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           EN
@@ -208,8 +208,8 @@ export default function Leaderboard({
           onClick={() => onLanguageChange("pt")}
           className={`px-4 py-2 rounded text-sm font-medium transition-all ${
             language === "pt"
-              ? "bg-cyan-500 text-white"
-              : "bg-slate-700 text-slate-300 hover:bg-slate-600"
+              ? "bg-blue-500 text-slate-900"
+              : "bg-blue-100 text-slate-700 hover:bg-slate-600"
           }`}
         >
           PT
@@ -219,7 +219,7 @@ export default function Leaderboard({
       {/* Header */}
       <div className="text-center mb-8 mt-12">
         <div className="text-5xl mb-4">🏆</div>
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
           {t("leaderboard.title")}
         </h1>
       </div>
@@ -227,28 +227,28 @@ export default function Leaderboard({
       {/* Leaderboard List */}
       <div className="max-w-2xl w-full space-y-3">
         {scores.length === 0 ? (
-          <div className="text-center text-slate-400 py-12">{t("leaderboard.noScores")}</div>
+          <div className="text-center text-slate-600 py-12">{t("leaderboard.noScores")}</div>
         ) : (
           scores.slice(0, 10).map((score: any, idx: number) => {
             const borderClass = idx === 0 ? "border-yellow-500/50 bg-yellow-500/5" : "";
             return (
-              <div key={idx} className={`bg-slate-800/50 border border-slate-700 rounded-lg p-4 ${borderClass}`}>
+              <div key={idx} className={`bg-blue-50/50 border border-blue-200 rounded-lg p-4 ${borderClass}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl font-bold text-cyan-400">
+                    <span className="text-2xl font-bold text-blue-400">
                       {idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `#${idx + 1}`}
                     </span>
                     <div>
-                      <p className="font-bold text-white text-lg">{score.teamName}</p>
-                      <p className="text-sm text-slate-400">{score.rank}</p>
+                      <p className="font-bold text-slate-900 text-lg">{score.teamName}</p>
+                      <p className="text-sm text-slate-600">{score.rank}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-cyan-400">{score.totalScore}</p>
-                    <p className="text-xs text-slate-400">points</p>
+                    <p className="text-2xl font-bold text-blue-400">{score.totalScore}</p>
+                    <p className="text-xs text-slate-600">points</p>
                   </div>
                 </div>
-                <div className="flex justify-between text-sm text-slate-300">
+                <div className="flex justify-between text-sm text-slate-700">
                   <span>Accuracy: {score.accuracy}%</span>
                   <span>Time: {formatTime(score.timeTaken)}</span>
                 </div>
@@ -261,7 +261,7 @@ export default function Leaderboard({
       {/* Back Button */}
       <Button
         onClick={() => (window.location.href = "/")}
-        className="mt-8 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-all"
+        className="mt-8 px-6 py-3 bg-blue-100 hover:bg-slate-600 text-slate-900 rounded-lg transition-all"
       >
         ← Back to Game
       </Button>

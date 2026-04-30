@@ -51,17 +51,17 @@ export default function SignalBars({ signal }: SignalBarsProps) {
   };
 
   return (
-    <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4">
+    <div className="bg-blue-900/50 border border-blue-200 rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-lg">{getCategoryIcon(signal.category)}</span>
-          <span className="font-mono text-sm font-semibold text-cyan-300">{signal.label}</span>
+          <span className="font-mono text-sm font-semibold text-blue-300">{signal.label}</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`px-2 py-1 rounded text-xs font-bold text-white ${getColor(signal.state)}`}>
+          <span className={`px-2 py-1 rounded text-xs font-bold text-slate-900 ${getColor(signal.state)}`}>
             {getStateLabel(signal.state)}
           </span>
-          <span className="text-slate-400 text-sm">
+          <span className="text-slate-600 text-sm">
             {signal.value}
             {signal.unit}
           </span>
@@ -69,7 +69,7 @@ export default function SignalBars({ signal }: SignalBarsProps) {
       </div>
 
       {/* Bar visualization */}
-      <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+      <div className="w-full bg-blue-50 rounded-full h-3 overflow-hidden">
         <div
           className={`h-full transition-all duration-500 ${getColor(signal.state)}`}
           style={{ width: `${Math.min(signal.value, 100)}%` }}

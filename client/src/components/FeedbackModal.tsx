@@ -15,7 +15,7 @@ export default function FeedbackModal({
 }: FeedbackModalProps) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center px-4 z-50">
-      <div className="bg-slate-800 border-2 border-slate-700 rounded-lg p-8 max-w-md w-full">
+      <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-8 max-w-md w-full">
         {/* Feedback Icon */}
         <div className="text-center mb-6">
           {isCorrect ? (
@@ -32,20 +32,20 @@ export default function FeedbackModal({
         </div>
 
         {/* Your Answer */}
-        <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 mb-4">
-          <p className="text-sm text-slate-400 mb-1">Your answer:</p>
-          <p className="text-white font-medium">{selectedAnswerText}</p>
+        <div className="bg-blue-900/50 border border-blue-200 rounded-lg p-4 mb-4">
+          <p className="text-sm text-slate-600 mb-1">Your answer:</p>
+          <p className="text-slate-900 font-medium">{selectedAnswerText}</p>
         </div>
 
         {/* Explanation */}
-        <div className="bg-slate-900/50 border-l-4 border-cyan-500 rounded-lg p-4 mb-6">
-          <p className="text-slate-300 leading-relaxed">{explanation}</p>
+        <div className="bg-blue-900/50 border-l-4 border-blue-500 rounded-lg p-4 mb-6">
+          <p className="text-slate-700 leading-relaxed">{explanation}</p>
         </div>
 
         {/* Next Button */}
         <Button
           onClick={onNext}
-          className="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all font-semibold"
+          className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-cyan-600 hover:to-blue-600 text-slate-900 rounded-lg transition-all font-semibold"
         >
           Next Question →
         </Button>

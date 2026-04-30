@@ -67,47 +67,47 @@ export default function TeamLobby({ language, sessionId, memberId }: TeamLobbyPr
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white flex flex-col items-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-slate-900 flex flex-col items-center px-4 py-8">
       {/* Header */}
       <div className="text-center mb-8">
         <div className="text-5xl mb-4">👥</div>
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
           {t("teamLobby.title")}
         </h1>
       </div>
 
       <div className="max-w-2xl w-full space-y-8">
         {/* Join Code Display */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6 text-center">
-          <p className="text-slate-400 mb-2">{t("teamLobby.joinCode")}</p>
-          <div className="text-4xl font-bold text-cyan-400 mb-4 tracking-widest">ABC123</div>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-6 text-center">
+          <p className="text-slate-600 mb-2">{t("teamLobby.joinCode")}</p>
+          <div className="text-4xl font-bold text-blue-400 mb-4 tracking-widest">ABC123</div>
           <Button
             onClick={handleCopyCode}
-            className="w-full py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-all"
+            className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-slate-900 rounded-lg transition-all"
           >
             {copied ? t("createTeamSession.copiedMessage") : t("createTeamSession.copyButton")}
           </Button>
         </div>
 
         {/* Team Members */}
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
-          <h2 className="text-2xl font-bold text-cyan-300 mb-4">{t("teamLobby.members")}</h2>
+        <div className="bg-blue-50/50 border border-blue-200 rounded-lg p-6">
+          <h2 className="text-2xl font-bold text-blue-300 mb-4">{t("teamLobby.members")}</h2>
           <div className="space-y-3">
             {members && members.length > 0 ? (
               members.map((member, idx) => (
-                <div key={idx} className="bg-slate-900/50 rounded-lg p-4 flex items-center justify-between">
+                <div key={idx} className="bg-blue-900/50 rounded-lg p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${getStatusColor(member.status)}`}></div>
                     <div>
-                      <p className="font-semibold text-white">{member.memberName || `Player ${idx + 1}`}</p>
-                      <p className="text-sm text-slate-400">{t(`teamLobby.memberStatus.${member.status}`)}</p>
+                      <p className="font-semibold text-slate-900">{member.memberName || `Player ${idx + 1}`}</p>
+                      <p className="text-sm text-slate-600">{t(`teamLobby.memberStatus.${member.status}`)}</p>
                     </div>
                   </div>
-                  <span className="text-cyan-400 font-medium">{idx + 1}</span>
+                  <span className="text-blue-400 font-medium">{idx + 1}</span>
                 </div>
               ))
             ) : (
-              <p className="text-slate-400 text-center py-4">{t("createTeamSession.waitingForMembers")}</p>
+              <p className="text-slate-600 text-center py-4">{t("createTeamSession.waitingForMembers")}</p>
             )}
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function TeamLobby({ language, sessionId, memberId }: TeamLobbyPr
         {/* Start Game Button */}
         <Button
           onClick={handleStartGame}
-          className="w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all text-lg font-bold"
+          className="w-full py-4 bg-green-600 hover:bg-green-700 text-slate-900 rounded-lg transition-all text-lg font-bold"
         >
           {t("teamLobby.startButton")}
         </Button>

@@ -23,7 +23,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
 
   const guideContent = language === "pt" ? (
     <>
-      <h2 className="text-2xl font-bold mb-4 text-cyan-400">Como Jogar</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-400">Como Jogar</h2>
       
       <div className="space-y-4 text-slate-200">
         <div>
@@ -95,7 +95,7 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
     </>
   ) : (
     <>
-      <h2 className="text-2xl font-bold mb-4 text-cyan-400">How to Play</h2>
+      <h2 className="text-2xl font-bold mb-4 text-blue-400">How to Play</h2>
       
       <div className="space-y-4 text-slate-200">
         <div>
@@ -169,15 +169,15 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-cyan-500/30">
+      <div className="bg-gradient-to-br from-white via-blue-50 to-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-blue-500/30">
         {/* Header */}
-        <div className="sticky top-0 bg-slate-900/95 border-b border-cyan-500/30 p-6 flex justify-between items-center">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+        <div className="sticky top-0 bg-blue-900/95 border-b border-blue-500/30 p-6 flex justify-between items-center">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             {language === "pt" ? "Guia do Jogo" : "Game Guide"}
           </h1>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition"
+            className="text-slate-600 hover:text-slate-900 transition"
             aria-label="Close"
           >
             <X size={24} />
@@ -190,10 +190,10 @@ export default function UserGuideModal({ isOpen, onClose, language }: UserGuideM
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-slate-900/95 border-t border-cyan-500/30 p-6">
+        <div className="sticky bottom-0 bg-blue-900/95 border-t border-blue-500/30 p-6">
           <Button
             onClick={onClose}
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-2 rounded-lg"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-cyan-600 hover:to-blue-600 text-slate-900 font-semibold py-2 rounded-lg"
           >
             {language === "pt" ? "Entendi!" : "Got it!"}
           </Button>
