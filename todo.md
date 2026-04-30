@@ -170,3 +170,24 @@
 - [x] Test that users must click to select an answer (no pre-selection)
 - [x] Verify all 100 tests still pass
 - [x] Verify dev server running cleanly with no errors
+
+
+## Phase 16: End-to-End User Flow Testing
+- [x] Test Welcome screen loads correctly with language switcher
+- [x] Test all three difficulty modes are selectable (Beginner, Normal, Expert)
+- [x] Test "How to Play" modal opens and closes correctly
+- [x] Test team creation flow with team name input
+- [x] Test join team flow with 6-character code
+- [x] Test mission briefing screen displays correctly
+- [x] Test gameplay with randomized answers and no pre-selection
+- [x] Test timer works correctly for each difficulty (45s, 30s, 15s)
+- [x] Test answer selection and submit functionality
+- [x] Test feedback modal shows correct/incorrect feedback
+- [x] Test results screen displays final score and rank
+- [x] Test leaderboard displays scores correctly
+- [x] Test "Return to Home" button navigates back
+- [x] Test admin panel displays QR code and statistics
+- [x] Test language switching works throughout the app
+- [x] Create comprehensive e2e-flow.test.ts with 36 integration tests
+- [x] Verify all 145 tests passing (109 + 36 new e2e tests)
+- [x] No bugs or critical issues found during testing
