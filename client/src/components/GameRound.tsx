@@ -39,10 +39,17 @@ export default function GameRound({
   const [timeSpent, setTimeSpent] = useState(0);
   const [startTime] = useState(Date.now());
   const [showQuitDialog, setShowQuitDialog] = useState(false);
-  const [randomizedQuestion] = useState(() => randomizeAnswerOptions(question));
+  const [randomizedQuestion, setRandomizedQuestion] = useState(() => randomizeAnswerOptions(question));
 
   // Timer threshold: 45 seconds for beginner, 30 for normal, 15 for expert
   const timerThreshold = difficulty === "beginner" ? 45 : difficulty === "expert" ? 15 : 30;
+
+  // Update randomized question and reset state when question changes
+  useEffect(() => {
+    setRandomizedQuestion(randomizeAnswerOptions(question));
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+  }, [question.id]);
 
   useEffect(() => {
     const timer = setInterval(() => {

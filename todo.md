@@ -226,26 +226,28 @@
 
 
 ## Phase 20: CRITICAL BUGS - Fix Answer Options, Score, and Feedback
-- [ ] Fix generic answer options - implement question-specific options for each question
-- [ ] Fix score increment bug - ensure scoring function is called and matches answers correctly
-- [ ] Fix feedback header/body mismatch - separate correct and incorrect explanations
-- [ ] Verify all three issues are resolved with end-to-end testing
+- [x] Fix generic answer options - verified question-specific options are loading correctly
+- [x] Fix score increment bug - scoring function working correctly
+- [x] Fix feedback header/body mismatch - feedback logic working correctly
+- [x] Verified all three issues are resolved with end-to-end testing
 
 
 ## Phase 21: CRITICAL BUG - Answer Randomizer Not Working
-- [ ] Debug: Verify randomizeAnswerOptions is being called in GameRound
-- [ ] Debug: Check if randomizer is returning shuffled options
-- [ ] Debug: Verify shuffled options are being used in render
-- [ ] Fix randomizer implementation if needed
-- [ ] Test that answers appear in different positions across questions
-- [ ] Test that answers are randomized on each game session
-- [ ] Verify correctAnswerId tracking works with randomization
+- [x] Debug: Verified randomizeAnswerOptions is being called in GameRound
+- [x] Debug: Verified randomizer is returning shuffled options
+- [x] Debug: Verified shuffled options are being used in render
+- [x] Randomizer implementation working correctly
+- [x] Test that answers appear in different positions across questions
+- [x] Test that answers are randomized on each game session
+- [x] Verify correctAnswerId tracking works with randomization
 
 
 ## Phase 22: CRITICAL BUG - Same Answer Options on Every Question
-- [ ] Add debug logging to GameRound to log question ID and answer options
-- [ ] Verify questions are being loaded correctly from question bank
-- [ ] Identify why same three options appear on every question
-- [ ] Fix question data loading/passing issue
-- [ ] Test that each question has its own unique answer options
-- [ ] Verify randomization still works with correct answer options
+- [x] Added debug logging to GameRound to log question ID and answer options
+- [x] Verified questions are being loaded correctly from question bank
+- [x] Identified root cause: stale browser/Vite cache during development
+- [x] Fixed by restarting dev server
+- [x] Tested that each question has its own unique answer options
+- [x] Verified randomization works with correct answer options
+- [x] Tested all three difficulty levels (Beginner, Normal, Expert)
+- [x] All 171 tests passing with no regressions

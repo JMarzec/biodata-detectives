@@ -81,24 +81,29 @@ export default function Game() {
       isCorrect,
       timeSpent,
     };
-    setAnswers([...answers, newAnswer]);
+    const updatedAnswers = [...answers, newAnswer];
+    setAnswers(updatedAnswers);
+    
+    // Check if this is the last question
+    if (currentQuestionIndex === gameQuestions.length - 1) {
+      // Submit immediately with the updated answers
+      submitGameScore(updatedAnswers);
+    }
   };
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < gameQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      // Game complete - submit score immediately
-      // Don't rely on state updates, use the answers array directly
-      submitGameScore();
     }
+    // If this is the last question, scoring is already submitted in handleAnswer
   };
 
-  const submitGameScore = async () => {
+  const submitGameScore = async (finalAnswers?: GameAnswer[]) => {
     try {
+      const answersToSubmit = finalAnswers || answers;
       const result = await submitScoreMutation.mutateAsync({
         teamId,
-        answers, // Use current answers array
+        answers: answersToSubmit,
         startTime,
         isExpertMode,
         difficulty,
