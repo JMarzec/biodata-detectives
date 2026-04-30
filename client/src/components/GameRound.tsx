@@ -74,6 +74,14 @@ export default function GameRound({
   };
 
   const getExplanation = () => {
+    // Show wrong answer explanation if available and answer is incorrect
+    if (!isCorrect && selectedAnswer) {
+      const wrongExplanation = language === "en" ? question.wrongAnswerExplanation : question.wrongAnswerExplanationPt;
+      if (wrongExplanation) {
+        return wrongExplanation;
+      }
+    }
+    // Default to correct answer explanation
     return language === "en" ? question.explanation : question.explanationPt;
   };
 

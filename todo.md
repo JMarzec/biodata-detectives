@@ -191,3 +191,16 @@
 - [x] Create comprehensive e2e-flow.test.ts with 36 integration tests
 - [x] Verify all 145 tests passing (109 + 36 new e2e tests)
 - [x] No bugs or critical issues found during testing
+
+
+## Phase 17: Critical Feedback Logic Bug Fix
+- [x] Audit all questions for feedback issues (wrong answer praised, copy-paste errors)
+- [x] Update Question type to include wrongAnswerExplanation and wrongAnswerExplanationPt fields
+- [x] Fix Q1 (r1q3) - add tailored wrongAnswerExplanation explaining overconfidence
+- [x] Fix Q6 (r1q6) - change "Excellent" to "Correct" and add wrongAnswerExplanation
+- [x] Update GameRound.tsx getExplanation() to use wrongAnswerExplanation when answer is wrong
+- [x] Create 14 comprehensive feedback logic tests
+- [x] Verify all explanations start with appropriate tone (Excellent/Correct for right, Not quite for wrong)
+- [x] Verify Portuguese translations are consistent
+- [x] Ensure learning value: wrong answers get educational feedback, not praise
+- [x] All 159 tests passing (145 existing + 14 feedback logic tests)

@@ -28,8 +28,10 @@ export type Question = {
   dataSignals: DataSignal[];
   answerOptions: AnswerOption[];
   correctAnswerId: string;
-  explanation: string;
-  explanationPt: string;
+  explanation: string; // Shown when answer is correct
+  explanationPt: string; // Shown when answer is correct (PT)
+  wrongAnswerExplanation?: string; // Shown when answer is wrong
+  wrongAnswerExplanationPt?: string; // Shown when answer is wrong (PT)
   difficulty: "easy" | "medium" | "hard";
   tags: string[];
 };
@@ -116,6 +118,8 @@ export const questions: Question[] = [
       "Excelente pensamento crítico. Quando os sinais são ambíguos, a conclusão responsável é que precisamos de mais dados. É exatamente por isso que a investigação biomédica requer validação e replicação.",
     difficulty: "medium",
     tags: ["critical_thinking", "validation", "transcriptomics", "uncertainty"],
+    wrongAnswerExplanation: "Not quite. When data signals are mixed or ambiguous, jumping to a definitive conclusion (whether 'responds' or 'resistant') is overconfident. In real research, ambiguous results require more investigation before making claims. The correct answer is to acknowledge uncertainty and call for more data.",
+    wrongAnswerExplanationPt: "Não exatamente. Quando os sinais de dados são mistos ou ambíguos, chegar a uma conclusão definitiva (seja 'responde' ou 'resistente') é demasiado confiante. Na investigação real, resultados ambíguos requerem mais investigação antes de fazer afirmações. A resposta correta é reconhecer a incerteza e pedir mais dados.",
   },
   {
     id: "r1q4",
@@ -192,9 +196,13 @@ export const questions: Question[] = [
     ],
     correctAnswerId: "a2",
     explanation:
-      "Excellent. When signals seem to conflict, we must be cautious. High repair and high growth could indicate different biological processes or complex disease states. This requires deeper investigation and validation.",
+      "Correct. When signals seem to conflict, we must be cautious. High repair and high growth could indicate different biological processes or complex disease states. This requires deeper investigation and validation.",
     explanationPt:
-      "Excelente. Quando os sinais parecem conflitantes, devemos ser cautelosos. Reparação elevada e crescimento elevado podem indicar processos biológicos diferentes ou estados de doença complexos. Isto requer investigação mais profunda e validação.",
+      "Correto. Quando os sinais parecem conflitantes, devemos ser cautelosos. Reparação elevada e crescimento elevado podem indicar processos biológicos diferentes ou estados de doença complexos. Isto requer investigação mais profunda e validação.",
+    wrongAnswerExplanation:
+      "Not quite. While high repair genes might seem positive, when combined with high growth genes, the signals are conflicting and require careful analysis. Jumping to 'definitely good' or 'definitely bad' prognosis without deeper investigation is premature. The correct approach is to recognize the complexity and call for more analysis.",
+    wrongAnswerExplanationPt:
+      "Não exatamente. Embora genes de reparação elevados possam parecer positivos, quando combinados com genes de crescimento elevados, os sinais são conflitantes e requerem análise cuidadosa. Chegar a 'definitivamente bom' ou 'definitivamente mau' prognóstico sem investigação mais profunda é prematuro. A abordagem correta é reconhecer a complexidade e pedir mais análise.",
     difficulty: "hard",
     tags: ["transcriptomics", "critical_thinking", "complexity"],
   },
