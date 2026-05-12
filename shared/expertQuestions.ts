@@ -1,663 +1,976 @@
 /**
- * BioData Detectives Expert Mode Question Bank
- * 24 expert-level questions: 8 per round, bilingual (EN/PT)
- * Designed for advanced players with deeper scientific understanding
+ * BioData Detectives - Expert Difficulty Question Bank
+ * 24 questions: Advanced transcriptomics, complex systems analysis, research methodology
+ * Each question has per-answer explanations (3 explanations per question)
+ * Bilingual content (EN/PT)
  */
 
 import { Question } from "./questions";
 
 export const expertQuestions: Question[] = [
-  // ===== ROUND 1: RNA DETECTIVE - EXPERT (8 questions) =====
+  // ===== ROUND 1: ADVANCED RNA DETECTIVE (8 questions) =====
   {
     id: "exp_r1q1",
     round: 1,
-    title: "RNA Detective: Multi-Signal Integration",
-    titlePt: "Detetive de RNA: Integração Multi-Sinal",
+    title: "Advanced Transcriptomics: Pathway Compensation",
+    titlePt: "Transcriptómica Avançada: Compensação de Via",
     scenario:
-      "Patient E-001 shows discordant signals: high TP53 mutation burden, elevated BRCA1 expression, but low DNA damage response markers. How would you interpret this complex pattern?",
+      "BRCA1 is deleted, but cells show normal DNA repair capacity. What is the most likely explanation?",
     scenarioPt:
-      "Paciente E-001 mostra sinais discordantes: alta carga de mutações TP53, expressão elevada de BRCA1, mas marcadores baixos de resposta a danos no DNA. Como interpretaria este padrão complexo?",
+      "BRCA1 está deletado, mas células mostram capacidade normal de reparação de DNA. Qual é a explicação mais provável?",
     dataSignals: [
-      { label: "TP53_MUTATIONS", value: 85, unit: "%", state: "high", category: "gene_expression" },
-      { label: "BRCA1_EXPR", value: 78, unit: "%", state: "high", category: "gene_expression" },
-      { label: "DNA_DAMAGE_RESP", value: 25, unit: "%", state: "low", category: "stress" },
+      { label: "BRCA1_EXPRESSION", value: 5, unit: "%", state: "low", category: "gene_expression" },
+      { label: "DNA_REPAIR_CAPACITY", value: 78, unit: "%", state: "high", category: "gene_expression" },
+      { label: "COMPENSATORY_GENES", value: 85, unit: "%", state: "high", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Possible BRCA1 compensatory response", textPt: "Possível resposta compensatória de BRCA1" },
-      { id: "a2", text: "Certain therapeutic response", textPt: "Resposta terapêutica certa" },
-      { id: "a3", text: "No meaningful pattern", textPt: "Nenhum padrão significativo" },
+      { id: "pathway_compensation", text: "Compensatory pathways are upregulated", textPt: "Vias compensatórias estão upreguladas" },
+      { id: "brca1_not_essential", text: "BRCA1 is not essential for DNA repair", textPt: "BRCA1 não é essencial para reparação de DNA" },
+      { id: "measurement_error", text: "The low BRCA1 measurement is an error", textPt: "A medição baixa de BRCA1 é um erro" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Advanced insight. This pattern may suggest BRCA1 upregulation attempting to compensate for TP53 dysfunction. However, low DNA damage response raises concerns about genomic instability. This requires functional validation and multi-omics integration.",
-    explanationPt:
-      "Perspetiva avançada. Este padrão pode sugerir upregulação de BRCA1 tentando compensar disfunção de TP53. No entanto, baixa resposta a danos no DNA levanta preocupações sobre instabilidade genómica. Isto requer validação funcional e integração multi-ómicas.",
+    correctAnswerId: "pathway_compensation",
+    explanation: "Cells can activate compensatory pathways when key genes are deleted, maintaining function through alternative routes.",
+    explanationPt: "Células podem ativar vias compensatórias quando genes-chave são deletados, mantendo função através de rotas alternativas.",
+    explanations: {
+      pathway_compensation: {
+        en: "Correct interpretation. BRCA1 deletion with maintained DNA repair capacity indicates compensatory pathway activation. Other DNA repair genes (RAD51, PALB2, etc.) are upregulated to compensate for BRCA1 loss.",
+        pt: "Interpretação correta. Deleção de BRCA1 com capacidade de reparação de DNA mantida indica ativação de via compensatória. Outros genes de reparação de DNA (RAD51, PALB2, etc.) estão upregulados para compensar perda de BRCA1.",
+      },
+      brca1_not_essential: {
+        en: "Incorrect conclusion. BRCA1 is essential in most contexts. The normal repair capacity indicates compensation, not that BRCA1 is dispensable. These cells may be vulnerable if compensatory pathways are disrupted.",
+        pt: "Conclusão incorreta. BRCA1 é essencial na maioria dos contextos. A capacidade de reparação normal indica compensação, não que BRCA1 seja dispensável. Estas células podem ser vulneráveis se vias compensatórias forem perturbadas.",
+      },
+      measurement_error: {
+        en: "Unlikely. BRCA1 measurement is robust. The pattern of low BRCA1 with high compensatory genes is biologically coherent, not random error.",
+        pt: "Improvável. Medição de BRCA1 é robusta. O padrão de BRCA1 baixo com genes compensatórios altos é biologicamente coerente, não erro aleatório.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["transcriptomics", "DNA_repair", "cancer", "systems_biology", "expert"],
+    tags: ["transcriptomics", "pathway_compensation", "DNA_repair"],
   },
   {
     id: "exp_r1q2",
     round: 1,
-    title: "RNA Detective: Pathway Crosstalk",
-    titlePt: "Detetive de RNA: Interação de Vias",
+    title: "Single-Cell Analysis: Cell State Heterogeneity",
+    titlePt: "Análise de Célula Única: Heterogeneidade de Estado Celular",
     scenario:
-      "Patient E-002 shows simultaneous activation of apoptosis and anti-apoptosis pathways. What does this suggest about cellular state?",
+      "Single-cell RNA-seq shows three distinct cell states in what was thought to be a homogeneous cell population. What does this indicate?",
     scenarioPt:
-      "Paciente E-002 mostra ativação simultânea de vias de apoptose e anti-apoptose. O que isto sugere sobre o estado celular?",
+      "RNA-seq de célula única mostra três estados celulares distintos no que se pensava ser uma população celular homogénea. O que isto indica?",
     dataSignals: [
-      { label: "APOPTOSIS_GENES", value: 82, unit: "%", state: "high", category: "gene_expression" },
-      { label: "SURVIVAL_GENES", value: 79, unit: "%", state: "high", category: "gene_expression" },
-      { label: "CELL_CYCLE_ARREST", value: 65, unit: "%", state: "medium", category: "gene_expression" },
+      { label: "CELL_STATE_1", value: 35, unit: "%", state: "medium", category: "gene_expression" },
+      { label: "CELL_STATE_2", value: 38, unit: "%", state: "medium", category: "gene_expression" },
+      { label: "CELL_STATE_3", value: 27, unit: "%", state: "medium", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Cellular stress with conflicting signals", textPt: "Stress celular com sinais conflitantes" },
-      { id: "a2", text: "Normal healthy state", textPt: "Estado saudável normal" },
-      { id: "a3", text: "Definite apoptosis", textPt: "Apoptose definitiva" },
+      { id: "functional_heterogeneity", text: "Functional heterogeneity within the population", textPt: "Heterogeneidade funcional dentro da população" },
+      { id: "technical_artifact", text: "Technical artifact from batch effects", textPt: "Artefato técnico de efeitos de lote" },
+      { id: "measurement_error", text: "Measurement error in the sequencing", textPt: "Erro de medição na sequenciação" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Excellent. Simultaneous pathway activation suggests cellular stress with competing signals—potentially a critical decision point. This may indicate therapy-induced stress or pre-malignant instability. Requires single-cell analysis for resolution.",
-    explanationPt:
-      "Excelente. Ativação simultânea de vias sugere stress celular com sinais concorrentes—potencialmente um ponto de decisão crítico. Isto pode indicar stress induzido por terapia ou instabilidade pré-maligna. Requer análise de célula única para resolução.",
+    correctAnswerId: "functional_heterogeneity",
+    explanation: "Single-cell analysis reveals cellular heterogeneity that bulk analysis masks. Multiple cell states indicate functional diversity.",
+    explanationPt: "Análise de célula única revela heterogeneidade celular que análise em massa mascara. Múltiplos estados celulares indicam diversidade funcional.",
+    explanations: {
+      functional_heterogeneity: {
+        en: "Correct interpretation. Single-cell RNA-seq is specifically designed to reveal cell-to-cell heterogeneity. Three distinct states indicate the population contains functionally diverse cells—not a homogeneous population.",
+        pt: "Interpretação correta. RNA-seq de célula única é especificamente projetado para revelar heterogeneidade célula-a-célula. Três estados distintos indicam que a população contém células funcionalmente diversas—não uma população homogénea.",
+      },
+      technical_artifact: {
+        en: "Unlikely. Batch effects typically show random variation, not three distinct, reproducible states. The clear clustering indicates biological signal.",
+        pt: "Improvável. Efeitos de lote tipicamente mostram variação aleatória, não três estados distintos e reproduzíveis. O agrupamento claro indica sinal biológico.",
+      },
+      measurement_error: {
+        en: "Unlikely. Three distinct, reproducible states are not consistent with random measurement error. This is a robust biological finding.",
+        pt: "Improvável. Três estados distintos e reproduzíveis não são consistentes com erro de medição aleatório. Este é um achado biológico robusto.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["transcriptomics", "apoptosis", "pathway_analysis", "expert"],
+    tags: ["single_cell", "heterogeneity", "cell_states"],
   },
   {
     id: "exp_r1q3",
     round: 1,
-    title: "RNA Detective: Isoform Switching",
-    titlePt: "Detetive de RNA: Troca de Isoformas",
+    title: "Methodology: Pseudotime Validation",
+    titlePt: "Metodologia: Validação de Pseudotempo",
     scenario:
-      "Patient E-003 shows normal total KRAS expression but altered isoform ratios (KRAS4A:KRAS4B = 0.3:0.7). What might this indicate?",
+      "A pseudotime trajectory is inferred from single-cell data. What is the critical next step before accepting it as a developmental process?",
     scenarioPt:
-      "Paciente E-003 mostra expressão total normal de KRAS mas proporções alteradas de isoformas (KRAS4A:KRAS4B = 0.3:0.7). O que isto pode indicar?",
+      "Uma trajetória de pseudotempo é inferida a partir de dados de célula única. Qual é o próximo passo crítico antes de aceitá-la como um processo de desenvolvimento?",
     dataSignals: [
-      { label: "KRAS_TOTAL", value: 50, unit: "%", state: "medium", category: "gene_expression" },
-      { label: "KRAS4A_RATIO", value: 30, unit: "%", state: "low", category: "gene_expression" },
-      { label: "KRAS4B_RATIO", value: 70, unit: "%", state: "high", category: "gene_expression" },
+      { label: "TRAJECTORY_CLARITY", value: 92, unit: "%", state: "high", category: "gene_expression" },
+      { label: "BIOLOGICAL_VALIDATION", value: 0, unit: "%", state: "low", category: "biomarker" },
+      { label: "TEMPORAL_CORRELATION", value: 0, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Functionally equivalent to normal", textPt: "Funcionalmente equivalente ao normal" },
-      { id: "a2", text: "Potential functional shift despite normal levels", textPt: "Possível mudança funcional apesar de níveis normais" },
-      { id: "a3", text: "Measurement error", textPt: "Erro de medição" },
+      { id: "temporal_validation", text: "Validate with temporal/developmental data (e.g., embryonic time series)", textPt: "Validar com dados temporais/de desenvolvimento (ex. série de tempo embrionária)" },
+      { id: "publish_trajectory", text: "Publish the trajectory as a developmental process", textPt: "Publicar a trajetória como um processo de desenvolvimento" },
+      { id: "trajectory_sufficient", text: "The trajectory alone is sufficient proof", textPt: "A trajetória sozinha é prova suficiente" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Sophisticated understanding. KRAS isoforms have distinct biological functions and subcellular localizations. Altered ratios can shift cellular behavior without changing total expression. This highlights why isoform-level analysis is crucial beyond bulk RNA-seq.",
-    explanationPt:
-      "Compreensão sofisticada. As isoformas de KRAS têm funções biológicas distintas e localizações subcelulares. Proporções alteradas podem mudar o comportamento celular sem alterar a expressão total. Isto destaca por que a análise ao nível de isoforma é crucial além de RNA-seq em massa.",
+    correctAnswerId: "temporal_validation",
+    explanation: "Pseudotime is inferred, not measured. Validation with actual temporal data is essential before claiming a developmental process.",
+    explanationPt: "Pseudotempo é inferido, não medido. Validação com dados temporais reais é essencial antes de reivindicar um processo de desenvolvimento.",
+    explanations: {
+      temporal_validation: {
+        en: "Correct methodology. Pseudotime is a computational inference, not direct measurement of time. Validation requires independent temporal data (embryonic stages, time-course experiments) to confirm the trajectory represents actual development.",
+        pt: "Metodologia correta. Pseudotempo é uma inferência computacional, não medição direta de tempo. Validação requer dados temporais independentes (estágios embrionários, experimentos de série de tempo) para confirmar que a trajetória representa desenvolvimento real.",
+      },
+      publish_trajectory: {
+        en: "Premature publication. Publishing pseudotime trajectories as developmental processes without temporal validation would be misleading. The trajectory is suggestive but not proof.",
+        pt: "Publicação prematura. Publicar trajetórias de pseudotempo como processos de desenvolvimento sem validação temporal seria enganoso. A trajetória é sugestiva mas não prova.",
+      },
+      trajectory_sufficient: {
+        en: "Incorrect methodology. Pseudotime is inferred from transcriptional similarity, not actual time. It's a useful hypothesis generator but requires validation with real temporal data.",
+        pt: "Metodologia incorreta. Pseudotempo é inferido de similaridade transcricional, não tempo real. É um gerador de hipóteses útil mas requer validação com dados temporais reais.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["transcriptomics", "isoforms", "RNA_processing", "expert"],
+    tags: ["methodology", "pseudotime", "validation"],
   },
   {
     id: "exp_r1q4",
     round: 1,
-    title: "RNA Detective: Temporal Dynamics",
-    titlePt: "Detetive de RNA: Dinâmica Temporal",
+    title: "Advanced Transcriptomics: Immune Escape Mechanisms",
+    titlePt: "Transcriptómica Avançada: Mecanismos de Escape Imunitário",
     scenario:
-      "Serial samples from Patient E-004 show: Day 0 (baseline), Day 3 (high immune response), Day 7 (immune response declining, tumor markers rising). What does this trajectory suggest?",
+      "Tumor shows high PD-L1 expression but low T-cell infiltration. What is the likely mechanism?",
     scenarioPt:
-      "Amostras seriais do Paciente E-004 mostram: Dia 0 (baseline), Dia 3 (resposta imunitária elevada), Dia 7 (resposta imunitária em declínio, marcadores tumorais aumentando). O que esta trajetória sugere?",
+      "Tumor mostra expressão elevada de PD-L1 mas baixa infiltração de células T. Qual é o mecanismo provável?",
     dataSignals: [
-      { label: "IMMUNE_RESPONSE_D3", value: 85, unit: "%", state: "high", category: "immune" },
-      { label: "IMMUNE_RESPONSE_D7", value: 35, unit: "%", state: "low", category: "immune" },
-      { label: "TUMOR_MARKERS_D7", value: 72, unit: "%", state: "high", category: "biomarker" },
+      { label: "PD_L1_EXPRESSION", value: 88, unit: "%", state: "high", category: "gene_expression" },
+      { label: "T_CELL_INFILTRATION", value: 12, unit: "%", state: "low", category: "immune" },
+      { label: "IMMUNOSUPPRESSIVE_SIGNALS", value: 82, unit: "%", state: "high", category: "immune" },
     ],
     answerOptions: [
-      { id: "a1", text: "Immune escape mechanism", textPt: "Mecanismo de fuga imunitária" },
-      { id: "a2", text: "Treatment success", textPt: "Sucesso do tratamento" },
-      { id: "a3", text: "Normal response pattern", textPt: "Padrão de resposta normal" },
+      { id: "immune_exclusion", text: "Immune exclusion: T cells are prevented from entering the tumor", textPt: "Exclusão imunitária: células T são impedidas de entrar no tumor" },
+      { id: "immune_ignorance", text: "Immune ignorance: tumor is hidden from immune system", textPt: "Ignorância imunitária: tumor está oculto do sistema imunitário" },
+      { id: "pd_l1_ineffective", text: "PD-L1 expression is ineffective at suppressing immunity", textPt: "Expressão de PD-L1 é ineficaz em suprimir imunidade" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Excellent temporal analysis. The initial immune response followed by rapid decline with rising tumor markers suggests potential immune escape. This dynamic pattern is more informative than single timepoints and critical for predicting treatment resistance.",
-    explanationPt:
-      "Excelente análise temporal. A resposta imunitária inicial seguida de declínio rápido com marcadores tumorais crescentes sugere possível fuga imunitária. Este padrão dinâmico é mais informativo do que pontos únicos no tempo e crítico para prever resistência ao tratamento.",
+    correctAnswerId: "immune_exclusion",
+    explanation: "High PD-L1 with low T-cell infiltration suggests immune exclusion—the tumor prevents T-cell entry rather than suppressing infiltrating T cells.",
+    explanationPt: "PD-L1 elevado com baixa infiltração de células T sugere exclusão imunitária—o tumor impede entrada de células T em vez de suprimir células T infiltrantes.",
+    explanations: {
+      immune_exclusion: {
+        en: "Correct interpretation. High PD-L1 without T-cell infiltration indicates immune exclusion. The tumor is preventing T-cell entry through physical or chemical barriers, making PD-L1 irrelevant (no T cells to suppress).",
+        pt: "Interpretação correta. PD-L1 elevado sem infiltração de células T indica exclusão imunitária. O tumor está impedindo entrada de células T através de barreiras físicas ou químicas, tornando PD-L1 irrelevante (sem células T para suprimir).",
+      },
+      immune_ignorance: {
+        en: "Partially correct but imprecise. Immune ignorance would show low PD-L1 (tumor is hidden). High PD-L1 indicates the tumor is 'visible' to the immune system but is preventing T-cell entry.",
+        pt: "Parcialmente correto mas impreciso. Ignorância imunitária mostraria PD-L1 baixo (tumor está oculto). PD-L1 elevado indica que o tumor é 'visível' para o sistema imunitário mas está impedindo entrada de células T.",
+      },
+      pd_l1_ineffective: {
+        en: "Incorrect. PD-L1 is effective, but it's irrelevant when there are no T cells to suppress. The problem is immune exclusion, not PD-L1 ineffectiveness.",
+        pt: "Incorreto. PD-L1 é eficaz, mas é irrelevante quando não há células T para suprimir. O problema é exclusão imunitária, não ineficácia de PD-L1.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["transcriptomics", "temporal_analysis", "immune_escape", "expert"],
+    tags: ["transcriptomics", "immune_escape", "tumor_biology"],
   },
   {
     id: "exp_r1q5",
     round: 1,
-    title: "RNA Detective: Stromal Contamination",
-    titlePt: "Detetive de RNA: Contaminação do Estroma",
+    title: "Methodology: Batch Effect Correction",
+    titlePt: "Metodologia: Correção de Efeito de Lote",
     scenario:
-      "Tumor sample shows high fibroblast markers (CAF signature) alongside cancer markers. How should this be interpreted in transcriptomics analysis?",
+      "After batch effect correction, the biological signal is reduced. What does this suggest?",
     scenarioPt:
-      "Amostra tumoral mostra marcadores elevados de fibroblastos (assinatura CAF) juntamente com marcadores de cancro. Como isto deve ser interpretado na análise de transcriptómica?",
+      "Após correção de efeito de lote, o sinal biológico é reduzido. O que isto sugere?",
     dataSignals: [
-      { label: "CANCER_MARKERS", value: 68, unit: "%", state: "high", category: "gene_expression" },
-      { label: "CAF_SIGNATURE", value: 72, unit: "%", state: "high", category: "gene_expression" },
-      { label: "IMMUNE_INFILTRATE", value: 55, unit: "%", state: "medium", category: "immune" },
+      { label: "BATCH_EFFECT_SIZE", value: 75, unit: "%", state: "high", category: "biomarker" },
+      { label: "BIOLOGICAL_SIGNAL_BEFORE", value: 85, unit: "%", state: "high", category: "biomarker" },
+      { label: "BIOLOGICAL_SIGNAL_AFTER", value: 45, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Ignore stromal signal; focus on cancer genes", textPt: "Ignorar sinal do estroma; focar em genes de cancro" },
-      { id: "a2", text: "Account for stromal composition; may affect interpretation", textPt: "Contabilizar composição do estroma; pode afetar interpretação" },
-      { id: "a3", text: "Stromal genes are irrelevant", textPt: "Genes do estroma são irrelevantes" },
+      { id: "overcorrection", text: "The correction algorithm is overcorrecting and removing biological signal", textPt: "O algoritmo de correção está a sobrecorrigir e remover sinal biológico" },
+      { id: "signal_was_artifact", text: "The original signal was an artifact, not biological", textPt: "O sinal original era um artefato, não biológico" },
+      { id: "correction_working", text: "The correction is working properly", textPt: "A correção está funcionando adequadamente" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Critical insight. Tumor microenvironment composition significantly affects bulk RNA-seq results. High CAF (cancer-associated fibroblast) signature can confound cancer cell-intrinsic signals. Proper deconvolution or single-cell analysis is essential for accurate interpretation.",
-    explanationPt:
-      "Perspetiva crítica. A composição do microambiente tumoral afeta significativamente os resultados de RNA-seq em massa. Assinatura CAF elevada pode confundir sinais intrínsecos das células cancerígenas. Deconvolução adequada ou análise de célula única é essencial para interpretação precisa.",
+    correctAnswerId: "overcorrection",
+    explanation: "Batch effect correction should remove technical variation while preserving biological signal. Reduced signal suggests overcorrection.",
+    explanationPt: "Correção de efeito de lote deve remover variação técnica enquanto preserva sinal biológico. Sinal reduzido sugere sobrecorreção.",
+    explanations: {
+      overcorrection: {
+        en: "Correct diagnosis. A large batch effect (75%) that, when corrected, reduces biological signal (85% → 45%) indicates overcorrection. The algorithm is removing real biology along with technical variation.",
+        pt: "Diagnóstico correto. Um efeito de lote grande (75%) que, quando corrigido, reduz sinal biológico (85% → 45%) indica sobrecorreção. O algoritmo está removendo biologia real junto com variação técnica.",
+      },
+      signal_was_artifact: {
+        en: "Unlikely. If the original signal were an artifact, it would correlate perfectly with batch. The fact that correction reduces it suggests it's partially biological.",
+        pt: "Improvável. Se o sinal original fosse um artefato, correlacionaria perfeitamente com lote. O facto de que a correção o reduz sugere que é parcialmente biológico.",
+      },
+      correction_working: {
+        en: "Incorrect assessment. Proper batch correction removes technical variation without substantially reducing biological signal. A 40-point drop in signal indicates a problem with the correction method.",
+        pt: "Avaliação incorreta. Correção adequada de lote remove variação técnica sem reduzir substancialmente sinal biológico. Uma queda de 40 pontos em sinal indica um problema com o método de correção.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["transcriptomics", "tumor_microenvironment", "deconvolution", "expert"],
+    tags: ["methodology", "batch_effect", "quality_control"],
   },
   {
     id: "exp_r1q6",
     round: 1,
-    title: "RNA Detective: Batch Effects",
-    titlePt: "Detetive de RNA: Efeitos de Lote",
+    title: "Advanced Analysis: Stromal Composition Impact",
+    titlePt: "Análise Avançada: Impacto da Composição Estromal",
     scenario:
-      "Two cohorts show apparent gene expression differences, but samples were processed in different batches with different RNA extraction protocols. What is the first step?",
+      "Two tumors show identical gene expression profiles, but one has high stromal content and one has low. How should this be interpreted?",
     scenarioPt:
-      "Duas coortes mostram diferenças aparentes de expressão génica, mas as amostras foram processadas em diferentes lotes com protocolos diferentes de extração de RNA. Qual é o primeiro passo?",
+      "Dois tumores mostram perfis de expressão génica idênticos, mas um tem conteúdo estromal elevado e outro tem baixo. Como isto deve ser interpretado?",
     dataSignals: [
-      { label: "COHORT_A_SIGNAL", value: 75, unit: "%", state: "high", category: "gene_expression" },
-      { label: "COHORT_B_SIGNAL", value: 35, unit: "%", state: "low", category: "gene_expression" },
-      { label: "BATCH_EFFECT_LIKELIHOOD", value: 88, unit: "%", state: "high", category: "clinical" },
+      { label: "GENE_EXPRESSION_SIMILARITY", value: 95, unit: "%", state: "high", category: "gene_expression" },
+      { label: "STROMAL_CONTENT_A", value: 85, unit: "%", state: "high", category: "biomarker" },
+      { label: "STROMAL_CONTENT_B", value: 15, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Assume biological difference; publish results", textPt: "Assumir diferença biológica; publicar resultados" },
-      { id: "a2", text: "Investigate and correct for batch effects before interpretation", textPt: "Investigar e corrigir efeitos de lote antes da interpretação" },
-      { id: "a3", text: "Average the values", textPt: "Fazer a média dos valores" },
+      { id: "stromal_confounding", text: "Stromal composition is confounding the expression comparison", textPt: "Composição estromal está confundindo a comparação de expressão" },
+      { id: "identical_tumors", text: "The tumors are biologically identical", textPt: "Os tumores são biologicamente idênticos" },
+      { id: "expression_is_tumor", text: "The expression profiles reflect only tumor cells", textPt: "Os perfis de expressão refletem apenas células tumorais" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Essential for rigorous science. Batch effects from technical differences can easily overwhelm biological signals. Proper quality control, batch correction (e.g., ComBat), and validation across batches are mandatory before drawing biological conclusions.",
-    explanationPt:
-      "Essencial para ciência rigorosa. Efeitos de lote de diferenças técnicas podem facilmente sobrepor sinais biológicos. Controlo de qualidade adequado, correção de lote (p.ex., ComBat) e validação entre lotes são obrigatórios antes de tirar conclusões biológicas.",
+    correctAnswerId: "stromal_confounding",
+    explanation: "Identical bulk expression with different stromal content suggests the expression is influenced by stromal composition, not purely tumor biology.",
+    explanationPt: "Expressão em massa idêntica com composição estromal diferente sugere que a expressão é influenciada por composição estromal, não puramente biologia tumoral.",
+    explanations: {
+      stromal_confounding: {
+        en: "Correct interpretation. Identical expression profiles with different stromal content indicates the bulk expression is confounded by stromal contribution. The tumors may be biologically different, but the stromal content masks this.",
+        pt: "Interpretação correta. Perfis de expressão idênticos com composição estromal diferente indica que a expressão em massa é confundida por contribuição estromal. Os tumores podem ser biologicamente diferentes, mas o conteúdo estromal mascara isto.",
+      },
+      identical_tumors: {
+        en: "Incorrect conclusion. Different stromal content suggests different tumor microenvironments, which likely reflect different tumor biology. Identical bulk expression doesn't mean identical tumor cells.",
+        pt: "Conclusão incorreta. Composição estromal diferente sugere microambientes tumorais diferentes, que provavelmente refletem biologia tumoral diferente. Expressão em massa idêntica não significa células tumorais idênticas.",
+      },
+      expression_is_tumor: {
+        en: "Incorrect assumption. Bulk expression includes both tumor and stromal cells. High stromal content means stromal genes dominate the expression profile, not tumor genes.",
+        pt: "Suposição incorreta. Expressão em massa inclui células tumorais e estromais. Conteúdo estromal elevado significa que genes estromais dominam o perfil de expressão, não genes tumorais.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["transcriptomics", "batch_effects", "quality_control", "expert"],
+    tags: ["transcriptomics", "stromal_composition", "bulk_analysis"],
   },
   {
     id: "exp_r1q7",
     round: 1,
-    title: "RNA Detective: Rare Isoform Detection",
-    titlePt: "Detetive de RNA: Detecção de Isoforma Rara",
+    title: "Clinical Translation: Precision Oncology",
+    titlePt: "Tradução Clínica: Oncologia de Precisão",
     scenario:
-      "A rare oncogenic fusion transcript (1% of total KRAS reads) is detected in Patient E-007. Standard bulk RNA-seq barely captures it. Should this be reported clinically?",
+      "A patient's tumor has a rare mutation. Preclinical data shows a drug targets this mutation, but no clinical trials exist. What is the appropriate action?",
     scenarioPt:
-      "Uma rara transcrição de fusão oncogénica (1% das leituras totais de KRAS) é detectada no Paciente E-007. O RNA-seq em massa padrão mal a captura. Isto deve ser reportado clinicamente?",
+      "O tumor de um paciente tem uma mutação rara. Dados pré-clínicos mostram que um fármaco visa esta mutação, mas nenhum ensaio clínico existe. Qual é a ação apropriada?",
     dataSignals: [
-      { label: "FUSION_TRANSCRIPT_PCT", value: 1, unit: "%", state: "low", category: "gene_expression" },
-      { label: "DETECTION_CONFIDENCE", value: 65, unit: "%", state: "medium", category: "clinical" },
-      { label: "CLINICAL_SIGNIFICANCE", value: 85, unit: "%", state: "high", category: "biomarker" },
+      { label: "MUTATION_IDENTIFIED", value: 98, unit: "%", state: "high", category: "biomarker" },
+      { label: "PRECLINICAL_EFFICACY", value: 78, unit: "%", state: "high", category: "biomarker" },
+      { label: "CLINICAL_DATA", value: 0, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Too rare; ignore it", textPt: "Demasiado raro; ignorar" },
-      { id: "a2", text: "Validate with targeted methods; may be clinically actionable", textPt: "Validar com métodos direcionados; pode ser clinicamente acionável" },
-      { id: "a3", text: "Definitely report without validation", textPt: "Definitivamente reportar sem validação" },
+      { id: "compassionate_use", text: "Pursue compassionate use or expanded access program", textPt: "Prosseguir com uso compassivo ou programa de acesso expandido" },
+      { id: "standard_care", text: "Use only standard chemotherapy", textPt: "Usar apenas quimioterapia padrão" },
+      { id: "wait_trials", text: "Wait for clinical trials to complete", textPt: "Esperar que ensaios clínicos se completem" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Sophisticated judgment. Even rare transcripts can be functionally important if they encode oncogenic fusions. However, bulk RNA-seq sensitivity is limited. Validation with targeted methods (qPCR, digital PCR, or long-read sequencing) is essential before clinical reporting.",
-    explanationPt:
-      "Julgamento sofisticado. Mesmo transcrições raras podem ser funcionalmente importantes se codificarem fusões oncogénicas. No entanto, a sensibilidade de RNA-seq em massa é limitada. Validação com métodos direcionados (qPCR, PCR digital ou sequenciação de leitura longa) é essencial antes de reportagem clínica.",
+    correctAnswerId: "compassionate_use",
+    explanation: "For rare mutations with strong preclinical evidence, compassionate use is ethically justified when standard options are limited.",
+    explanationPt: "Para mutações raras com forte evidência pré-clínica, uso compassivo é eticamente justificado quando opções padrão são limitadas.",
+    explanations: {
+      compassionate_use: {
+        en: "Correct clinical decision. Strong preclinical evidence for a rare mutation justifies compassionate use. Standard chemotherapy may be less effective than a targeted approach. Regulatory pathways exist for this scenario.",
+        pt: "Decisão clínica correta. Forte evidência pré-clínica para uma mutação rara justifica uso compassivo. Quimioterapia padrão pode ser menos eficaz que uma abordagem direcionada. Caminhos regulatórios existem para este cenário.",
+      },
+      standard_care: {
+        en: "Missed opportunity. Standard chemotherapy is likely suboptimal when a targeted option exists. Precision oncology specifically aims to move beyond one-size-fits-all treatment.",
+        pt: "Oportunidade perdida. Quimioterapia padrão é provavelmente subótima quando uma opção direcionada existe. Oncologia de precisão especificamente visa ir além do tratamento único para todos.",
+      },
+      wait_trials: {
+        en: "May not be ethical for rare disease. Clinical trials take years. Waiting could mean the patient has no treatment options. Compassionate use is sometimes justified.",
+        pt: "Pode não ser ético para doença rara. Ensaios clínicos levam anos. Esperar pode significar que o paciente não tem opções de tratamento. Uso compassivo às vezes é justificado.",
+      },
+    },
+    mode: "clinical_decision",
     difficulty: "hard",
-    tags: ["transcriptomics", "fusion_detection", "validation", "expert"],
+    tags: ["precision_medicine", "clinical_translation", "rare_mutation"],
   },
   {
     id: "exp_r1q8",
     round: 1,
-    title: "RNA Detective: Pseudotime Analysis",
-    titlePt: "Detetive de RNA: Análise de Pseudotempo",
+    title: "Advanced Pattern: Regulatory Network Analysis",
+    titlePt: "Padrão Avançado: Análise de Rede Regulatória",
     scenario:
-      "Single-cell RNA-seq reveals a developmental trajectory from normal cells → pre-malignant → malignant. Which genes change earliest in this trajectory?",
+      "A transcription factor (TF) shows high expression, but its target genes show low expression. What does this indicate?",
     scenarioPt:
-      "RNA-seq de célula única revela uma trajetória de desenvolvimento de células normais → pré-malignas → malignas. Quais genes mudam mais cedo nesta trajetória?",
+      "Um fator de transcrição (FT) mostra expressão elevada, mas seus genes alvo mostram expressão baixa. O que isto indica?",
     dataSignals: [
-      { label: "EARLY_CHANGE_GENES", value: 72, unit: "%", state: "high", category: "gene_expression" },
-      { label: "LATE_CHANGE_GENES", value: 45, unit: "%", state: "medium", category: "gene_expression" },
-      { label: "TRAJECTORY_CLARITY", value: 80, unit: "%", state: "high", category: "clinical" },
+      { label: "TF_EXPRESSION", value: 88, unit: "%", state: "high", category: "gene_expression" },
+      { label: "TARGET_GENE_EXPRESSION", value: 18, unit: "%", state: "low", category: "gene_expression" },
+      { label: "TF_ACTIVITY", value: 15, unit: "%", state: "low", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Genes changing earliest are best therapeutic targets", textPt: "Genes que mudam mais cedo são melhores alvos terapêuticos" },
-      { id: "a2", text: "Early-change genes may identify pre-malignancy; useful for prevention", textPt: "Genes que mudam cedo podem identificar pré-malignidade; útil para prevenção" },
-      { id: "a3", text: "Pseudotime is not biologically meaningful", textPt: "Pseudotempo não é biologicamente significativo" },
+      { id: "inactive_tf", text: "The TF is present but transcriptionally inactive", textPt: "O FT está presente mas transcripcionalmente inativo" },
+      { id: "target_genes_deleted", text: "The target genes are deleted or mutated", textPt: "Os genes alvo são deletados ou mutados" },
+      { id: "measurement_error", text: "This is a measurement error", textPt: "Isto é um erro de medição" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Excellent systems thinking. Early-change genes in developmental trajectories can identify critical transition points and potential intervention windows. This is powerful for understanding disease progression and designing preventive strategies.",
-    explanationPt:
-      "Excelente pensamento de sistemas. Genes que mudam cedo em trajetórias de desenvolvimento podem identificar pontos de transição críticos e janelas potenciais de intervenção. Isto é poderoso para compreender progressão da doença e desenhar estratégias preventivas.",
+    correctAnswerId: "inactive_tf",
+    explanation: "High TF expression without target gene activation indicates the TF is present but transcriptionally inactive.",
+    explanationPt: "Expressão elevada de FT sem ativação de gene alvo indica que o FT está presente mas transcripcionalmente inativo.",
+    explanations: {
+      inactive_tf: {
+        en: "Correct interpretation. TF activity depends on post-translational modifications, cofactor availability, and chromatin accessibility—not just expression level. High TF expression with low target gene expression indicates the TF is inactive.",
+        pt: "Interpretação correta. Atividade de FT depende de modificações pós-traducionais, disponibilidade de cofator, e acessibilidade de cromatina—não apenas nível de expressão. Expressão elevada de FT com expressão baixa de gene alvo indica que o FT está inativo.",
+      },
+      target_genes_deleted: {
+        en: "Possible but less likely. If target genes were deleted, you would expect no expression at all. Low expression suggests regulatory suppression, not deletion.",
+        pt: "Possível mas menos provável. Se genes alvo fossem deletados, esperaria nenhuma expressão. Expressão baixa sugere supressão regulatória, não deleção.",
+      },
+      measurement_error: {
+        en: "Unlikely. This pattern is biologically coherent and reflects the distinction between TF expression and TF activity—a well-established principle.",
+        pt: "Improvável. Este padrão é biologicamente coerente e reflete a distinção entre expressão de FT e atividade de FT—um princípio bem estabelecido.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["transcriptomics", "single_cell", "pseudotime", "expert"],
+    tags: ["transcriptomics", "regulatory_networks", "transcription_factors"],
   },
 
-  // ===== ROUND 2: NUTRITION & CELL STRESS - EXPERT (8 questions) =====
+  // ===== ROUND 2: ADVANCED BIOMARKER DETECTIVE (8 questions) =====
   {
     id: "exp_r2q1",
     round: 2,
-    title: "Nutrition & Stress: Metabolic Reprogramming",
-    titlePt: "Nutrição & Stress: Reprogramação Metabólica",
+    title: "Methodology: Multiple Hypothesis Testing",
+    titlePt: "Metodologia: Teste de Múltiplas Hipóteses",
     scenario:
-      "Cancer cells show Warburg effect (high glycolysis despite oxygen). Which metabolic intervention might be most effective?",
+      "A researcher tests 100 hypotheses and finds 5 significant results (p<0.05). How many are expected to be false positives?",
     scenarioPt:
-      "Células cancerígenas mostram efeito Warburg (alta glicólise apesar de oxigénio). Qual intervenção metabólica pode ser mais eficaz?",
+      "Um investigador testa 100 hipóteses e encontra 5 resultados significativos (p<0,05). Quantos são esperados ser falsos positivos?",
     dataSignals: [
-      { label: "GLYCOLYSIS_RATE", value: 88, unit: "%", state: "high", category: "metabolism" },
-      { label: "OXIDATIVE_PHOSPH", value: 20, unit: "%", state: "low", category: "metabolism" },
-      { label: "LACTATE_PRODUCTION", value: 85, unit: "%", state: "high", category: "metabolism" },
+      { label: "HYPOTHESES_TESTED", value: 100, unit: "n", state: "high", category: "biomarker" },
+      { label: "SIGNIFICANT_RESULTS", value: 5, unit: "n", state: "medium", category: "biomarker" },
+      { label: "EXPECTED_FALSE_POSITIVES", value: 5, unit: "n", state: "medium", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Block glycolysis; force oxidative metabolism", textPt: "Bloquear glicólise; forçar metabolismo oxidativo" },
-      { id: "a2", text: "Understand context; may need multi-target approach", textPt: "Compreender contexto; pode precisar abordagem multi-alvo" },
-      { id: "a3", text: "Increase glucose supply", textPt: "Aumentar fornecimento de glicose" },
+      { id: "five_false_positives", text: "Approximately 5 are false positives by chance alone", textPt: "Aproximadamente 5 são falsos positivos apenas por acaso" },
+      { id: "all_true_positives", text: "All 5 are likely true positives", textPt: "Todos os 5 são provavelmente verdadeiros positivos" },
+      { id: "one_false_positive", text: "Only 1 is a false positive", textPt: "Apenas 1 é um falso positivo" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Sophisticated reasoning. While Warburg effect targeting is promising, cancer cells are metabolically plastic. Effective strategies often require multi-target approaches (e.g., glycolysis + glutaminolysis inhibition) and consideration of tumor microenvironment.",
-    explanationPt:
-      "Raciocínio sofisticado. Embora o direcionamento do efeito Warburg seja promissor, as células cancerígenas são metabolicamente plásticas. Estratégias eficazes frequentemente requerem abordagens multi-alvo (p.ex., inibição de glicólise + glutaminólise) e consideração do microambiente tumoral.",
+    correctAnswerId: "five_false_positives",
+    explanation: "With 100 tests and p<0.05, we expect 5 false positives by chance. Multiple testing correction is essential.",
+    explanationPt: "Com 100 testes e p<0,05, esperamos 5 falsos positivos por acaso. Correção de testes múltiplos é essencial.",
+    explanations: {
+      five_false_positives: {
+        en: "Correct calculation. By chance alone, 5% of 100 tests = 5 false positives. Without correction, you cannot distinguish true signals from noise.",
+        pt: "Cálculo correto. Apenas por acaso, 5% de 100 testes = 5 falsos positivos. Sem correção, não pode distinguir sinais verdadeiros de ruído.",
+      },
+      all_true_positives: {
+        en: "Incorrect. The expected false positive rate is exactly 5 by chance. Most of these 5 results are probably false positives, not true discoveries.",
+        pt: "Incorreto. A taxa de falso positivo esperada é exatamente 5 por acaso. A maioria destes 5 resultados são provavelmente falsos positivos, não descobertas verdadeiras.",
+      },
+      one_false_positive: {
+        en: "Incorrect calculation. The false positive rate is 5% × 100 tests = 5, not 1.",
+        pt: "Cálculo incorreto. A taxa de falso positivo é 5% × 100 testes = 5, não 1.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["metabolism", "cancer", "therapeutic_strategy", "expert"],
+    tags: ["statistics", "multiple_testing", "false_positive"],
   },
   {
     id: "exp_r2q2",
     round: 2,
-    title: "Nutrition & Stress: Nutrient Scarcity Response",
-    titlePt: "Nutrição & Stress: Resposta à Escassez de Nutrientes",
+    title: "Advanced Biomarker: Prognostic Validation",
+    titlePt: "Biomarcador Avançado: Validação Prognóstica",
     scenario:
-      "Tumor shows high autophagy markers under nutrient-poor conditions. Is this beneficial or harmful for the cancer?",
+      "A prognostic biomarker predicts survival with 75% accuracy in the discovery cohort. In an independent validation cohort, accuracy drops to 55%. What is the likely explanation?",
     scenarioPt:
-      "Tumor mostra marcadores elevados de autofagia em condições pobres em nutrientes. Isto é benéfico ou prejudicial para o cancro?",
+      "Um biomarcador prognóstico prediz sobrevivência com 75% de precisão na coorte de descoberta. Numa coorte de validação independente, a precisão cai para 55%. Qual é a explicação provável?",
     dataSignals: [
-      { label: "AUTOPHAGY_MARKERS", value: 82, unit: "%", state: "high", category: "stress" },
-      { label: "NUTRIENT_AVAILABILITY", value: 25, unit: "%", state: "low", category: "metabolism" },
-      { label: "TUMOR_SURVIVAL", value: 70, unit: "%", state: "high", category: "biomarker" },
+      { label: "DISCOVERY_ACCURACY", value: 75, unit: "%", state: "high", category: "biomarker" },
+      { label: "VALIDATION_ACCURACY", value: 55, unit: "%", state: "medium", category: "biomarker" },
+      { label: "ACCURACY_DROP", value: 20, unit: "%", state: "high", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Harmful; autophagy kills cancer cells", textPt: "Prejudicial; autofagia mata células cancerígenas" },
-      { id: "a2", text: "Context-dependent; can promote survival or death", textPt: "Dependente do contexto; pode promover sobrevivência ou morte" },
-      { id: "a3", text: "Always beneficial for treatment", textPt: "Sempre benéfico para o tratamento" },
+      { id: "overfitting", text: "Overfitting in the discovery cohort", textPt: "Sobreajuste na coorte de descoberta" },
+      { id: "validation_cohort_wrong", text: "The validation cohort is not representative", textPt: "A coorte de validação não é representativa" },
+      { id: "biomarker_invalid", text: "The biomarker is invalid", textPt: "O biomarcador é inválido" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Critical nuance. Autophagy is a double-edged sword in cancer. It can suppress early tumorigenesis but promote survival under stress. The outcome depends on tumor type, genetic context, and timing. This complexity explains why autophagy inhibitors show mixed clinical results.",
-    explanationPt:
-      "Nuance crítica. A autofagia é uma faca de dois gumes no cancro. Pode suprimir a tumorigenese precoce mas promover sobrevivência sob stress. O resultado depende do tipo de tumor, contexto genético e timing. Esta complexidade explica por que os inibidores de autofagia mostram resultados clínicos mistos.",
+    correctAnswerId: "overfitting",
+    explanation: "A 20% accuracy drop from discovery to validation indicates overfitting in the discovery cohort.",
+    explanationPt: "Uma queda de 20% em precisão de descoberta para validação indica sobreajuste na coorte de descoberta.",
+    explanations: {
+      overfitting: {
+        en: "Correct diagnosis. A 20-point accuracy drop is classic overfitting. The discovery model learned noise specific to that cohort, not generalizable patterns. This is why independent validation is essential.",
+        pt: "Diagnóstico correto. Uma queda de 20 pontos em precisão é sobreajuste clássico. O modelo de descoberta aprendeu ruído específico dessa coorte, não padrões generalizáveis. Por isto validação independente é essencial.",
+      },
+      validation_cohort_wrong: {
+        en: "Unlikely. A 20-point drop is too large to be explained by cohort differences. Overfitting is the more parsimonious explanation.",
+        pt: "Improvável. Uma queda de 20 pontos é demasiado grande para ser explicada por diferenças de coorte. Sobreajuste é a explicação mais parcimoniosa.",
+      },
+      biomarker_invalid: {
+        en: "Partially true but imprecise. The biomarker isn't completely invalid (55% is above chance), but the discovery model is overfit. The biomarker may be valid with better modeling.",
+        pt: "Parcialmente verdadeiro mas impreciso. O biomarcador não é completamente inválido (55% está acima do acaso), mas o modelo de descoberta está sobreajustado. O biomarcador pode ser válido com melhor modelagem.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["metabolism", "autophagy", "stress_response", "expert"],
+    tags: ["methodology", "overfitting", "validation"],
   },
   {
     id: "exp_r2q3",
     round: 2,
-    title: "Nutrition & Stress: Ketone Body Metabolism",
-    titlePt: "Nutrição & Stress: Metabolismo de Corpos Cetónicos",
+    title: "Clinical Translation: Biomarker Cutoff Selection",
+    titlePt: "Tradução Clínica: Seleção de Ponto de Corte de Biomarcador",
     scenario:
-      "Patient on ketogenic diet shows altered tumor metabolism with increased ketone utilization. What is the therapeutic implication?",
+      "A continuous biomarker shows ROC AUC of 0.85. How should the clinical cutoff be selected?",
     scenarioPt:
-      "Paciente em dieta cetogénica mostra metabolismo tumoral alterado com utilização aumentada de corpos cetónicos. Qual é a implicação terapêutica?",
+      "Um biomarcador contínuo mostra ROC AUC de 0,85. Como o ponto de corte clínico deve ser selecionado?",
     dataSignals: [
-      { label: "KETONE_UTILIZATION", value: 78, unit: "%", state: "high", category: "metabolism" },
-      { label: "GLUCOSE_DEPENDENCE", value: 35, unit: "%", state: "low", category: "metabolism" },
-      { label: "TUMOR_GROWTH_RATE", value: 55, unit: "%", state: "medium", category: "biomarker" },
+      { label: "ROC_AUC", value: 85, unit: "%", state: "high", category: "biomarker" },
+      { label: "SENSITIVITY_SPECIFICITY_TRADEOFF", value: 50, unit: "%", state: "medium", category: "biomarker" },
+      { label: "CLINICAL_CONTEXT", value: 0, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Ketogenic diet cures cancer", textPt: "Dieta cetogénica cura o cancro" },
-      { id: "a2", text: "Metabolic flexibility may limit diet efficacy; requires validation", textPt: "Flexibilidade metabólica pode limitar eficácia da dieta; requer validação" },
-      { id: "a3", text: "No metabolic relevance", textPt: "Sem relevância metabólica" },
+      { id: "clinical_context", text: "Based on clinical context (cost of false positives vs. false negatives)", textPt: "Com base em contexto clínico (custo de falsos positivos vs. falsos negativos)" },
+      { id: "max_sensitivity", text: "Maximize sensitivity to catch all cases", textPt: "Maximizar sensibilidade para pegar todos os casos" },
+      { id: "max_specificity", text: "Maximize specificity to avoid false alarms", textPt: "Maximizar especificidade para evitar alarmes falsos" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Nuanced understanding. While ketogenic diets show promise in preclinical models, cancer cells often display metabolic flexibility—adapting to use ketones when glucose is limited. This adaptation limits diet efficacy alone. Combination approaches (diet + targeted therapy) may be more effective.",
-    explanationPt:
-      "Compreensão nuançada. Embora as dietas cetogénicas mostrem promessa em modelos pré-clínicos, as células cancerígenas frequentemente mostram flexibilidade metabólica—adaptando-se para usar corpos cetónicos quando a glicose é limitada. Esta adaptação limita a eficácia da dieta sozinha. Abordagens combinadas (dieta + terapia direcionada) podem ser mais eficazes.",
+    correctAnswerId: "clinical_context",
+    explanation: "Biomarker cutoff selection depends on clinical context and the relative costs of false positives vs. false negatives.",
+    explanationPt: "Seleção de ponto de corte de biomarcador depende de contexto clínico e custos relativos de falsos positivos vs. falsos negativos.",
+    explanations: {
+      clinical_context: {
+        en: "Correct approach. The optimal cutoff depends on clinical consequences. For screening, sensitivity matters more (catch all cases). For confirmation, specificity matters more (avoid false alarms). Context determines the choice.",
+        pt: "Abordagem correta. O ponto de corte ótimo depende de consequências clínicas. Para rastreio, sensibilidade importa mais (pegar todos os casos). Para confirmação, especificidade importa mais (evitar alarmes falsos). Contexto determina a escolha.",
+      },
+      max_sensitivity: {
+        en: "Context-dependent. Maximizing sensitivity is appropriate for screening (catch all cases) but inappropriate for confirmation (too many false alarms). Clinical context must guide the choice.",
+        pt: "Dependente de contexto. Maximizar sensibilidade é apropriado para rastreio (pegar todos os casos) mas inapropriado para confirmação (demasiados alarmes falsos). Contexto clínico deve guiar a escolha.",
+      },
+      max_specificity: {
+        en: "Context-dependent. Maximizing specificity is appropriate for confirmation but inappropriate for screening (miss too many cases). Clinical context must guide the choice.",
+        pt: "Dependente de contexto. Maximizar especificidade é apropriado para confirmação mas inapropriado para rastreio (perder demasiados casos). Contexto clínico deve guiar a escolha.",
+      },
+    },
+    mode: "clinical_decision",
     difficulty: "hard",
-    tags: ["metabolism", "nutrition", "diet_therapy", "expert"],
+    tags: ["clinical_translation", "biomarker", "ROC_analysis"],
   },
   {
     id: "exp_r2q4",
     round: 2,
-    title: "Nutrition & Stress: Amino Acid Addiction",
-    titlePt: "Nutrição & Stress: Adição a Aminoácidos",
+    title: "Advanced Pattern: Co-expression Network Analysis",
+    titlePt: "Padrão Avançado: Análise de Rede de Co-expressão",
     scenario:
-      "Tumor shows extreme glutamine dependence (glutamine addiction). Which therapeutic strategy is most rational?",
+      "A gene co-expression network identifies a module of 50 genes that are highly correlated. What does this suggest?",
     scenarioPt:
-      "Tumor mostra dependência extrema de glutamina (adição a glutamina). Qual estratégia terapêutica é mais racional?",
+      "Uma rede de co-expressão génica identifica um módulo de 50 genes que são altamente correlacionados. O que isto sugere?",
     dataSignals: [
-      { label: "GLUTAMINE_DEPENDENCE", value: 92, unit: "%", state: "high", category: "metabolism" },
-      { label: "GLUTAMINASE_EXPR", value: 88, unit: "%", state: "high", category: "gene_expression" },
-      { label: "ALTERNATIVE_AMINO_ACIDS", value: 15, unit: "%", state: "low", category: "metabolism" },
+      { label: "MODULE_SIZE", value: 50, unit: "genes", state: "high", category: "gene_expression" },
+      { label: "CORRELATION_STRENGTH", value: 92, unit: "%", state: "high", category: "gene_expression" },
+      { label: "FUNCTIONAL_ENRICHMENT", value: 88, unit: "%", state: "high", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Glutaminase inhibition alone", textPt: "Inibição de glutaminase sozinha" },
-      { id: "a2", text: "Consider metabolic plasticity; may need combination therapy", textPt: "Considerar plasticidade metabólica; pode precisar terapia combinada" },
-      { id: "a3", text: "Increase glutamine supply", textPt: "Aumentar fornecimento de glutamina" },
+      { id: "shared_regulation", text: "Genes share common regulatory mechanisms", textPt: "Genes compartilham mecanismos regulatórios comuns" },
+      { id: "measurement_artifact", text: "This is a measurement artifact", textPt: "Isto é um artefato de medição" },
+      { id: "random_correlation", text: "Random correlation by chance", textPt: "Correlação aleatória por acaso" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Advanced strategic thinking. While glutaminase inhibitors are rationally designed, cancer cells often escape through metabolic reprogramming (e.g., upregulating alternative amino acid transporters). Combination approaches targeting multiple metabolic nodes are more likely to succeed.",
-    explanationPt:
-      "Pensamento estratégico avançado. Embora os inibidores de glutaminase sejam racionalmente desenhados, as células cancerígenas frequentemente escapam através de reprogramação metabólica (p.ex., upregulando transportadores alternativos de aminoácidos). Abordagens combinadas direcionando múltiplos nós metabólicos têm mais probabilidade de sucesso.",
+    correctAnswerId: "shared_regulation",
+    explanation: "Highly correlated gene modules with functional enrichment indicate shared regulatory mechanisms.",
+    explanationPt: "Módulos de genes altamente correlacionados com enriquecimento funcional indicam mecanismos regulatórios compartilhados.",
+    explanations: {
+      shared_regulation: {
+        en: "Correct interpretation. A module of 50 genes with high correlation and functional enrichment indicates they are co-regulated. They likely share transcription factors or other regulatory elements.",
+        pt: "Interpretação correta. Um módulo de 50 genes com correlação elevada e enriquecimento funcional indica que são co-regulados. Provavelmente compartilham fatores de transcrição ou outros elementos regulatórios.",
+      },
+      measurement_artifact: {
+        en: "Unlikely. Functional enrichment indicates this is biological, not technical. Artifacts don't show functional coherence.",
+        pt: "Improvável. Enriquecimento funcional indica que isto é biológico, não técnico. Artefatos não mostram coerência funcional.",
+      },
+      random_correlation: {
+        en: "Statistically improbable. The probability of 50 genes randomly correlating with 92% strength is vanishingly small. This is a robust biological signal.",
+        pt: "Estatisticamente improvável. A probabilidade de 50 genes correlacionarem aleatoriamente com 92% de força é desvanecidamente pequena. Este é um sinal biológico robusto.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["metabolism", "amino_acids", "therapeutic_resistance", "expert"],
+    tags: ["transcriptomics", "co_expression", "network_analysis"],
   },
   {
     id: "exp_r2q5",
     round: 2,
-    title: "Nutrition & Stress: Lipid Metabolism Shift",
-    titlePt: "Nutrição & Stress: Mudança no Metabolismo de Lípidos",
+    title: "Methodology: Longitudinal Study Design",
+    titlePt: "Metodologia: Design de Estudo Longitudinal",
     scenario:
-      "Aggressive tumor shows switch from lipid uptake to de novo lipogenesis. What does this indicate about tumor biology?",
+      "A longitudinal study follows 1,000 patients for 10 years. 30% drop out. How should this be handled?",
     scenarioPt:
-      "Tumor agressivo mostra mudança de captação de lípidos para lipogénese de novo. O que isto indica sobre a biologia do tumor?",
+      "Um estudo longitudinal acompanha 1.000 pacientes por 10 anos. 30% desistem. Como isto deve ser tratado?",
     dataSignals: [
-      { label: "LIPID_UPTAKE_GENES", value: 25, unit: "%", state: "low", category: "gene_expression" },
-      { label: "LIPOGENESIS_GENES", value: 85, unit: "%", state: "high", category: "gene_expression" },
-      { label: "TUMOR_AGGRESSIVENESS", value: 88, unit: "%", state: "high", category: "biomarker" },
+      { label: "INITIAL_COHORT", value: 1000, unit: "n", state: "high", category: "biomarker" },
+      { label: "DROPOUT_RATE", value: 30, unit: "%", state: "high", category: "biomarker" },
+      { label: "REMAINING_COHORT", value: 700, unit: "n", state: "medium", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Metabolic independence; poor prognosis", textPt: "Independência metabólica; prognóstico pobre" },
-      { id: "a2", text: "Increased biosynthetic demand; may indicate rapid growth", textPt: "Demanda biossintética aumentada; pode indicar crescimento rápido" },
-      { id: "a3", text: "No prognostic significance", textPt: "Sem significância prognóstica" },
+      { id: "analyze_dropouts", text: "Analyze whether dropouts differ systematically from completers", textPt: "Analisar se desistências diferem sistematicamente de completadores" },
+      { id: "exclude_dropouts", text: "Simply exclude dropouts from analysis", textPt: "Simplesmente excluir desistências da análise" },
+      { id: "dropouts_random", text: "Assume dropouts are random and ignore them", textPt: "Assumir que desistências são aleatórias e ignorá-las" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Sophisticated interpretation. De novo lipogenesis is energetically expensive but enables rapid membrane synthesis for fast-growing tumors. This metabolic shift often correlates with aggressive phenotype and may identify tumors vulnerable to fatty acid synthase (FASN) inhibition.",
-    explanationPt:
-      "Interpretação sofisticada. A lipogénese de novo é energeticamente cara mas permite síntese rápida de membrana para tumores em crescimento rápido. Esta mudança metabólica frequentemente correlaciona com fenótipo agressivo e pode identificar tumores vulneráveis a inibição de sintase de ácido gordo (FASN).",
+    correctAnswerId: "analyze_dropouts",
+    explanation: "Dropout bias can distort results. Systematic analysis of dropouts is essential to assess potential bias.",
+    explanationPt: "Viés de desistência pode distorcer resultados. Análise sistemática de desistências é essencial para avaliar viés potencial.",
+    explanations: {
+      analyze_dropouts: {
+        en: "Correct methodology. 30% dropout is substantial. You must analyze whether dropouts differ from completers (age, disease severity, treatment response). If they differ systematically, results are biased.",
+        pt: "Metodologia correta. 30% de desistência é substancial. Deve analisar se desistências diferem de completadores (idade, gravidade da doença, resposta ao tratamento). Se diferem sistematicamente, resultados são enviesados.",
+      },
+      exclude_dropouts: {
+        en: "Incomplete approach. Simply excluding dropouts ignores potential bias. You must understand why they dropped out before deciding how to handle them.",
+        pt: "Abordagem incompleta. Simplesmente excluir desistências ignora viés potencial. Deve compreender por que desistiram antes de decidir como tratá-las.",
+      },
+      dropouts_random: {
+        en: "Risky assumption. Dropouts are rarely random. Patients may drop out due to adverse effects, lack of efficacy, or other factors correlated with outcomes. This must be investigated.",
+        pt: "Suposição arriscada. Desistências raramente são aleatórias. Pacientes podem desistir devido a efeitos adversos, falta de eficácia, ou outros fatores correlacionados com resultados. Isto deve ser investigado.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["metabolism", "lipids", "tumor_aggressiveness", "expert"],
+    tags: ["methodology", "longitudinal_study", "dropout_bias"],
   },
   {
     id: "exp_r2q6",
     round: 2,
-    title: "Nutrition & Stress: Redox Stress Adaptation",
-    titlePt: "Nutrição & Stress: Adaptação ao Stress Redox",
+    title: "Clinical Translation: Precision Diagnostics",
+    titlePt: "Tradução Clínica: Diagnósticos de Precisão",
     scenario:
-      "Tumor shows high ROS production but also elevated antioxidant defenses (high SOD, catalase, GSH). What is the adaptive strategy?",
+      "A multi-gene panel identifies 15 genetic variants in a patient. Most are variants of uncertain significance (VUS). What should the clinical report include?",
     scenarioPt:
-      "Tumor mostra produção elevada de ROS mas também defesas antioxidantes elevadas (SOD elevado, catalase, GSH). Qual é a estratégia adaptativa?",
+      "Um painel de múltiplos genes identifica 15 variantes genéticas num paciente. A maioria são variantes de significado incerto (VUS). O que o relatório clínico deve incluir?",
     dataSignals: [
-      { label: "ROS_PRODUCTION", value: 80, unit: "%", state: "high", category: "stress" },
-      { label: "ANTIOXIDANT_DEFENSE", value: 82, unit: "%", state: "high", category: "stress" },
-      { label: "REDOX_SIGNALING", value: 75, unit: "%", state: "high", category: "gene_expression" },
+      { label: "VARIANTS_IDENTIFIED", value: 15, unit: "n", state: "high", category: "biomarker" },
+      { label: "PATHOGENIC_VARIANTS", value: 2, unit: "n", state: "low", category: "biomarker" },
+      { label: "VUS_VARIANTS", value: 13, unit: "n", state: "high", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Tumor is in redox equilibrium; stable", textPt: "Tumor está em equilíbrio redox; estável" },
-      { id: "a2", text: "Controlled ROS for signaling; vulnerability to ROS-targeting drugs", textPt: "ROS controlado para sinalização; vulnerabilidade a drogas direcionadas a ROS" },
-      { id: "a3", text: "Antioxidants are always protective", textPt: "Antioxidantes são sempre protetores" },
+      { id: "clear_interpretation", text: "Distinguish pathogenic variants from VUS; counsel on uncertainty", textPt: "Distinguir variantes patogénicas de VUS; aconselhar sobre incerteza" },
+      { id: "report_all_equally", text: "Report all variants as equally important", textPt: "Relatar todas as variantes como igualmente importantes" },
+      { id: "ignore_vus", text: "Ignore VUS and report only pathogenic variants", textPt: "Ignorar VUS e relatar apenas variantes patogénicas" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Excellent redox biology insight. Modern understanding recognizes that moderate ROS levels drive oncogenic signaling. Tumors maintain elevated antioxidant defenses to keep ROS in a 'sweet spot' for growth. This creates vulnerability to ROS-inducing therapies or antioxidant inhibitors.",
-    explanationPt:
-      "Excelente perspetiva de biologia redox. A compreensão moderna reconhece que níveis moderados de ROS impulsionam sinalização oncogénica. Os tumores mantêm defesas antioxidantes elevadas para manter ROS num 'ponto ideal' para crescimento. Isto cria vulnerabilidade a terapias indutoras de ROS ou inibidores de antioxidantes.",
+    correctAnswerId: "clear_interpretation",
+    explanation: "Clinical reports must distinguish pathogenic variants from VUS and communicate uncertainty appropriately.",
+    explanationPt: "Relatórios clínicos devem distinguir variantes patogénicas de VUS e comunicar incerteza apropriadamente.",
+    explanations: {
+      clear_interpretation: {
+        en: "Correct clinical communication. The report must clearly distinguish the 2 pathogenic variants (actionable) from the 13 VUS (uncertain significance). Patients must understand what is known and what is uncertain.",
+        pt: "Comunicação clínica correta. O relatório deve distinguir claramente as 2 variantes patogénicas (acionáveis) das 13 VUS (significado incerto). Pacientes devem compreender o que é conhecido e o que é incerto.",
+      },
+      report_all_equally: {
+        en: "Misleading communication. Reporting all variants equally would confuse patients and clinicians. Clear distinction between pathogenic and uncertain variants is essential.",
+        pt: "Comunicação enganosa. Relatar todas as variantes igualmente confundiria pacientes e clínicos. Distinção clara entre variantes patogénicas e incertas é essencial.",
+      },
+      ignore_vus: {
+        en: "Incomplete reporting. While VUS don't require immediate action, they should be reported and explained. Ignoring them withholds information from patients.",
+        pt: "Relatório incompleto. Embora VUS não requeiram ação imediata, devem ser relatadas e explicadas. Ignorá-las retém informação de pacientes.",
+      },
+    },
+    mode: "clinical_decision",
     difficulty: "hard",
-    tags: ["metabolism", "redox_biology", "ROS", "expert"],
+    tags: ["precision_medicine", "genetic_testing", "clinical_reporting"],
   },
   {
     id: "exp_r2q7",
     round: 2,
-    title: "Nutrition & Stress: Amino Acid Starvation Response",
-    titlePt: "Nutrição & Stress: Resposta à Privação de Aminoácidos",
+    title: "Advanced Pattern: Temporal Dynamics",
+    titlePt: "Padrão Avançado: Dinâmica Temporal",
     scenario:
-      "Under amino acid starvation, tumor activates ATF4 pathway and upregulates amino acid transporters. Is this adaptive or maladaptive?",
+      "Gene expression changes over time in a time-course experiment. Early genes show transient peaks, late genes show sustained elevation. What does this suggest?",
     scenarioPt:
-      "Sob privação de aminoácidos, tumor ativa via ATF4 e upregula transportadores de aminoácidos. Isto é adaptativo ou desadaptativo?",
+      "Expressão génica muda ao longo do tempo num experimento de série de tempo. Genes precoces mostram picos transitórios, genes tardios mostram elevação sustentada. O que isto sugere?",
     dataSignals: [
-      { label: "ATF4_ACTIVATION", value: 85, unit: "%", state: "high", category: "gene_expression" },
-      { label: "AA_TRANSPORTER_EXPR", value: 80, unit: "%", state: "high", category: "gene_expression" },
-      { label: "TUMOR_SURVIVAL", value: 72, unit: "%", state: "high", category: "biomarker" },
+      { label: "EARLY_GENE_PEAK", value: 88, unit: "%", state: "high", category: "gene_expression" },
+      { label: "EARLY_GENE_DURATION", value: 2, unit: "hours", state: "low", category: "gene_expression" },
+      { label: "LATE_GENE_DURATION", value: 24, unit: "hours", state: "high", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Maladaptive; tumor will die", textPt: "Desadaptativo; tumor morrerá" },
-      { id: "a2", text: "Adaptive survival mechanism; exploitable for therapy", textPt: "Mecanismo adaptativo de sobrevivência; explorável para terapia" },
-      { id: "a3", text: "No functional consequence", textPt: "Sem consequência funcional" },
+      { id: "cascade_response", text: "A regulatory cascade: early genes activate late genes", textPt: "Uma cascata regulatória: genes precoces ativam genes tardios" },
+      { id: "independent_response", text: "Independent responses to the same stimulus", textPt: "Respostas independentes ao mesmo estímulo" },
+      { id: "measurement_error", text: "Measurement error in late gene measurement", textPt: "Erro de medição na medição de gene tardio" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Sophisticated understanding of stress adaptation. ATF4-mediated amino acid transporter upregulation is an adaptive response enabling tumor survival under nutrient stress. This creates therapeutic opportunity: ATF4 inhibition or amino acid transporter blocking could sensitize tumors to starvation.",
-    explanationPt:
-      "Compreensão sofisticada de adaptação ao stress. A upregulação de transportadores de aminoácidos mediada por ATF4 é uma resposta adaptativa que permite sobrevivência tumoral sob stress nutricional. Isto cria oportunidade terapêutica: inibição de ATF4 ou bloqueio de transportadores de aminoácidos poderia sensibilizar tumores à privação.",
+    correctAnswerId: "cascade_response",
+    explanation: "Transient early gene peaks followed by sustained late gene elevation suggests a regulatory cascade.",
+    explanationPt: "Picos transitórios de genes precoces seguidos de elevação sustentada de genes tardios sugere uma cascata regulatória.",
+    explanations: {
+      cascade_response: {
+        en: "Correct interpretation. This temporal pattern is classic for regulatory cascades: early genes (transcription factors) are activated transiently, then activate late genes (effector genes) which sustain their expression.",
+        pt: "Interpretação correta. Este padrão temporal é clássico para cascatas regulatórias: genes precoces (fatores de transcrição) são ativados transitoriamente, depois ativam genes tardios (genes efetores) que sustentam sua expressão.",
+      },
+      independent_response: {
+        en: "Unlikely. The temporal relationship (early peaks before late elevation) suggests causality, not independent responses. This indicates a regulatory hierarchy.",
+        pt: "Improvável. A relação temporal (picos precoces antes de elevação tardia) sugere causalidade, não respostas independentes. Isto indica uma hierarquia regulatória.",
+      },
+      measurement_error: {
+        en: "Unlikely. The sustained elevation of late genes is a robust, reproducible pattern in time-course experiments, not random error.",
+        pt: "Improvável. A elevação sustentada de genes tardios é um padrão robusto e reproduzível em experimentos de série de tempo, não erro aleatório.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["metabolism", "stress_response", "amino_acids", "expert"],
+    tags: ["transcriptomics", "time_course", "regulatory_cascade"],
   },
   {
     id: "exp_r2q8",
     round: 2,
-    title: "Nutrition & Stress: Ferroptosis Resistance",
-    titlePt: "Nutrição & Stress: Resistência à Ferroptose",
+    title: "Methodology: Ethical Oversight in Genomics",
+    titlePt: "Metodologia: Supervisão Ética em Genómica",
     scenario:
-      "Tumor resistant to ferroptosis shows high GPX4 and low ACSL4 expression. Which therapeutic approach is most rational?",
+      "A genomic study discovers incidental findings (e.g., unexpected paternity, disease predisposition). Should these be reported to participants?",
     scenarioPt:
-      "Tumor resistente à ferroptose mostra expressão elevada de GPX4 e baixa de ACSL4. Qual abordagem terapêutica é mais racional?",
+      "Um estudo genómico descobre achados incidentais (ex. paternidade inesperada, predisposição a doença). Devem estes ser relatados aos participantes?",
     dataSignals: [
-      { label: "GPX4_EXPRESSION", value: 88, unit: "%", state: "high", category: "gene_expression" },
-      { label: "ACSL4_EXPRESSION", value: 18, unit: "%", state: "low", category: "gene_expression" },
-      { label: "FERROPTOSIS_SENSITIVITY", value: 15, unit: "%", state: "low", category: "biomarker" },
+      { label: "INCIDENTAL_FINDINGS", value: 95, unit: "%", state: "high", category: "biomarker" },
+      { label: "CLINICAL_ACTIONABILITY", value: 65, unit: "%", state: "high", category: "biomarker" },
+      { label: "INFORMED_CONSENT_COVERAGE", value: 30, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "GPX4 inhibition alone", textPt: "Inibição de GPX4 sozinha" },
-      { id: "a2", text: "Restore ACSL4 + GPX4 inhibition for synthetic lethality", textPt: "Restaurar ACSL4 + inibição de GPX4 para letalidade sintética" },
-      { id: "a3", text: "Ferroptosis is not viable", textPt: "Ferroptose não é viável" },
+      { id: "report_actionable", text: "Report clinically actionable findings; counsel on uncertainty", textPt: "Relatar achados clinicamente acionáveis; aconselhar sobre incerteza" },
+      { id: "report_all", text: "Report all incidental findings", textPt: "Relatar todos os achados incidentais" },
+      { id: "report_none", text: "Do not report any incidental findings", textPt: "Não relatar nenhum achado incidental" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Advanced therapeutic reasoning. Ferroptosis requires both lipid peroxidation (ACSL4-dependent) and failed antioxidant defense (GPX4). Tumors resistant through high GPX4 + low ACSL4 require dual targeting: ACSL4 restoration + GPX4 inhibition for effective ferroptosis induction.",
-    explanationPt:
-      "Raciocínio terapêutico avançado. A ferroptose requer tanto peroxidação lipídica (dependente de ACSL4) como defesa antioxidante falhada (GPX4). Tumores resistentes através de GPX4 elevado + ACSL4 baixo requerem direcionamento duplo: restauração de ACSL4 + inibição de GPX4 para indução eficaz de ferroptose.",
+    correctAnswerId: "report_actionable",
+    explanation: "Clinically actionable incidental findings should be reported with appropriate counseling and informed consent.",
+    explanationPt: "Achados incidentais clinicamente acionáveis devem ser relatados com aconselhamento apropriado e consentimento informado.",
+    explanations: {
+      report_actionable: {
+        en: "Correct ethical approach. Clinically actionable findings (e.g., BRCA1 mutations, Lynch syndrome) should be reported because patients can take action. Non-actionable findings require careful consideration of harm vs. benefit.",
+        pt: "Abordagem ética correta. Achados clinicamente acionáveis (ex. mutações BRCA1, síndrome de Lynch) devem ser relatados porque pacientes podem tomar ação. Achados não acionáveis requerem consideração cuidadosa de dano vs. benefício.",
+      },
+      report_all: {
+        en: "Ethically problematic. Reporting all incidental findings, including non-actionable ones, can cause psychological harm without clinical benefit. Selective reporting is more ethical.",
+        pt: "Eticamente problemático. Relatar todos os achados incidentais, incluindo não acionáveis, pode causar dano psicológico sem benefício clínico. Relatório seletivo é mais ético.",
+      },
+      report_none: {
+        en: "Ethically problematic. Withholding clinically actionable findings denies patients information they could use to protect their health. This violates autonomy.",
+        pt: "Eticamente problemático. Reter achados clinicamente acionáveis nega aos pacientes informação que poderiam usar para proteger sua saúde. Isto viola autonomia.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["metabolism", "ferroptosis", "synthetic_lethality", "expert"],
+    tags: ["ethics", "genomics", "incidental_findings"],
   },
 
-  // ===== ROUND 3: BIOMARKER MISSION - EXPERT (8 questions) =====
+  // ===== ROUND 3: EXPERT SYSTEMS ANALYSIS (8 questions) =====
   {
     id: "exp_r3q1",
     round: 3,
-    title: "Biomarker Mission: Liquid Biopsy Integration",
-    titlePt: "Missão de Biomarcador: Integração de Biópsia Líquida",
+    title: "Advanced Systems: Multi-Omics Integration",
+    titlePt: "Sistemas Avançados: Integração Multi-Ómicas",
     scenario:
-      "Circulating tumor DNA (ctDNA) shows mutation X, but tissue biopsy does not. How should this discordance be interpreted?",
+      "Genomics, transcriptomics, and proteomics data show discordant results for the same genes. How should this be interpreted?",
     scenarioPt:
-      "DNA tumoral circulante (ctDNA) mostra mutação X, mas biópsia de tecido não. Como esta discordância deve ser interpretada?",
+      "Dados de genómica, transcriptómica e proteómica mostram resultados discordantes para os mesmos genes. Como isto deve ser interpretado?",
     dataSignals: [
-      { label: "CTDNA_MUTATION_X", value: 85, unit: "%", state: "high", category: "biomarker" },
-      { label: "TISSUE_MUTATION_X", value: 0, unit: "%", state: "low", category: "biomarker" },
-      { label: "CLONAL_HETEROGENEITY", value: 78, unit: "%", state: "high", category: "clinical" },
+      { label: "GENOMIC_SIGNAL", value: 75, unit: "%", state: "high", category: "gene_expression" },
+      { label: "TRANSCRIPTOMIC_SIGNAL", value: 42, unit: "%", state: "medium", category: "gene_expression" },
+      { label: "PROTEOMIC_SIGNAL", value: 18, unit: "%", state: "low", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "ctDNA is artifact; ignore it", textPt: "ctDNA é artefato; ignorar" },
-      { id: "a2", text: "Possible subclonal mutation; indicates tumor heterogeneity", textPt: "Possível mutação subclonal; indica heterogeneidade tumoral" },
-      { id: "a3", text: "Tissue biopsy is always correct", textPt: "Biópsia de tecido é sempre correta" },
+      { id: "post_transcriptional", text: "Post-transcriptional regulation (protein degradation, translation control)", textPt: "Regulação pós-transcricional (degradação de proteína, controlo de tradução)" },
+      { id: "measurement_error", text: "Measurement error in one or more platforms", textPt: "Erro de medição numa ou mais plataformas" },
+      { id: "biological_noise", text: "Biological noise and random variation", textPt: "Ruído biológico e variação aleatória" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Sophisticated understanding of tumor heterogeneity. ctDNA can detect subclonal mutations absent from the sampled tissue biopsy. This discordance is informative: it reveals clonal diversity and may identify emerging resistance mutations before they dominate the tumor.",
-    explanationPt:
-      "Compreensão sofisticada de heterogeneidade tumoral. ctDNA pode detetar mutações subclonais ausentes da biópsia de tecido amostrada. Esta discordância é informativa: revela diversidade clonal e pode identificar mutações de resistência emergentes antes de dominarem o tumor.",
+    correctAnswerId: "post_transcriptional",
+    explanation: "Discordance between transcriptomics and proteomics indicates post-transcriptional regulation.",
+    explanationPt: "Discordância entre transcriptómica e proteómica indica regulação pós-transcricional.",
+    explanations: {
+      post_transcriptional: {
+        en: "Correct interpretation. The pattern (high genomic/transcriptomic, low proteomic) indicates post-transcriptional regulation. Proteins are degraded, translation is suppressed, or proteins are sequestered—despite high mRNA levels.",
+        pt: "Interpretação correta. O padrão (genómico/transcriptómico elevado, proteómico baixo) indica regulação pós-transcricional. Proteínas são degradadas, tradução é suprimida, ou proteínas são sequestradas—apesar de níveis elevados de mRNA.",
+      },
+      measurement_error: {
+        en: "Possible but less likely. The systematic pattern (genomic > transcriptomic > proteomic) is too coherent to be random error. This indicates biological regulation.",
+        pt: "Possível mas menos provável. O padrão sistemático (genómico > transcriptómico > proteómico) é demasiado coerente para ser erro aleatório. Isto indica regulação biológica.",
+      },
+      biological_noise: {
+        en: "Unlikely. The systematic gradient across three platforms suggests biological regulation, not random noise.",
+        pt: "Improvável. O gradiente sistemático em três plataformas sugere regulação biológica, não ruído aleatório.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["biomarker", "liquid_biopsy", "clonal_heterogeneity", "expert"],
+    tags: ["multi_omics", "post_transcriptional", "systems_biology"],
   },
   {
     id: "exp_r3q2",
     round: 3,
-    title: "Biomarker Mission: Immunoscore Complexity",
-    titlePt: "Missão de Biomarcador: Complexidade de Imunoscore",
+    title: "Methodology: Causal Inference in Observational Data",
+    titlePt: "Metodologia: Inferência Causal em Dados Observacionais",
     scenario:
-      "Tumor has high CD8+ T-cell infiltration but low CD4+ helper T cells. What does this immune composition suggest?",
+      "An observational study shows patients on drug A have better outcomes than drug B. Can you conclude drug A is superior?",
     scenarioPt:
-      "Tumor tem infiltração elevada de células T CD8+ mas células T auxiliares CD4+ baixas. O que esta composição imunitária sugere?",
+      "Um estudo observacional mostra que pacientes no fármaco A têm melhores resultados que fármaco B. Pode concluir que fármaco A é superior?",
     dataSignals: [
-      { label: "CD8_INFILTRATION", value: 82, unit: "%", state: "high", category: "immune" },
-      { label: "CD4_INFILTRATION", value: 25, unit: "%", state: "low", category: "immune" },
-      { label: "CHECKPOINT_MARKERS", value: 70, unit: "%", state: "high", category: "biomarker" },
+      { label: "OUTCOME_DIFFERENCE", value: 35, unit: "%", state: "high", category: "biomarker" },
+      { label: "RANDOMIZATION", value: 0, unit: "%", state: "low", category: "biomarker" },
+      { label: "CONFOUNDING_CONTROL", value: 25, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Excellent immune response; good prognosis", textPt: "Excelente resposta imunitária; bom prognóstico" },
-      { id: "a2", text: "Imbalanced immunity; may lack helper support; checkpoint inhibitors may help", textPt: "Imunidade desequilibrada; pode faltar apoio auxiliar; inibidores de checkpoint podem ajudar" },
-      { id: "a3", text: "CD4 cells are irrelevant", textPt: "Células CD4 são irrelevantes" },
+      { id: "cannot_conclude_causality", text: "No; confounding makes causal inference impossible without randomization", textPt: "Não; confusão torna inferência causal impossível sem aleatorização" },
+      { id: "drug_a_superior", text: "Yes; the outcome difference proves drug A is superior", textPt: "Sim; a diferença de resultado prova que fármaco A é superior" },
+      { id: "propensity_score_sufficient", text: "Propensity score matching is sufficient to establish causality", textPt: "Correspondência de pontuação de propensão é suficiente para estabelecer causalidade" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Nuanced immunology. CD8+ T cells are cytotoxic effectors, but CD4+ helper T cells are essential for sustained CD8+ response and memory formation. High CD8 without CD4 support may lead to T-cell exhaustion. This imbalance may respond to checkpoint inhibition or CD4+ T-cell therapy.",
-    explanationPt:
-      "Imunologia nuançada. Células T CD8+ são efetores citotóxicos, mas células T auxiliares CD4+ são essenciais para resposta CD8+ sustentada e formação de memória. CD8 elevado sem apoio CD4 pode levar a exaustão de células T. Este desequilíbrio pode responder a inibição de checkpoint ou terapia de células T CD4+.",
+    correctAnswerId: "cannot_conclude_causality",
+    explanation: "Observational data cannot establish causality. Unmeasured confounding is always possible.",
+    explanationPt: "Dados observacionais não podem estabelecer causalidade. Confusão não medida é sempre possível.",
+    explanations: {
+      cannot_conclude_causality: {
+        en: "Correct conclusion. Observational studies cannot establish causality. Patients on drug A may differ from drug B patients in unmeasured ways (severity, comorbidities, lifestyle) that explain the outcome difference.",
+        pt: "Conclusão correta. Estudos observacionais não podem estabelecer causalidade. Pacientes no fármaco A podem diferir de pacientes do fármaco B de formas não medidas (gravidade, comorbilidades, estilo de vida) que explicam a diferença de resultado.",
+      },
+      drug_a_superior: {
+        en: "Incorrect causal inference. Observational data cannot prove causality. Randomized trials are needed to establish drug superiority.",
+        pt: "Inferência causal incorreta. Dados observacionais não podem provar causalidade. Ensaios aleatorizados são necessários para estabelecer superioridade do fármaco.",
+      },
+      propensity_score_sufficient: {
+        en: "Incomplete. Propensity score matching controls for measured confounding but cannot control for unmeasured confounding. Randomization is the gold standard.",
+        pt: "Incompleto. Correspondência de pontuação de propensão controla confusão medida mas não pode controlar confusão não medida. Aleatorização é o padrão ouro.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["biomarker", "immunology", "checkpoint_inhibitors", "expert"],
+    tags: ["methodology", "causal_inference", "observational_study"],
   },
   {
     id: "exp_r3q3",
     round: 3,
-    title: "Biomarker Mission: Tumor Mutational Burden Context",
-    titlePt: "Missão de Biomarcador: Contexto de Carga Mutacional Tumoral",
+    title: "Clinical Translation: Precision Medicine Implementation",
+    titlePt: "Tradução Clínica: Implementação de Medicina de Precisão",
     scenario:
-      "High TMB (tumor mutational burden) usually predicts immunotherapy response, but this patient's high-TMB tumor is immunotherapy-resistant. What might explain this?",
+      "A hospital wants to implement a precision medicine program using genomic testing. What is the critical first step?",
     scenarioPt:
-      "TMB elevada (carga mutacional tumoral) geralmente prediz resposta a imunoterapia, mas o tumor de TMB elevada deste paciente é resistente a imunoterapia. O que pode explicar isto?",
+      "Um hospital quer implementar um programa de medicina de precisão usando testes genómicos. Qual é o primeiro passo crítico?",
     dataSignals: [
-      { label: "TMB_LEVEL", value: 88, unit: "%", state: "high", category: "biomarker" },
-      { label: "IMMUNOTHERAPY_RESPONSE", value: 20, unit: "%", state: "low", category: "biomarker" },
-      { label: "IMMUNE_INFILTRATION", value: 30, unit: "%", state: "low", category: "immune" },
+      { label: "GENOMIC_DATA_AVAILABLE", value: 95, unit: "%", state: "high", category: "biomarker" },
+      { label: "CLINICAL_WORKFLOW_INTEGRATION", value: 15, unit: "%", state: "low", category: "biomarker" },
+      { label: "CLINICIAN_TRAINING", value: 0, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "TMB is always predictive", textPt: "TMB é sempre preditivo" },
-      { id: "a2", text: "TMB alone insufficient; immune infiltration and checkpoint status also critical", textPt: "TMB sozinho insuficiente; infiltração imunitária e status de checkpoint também críticos" },
-      { id: "a3", text: "Measurement error", textPt: "Erro de medição" },
+      { id: "workflow_integration", text: "Integrate genomic data into clinical workflows and train clinicians", textPt: "Integrar dados genómicos em fluxos de trabalho clínicos e treinar clínicos" },
+      { id: "generate_more_data", text: "Generate more genomic data", textPt: "Gerar mais dados genómicos" },
+      { id: "publish_results", text: "Publish results in scientific journals", textPt: "Publicar resultados em revistas científicas" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Critical biomarker insight. High TMB generates neoantigens, but immunotherapy requires immune infiltration and permissive checkpoint status. 'Cold' tumors with high TMB but low immune infiltration are immunotherapy-resistant. Multi-parameter assessment is essential.",
-    explanationPt:
-      "Perspetiva crítica de biomarcador. TMB elevada gera neoantigénios, mas imunoterapia requer infiltração imunitária e status de checkpoint permissivo. Tumores 'frios' com TMB elevada mas infiltração imunitária baixa são resistentes a imunoterapia. Avaliação multi-parâmetro é essencial.",
+    correctAnswerId: "workflow_integration",
+    explanation: "Precision medicine requires integration into clinical practice and clinician training, not just data generation.",
+    explanationPt: "Medicina de precisão requer integração em prática clínica e treinamento de clínicos, não apenas geração de dados.",
+    explanations: {
+      workflow_integration: {
+        en: "Correct implementation strategy. Genomic data is only useful if clinicians understand it and can act on it. Workflow integration and training are essential before expanding the program.",
+        pt: "Estratégia de implementação correta. Dados genómicos são úteis apenas se clínicos os compreendem e podem agir sobre eles. Integração de fluxo de trabalho e treinamento são essenciais antes de expandir o programa.",
+      },
+      generate_more_data: {
+        en: "Premature. More data without clinical integration is useless. The bottleneck is implementation, not data generation.",
+        pt: "Prematuro. Mais dados sem integração clínica são inúteis. O gargalo é implementação, não geração de dados.",
+      },
+      publish_results: {
+        en: "Not the priority. Publishing is important for dissemination but doesn't help patients unless the program is clinically implemented.",
+        pt: "Não é a prioridade. Publicar é importante para disseminação mas não ajuda pacientes a menos que o programa seja clinicamente implementado.",
+      },
+    },
+    mode: "clinical_decision",
     difficulty: "hard",
-    tags: ["biomarker", "TMB", "immunotherapy", "expert"],
+    tags: ["precision_medicine", "implementation", "clinical_workflow"],
   },
   {
     id: "exp_r3q4",
     round: 3,
-    title: "Biomarker Mission: Proteomics Validation",
-    titlePt: "Missão de Biomarcador: Validação de Proteómica",
+    title: "Advanced Pattern: Emergent Properties",
+    titlePt: "Padrão Avançado: Propriedades Emergentes",
     scenario:
-      "RNA-seq identifies a promising prognostic marker, but protein levels do not correlate with mRNA. Should this marker be pursued clinically?",
+      "Individual genes show weak effects, but their combination shows strong phenotypic effect. What does this indicate?",
     scenarioPt:
-      "RNA-seq identifica um marcador prognóstico promissor, mas níveis de proteína não correlacionam com mRNA. Este marcador deve ser prosseguido clinicamente?",
+      "Genes individuais mostram efeitos fracos, mas sua combinação mostra efeito fenotípico forte. O que isto indica?",
     dataSignals: [
-      { label: "MRNA_LEVEL", value: 85, unit: "%", state: "high", category: "gene_expression" },
-      { label: "PROTEIN_LEVEL", value: 30, unit: "%", state: "low", category: "biomarker" },
-      { label: "MRNA_PROTEIN_CORRELATION", value: 15, unit: "%", state: "low", category: "clinical" },
+      { label: "INDIVIDUAL_GENE_EFFECT", value: 15, unit: "%", state: "low", category: "gene_expression" },
+      { label: "COMBINED_EFFECT", value: 78, unit: "%", state: "high", category: "gene_expression" },
+      { label: "SYNERGISTIC_INTERACTION", value: 63, unit: "%", state: "high", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "Pursue RNA-based marker; protein is irrelevant", textPt: "Prosseguir marcador baseado em RNA; proteína é irrelevante" },
-      { id: "a2", text: "Investigate post-translational regulation; protein level may be more predictive", textPt: "Investigar regulação pós-translacional; nível de proteína pode ser mais preditivo" },
-      { id: "a3", text: "Marker is unreliable", textPt: "Marcador é pouco confiável" },
+      { id: "genetic_interaction", text: "Genetic interaction (epistasis) or synergy between genes", textPt: "Interação genética (epistasia) ou sinergia entre genes" },
+      { id: "measurement_error", text: "Measurement error in combined analysis", textPt: "Erro de medição na análise combinada" },
+      { id: "additive_effects", text: "Simple additive effects of individual genes", textPt: "Efeitos aditivos simples de genes individuais" },
     ],
-    correctAnswerId: "a1",
-    explanation:
-      "Sophisticated biomarker development. mRNA-protein discordance reveals post-translational regulation (phosphorylation, ubiquitination, localization). Protein levels often better predict phenotype than mRNA. Clinical biomarkers should be validated at the protein level using immunoassays or mass spectrometry.",
-    explanationPt:
-      "Desenvolvimento sofisticado de biomarcador. Discordância mRNA-proteína revela regulação pós-translacional (fosforilação, ubiquitinação, localização). Níveis de proteína frequentemente predizem melhor fenótipo do que mRNA. Biomarcadores clínicos devem ser validados ao nível de proteína usando imunoensaios ou espectrometria de massa.",
+    correctAnswerId: "genetic_interaction",
+    explanation: "Strong combined effect with weak individual effects indicates genetic interaction or synergy.",
+    explanationPt: "Efeito combinado forte com efeitos individuais fracos indica interação genética ou sinergia.",
+    explanations: {
+      genetic_interaction: {
+        en: "Correct interpretation. This is classic epistasis: individual genes have weak effects, but together they produce strong phenotypic effects. The genes interact synergistically.",
+        pt: "Interpretação correta. Esta é epistasia clássica: genes individuais têm efeitos fracos, mas juntos produzem efeitos fenotípicos fortes. Os genes interagem sinergicamente.",
+      },
+      measurement_error: {
+        en: "Unlikely. The strong combined effect is a robust finding. If it were error, you would expect random variation, not synergistic amplification.",
+        pt: "Improvável. O efeito combinado forte é um achado robusto. Se fosse erro, esperaria variação aleatória, não amplificação sinérgica.",
+      },
+      additive_effects: {
+        en: "Incorrect. Additive effects would predict combined effect = sum of individual effects. The strong combined effect exceeds this prediction, indicating non-additive (synergistic) interaction.",
+        pt: "Incorreto. Efeitos aditivos prediriam efeito combinado = soma de efeitos individuais. O efeito combinado forte excede esta predição, indicando interação não aditiva (sinérgica).",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["biomarker", "proteomics", "validation", "expert"],
+    tags: ["genetics", "epistasis", "systems_biology"],
   },
   {
     id: "exp_r3q5",
     round: 3,
-    title: "Biomarker Mission: Spatial Transcriptomics",
-    titlePt: "Missão de Biomarcador: Transcriptómica Espacial",
+    title: "Methodology: Replication and Meta-Analysis",
+    titlePt: "Metodologia: Replicação e Meta-Análise",
     scenario:
-      "Spatial transcriptomics reveals marker X is highly expressed in tumor-immune interface but absent in tumor core. What is the biological significance?",
+      "Five independent studies show similar effect sizes but with wide confidence intervals. Should these be meta-analyzed?",
     scenarioPt:
-      "Transcriptómica espacial revela que o marcador X é altamente expresso na interface tumor-imunitária mas ausente no núcleo tumoral. Qual é a significância biológica?",
+      "Cinco estudos independentes mostram tamanhos de efeito similares mas com intervalos de confiança amplos. Devem estes ser meta-analisados?",
     dataSignals: [
-      { label: "MARKER_INTERFACE", value: 88, unit: "%", state: "high", category: "gene_expression" },
-      { label: "MARKER_CORE", value: 8, unit: "%", state: "low", category: "gene_expression" },
-      { label: "SPATIAL_HETEROGENEITY", value: 82, unit: "%", state: "high", category: "clinical" },
+      { label: "EFFECT_SIZE_CONSISTENCY", value: 88, unit: "%", state: "high", category: "biomarker" },
+      { label: "CONFIDENCE_INTERVAL_WIDTH", value: 75, unit: "%", state: "high", category: "biomarker" },
+      { label: "HETEROGENEITY", value: 42, unit: "%", state: "medium", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Marker is irrelevant", textPt: "Marcador é irrelevante" },
-      { id: "a2", text: "Interface expression suggests immune-tumor crosstalk; may indicate immunotherapy sensitivity", textPt: "Expressão de interface sugere crosstalk imuno-tumoral; pode indicar sensibilidade a imunoterapia" },
-      { id: "a3", text: "Measurement error", textPt: "Erro de medição" },
+      { id: "meta_analyze", text: "Yes; meta-analysis increases statistical power", textPt: "Sim; meta-análise aumenta poder estatístico" },
+      { id: "no_meta_analysis", text: "No; wide confidence intervals indicate unreliable data", textPt: "Não; intervalos de confiança amplos indicam dados não confiáveis" },
+      { id: "investigate_heterogeneity", text: "First investigate heterogeneity; then decide on meta-analysis", textPt: "Primeiro investigar heterogeneidade; depois decidir sobre meta-análise" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Advanced biomarker interpretation. Spatial organization is functionally important. Markers enriched at tumor-immune interfaces often reflect immune-tumor crosstalk and may predict immunotherapy response. This highlights why spatial transcriptomics is superior to bulk RNA-seq for understanding tumor microenvironment.",
-    explanationPt:
-      "Interpretação avançada de biomarcador. A organização espacial é funcionalmente importante. Marcadores enriquecidos em interfaces tumor-imunitárias frequentemente refletem crosstalk imuno-tumoral e podem prever resposta a imunoterapia. Isto destaca por que a transcriptómica espacial é superior a RNA-seq em massa para compreender microambiente tumoral.",
+    correctAnswerId: "investigate_heterogeneity",
+    explanation: "Before meta-analyzing, investigate heterogeneity to understand why confidence intervals are wide.",
+    explanationPt: "Antes de meta-analisar, investigar heterogeneidade para compreender por que intervalos de confiança são amplos.",
+    explanations: {
+      meta_analyze: {
+        en: "Partially correct but incomplete. Meta-analysis does increase power, but first you must understand the heterogeneity. Wide CIs suggest real differences between studies that should be explored.",
+        pt: "Parcialmente correto mas incompleto. Meta-análise aumenta poder, mas primeiro deve compreender a heterogeneidade. CIs amplos sugerem diferenças reais entre estudos que devem ser exploradas.",
+      },
+      no_meta_analysis: {
+        en: "Incorrect. Wide confidence intervals don't mean unreliable data—they reflect genuine uncertainty. Meta-analysis is specifically designed to combine uncertain estimates.",
+        pt: "Incorreto. Intervalos de confiança amplos não significam dados não confiáveis—refletem incerteza genuína. Meta-análise é especificamente projetada para combinar estimativas incertas.",
+      },
+      investigate_heterogeneity: {
+        en: "Correct approach. Consistent effect sizes with heterogeneous CIs suggest real differences between studies. Investigate these differences (population, methods, context) before meta-analyzing.",
+        pt: "Abordagem correta. Tamanhos de efeito consistentes com CIs heterogéneos sugerem diferenças reais entre estudos. Investigar estas diferenças (população, métodos, contexto) antes de meta-analisar.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["biomarker", "spatial_transcriptomics", "tumor_microenvironment", "expert"],
+    tags: ["methodology", "meta_analysis", "heterogeneity"],
   },
   {
     id: "exp_r3q6",
     round: 3,
-    title: "Biomarker Mission: Longitudinal Biomarker Drift",
-    titlePt: "Missão de Biomarcador: Desvio Longitudinal de Biomarcador",
+    title: "Clinical Translation: Biomarker-Driven Trial Design",
+    titlePt: "Tradução Clínica: Design de Ensaio Orientado por Biomarcador",
     scenario:
-      "Biomarker Y predicts treatment response at baseline but loses predictive power during treatment. What might cause this?",
+      "A drug trial enrolls only patients with a specific biomarker. What is the advantage and risk of this approach?",
     scenarioPt:
-      "Biomarcador Y prediz resposta ao tratamento na baseline mas perde poder preditivo durante o tratamento. O que pode causar isto?",
+      "Um ensaio de fármaco inscreve apenas pacientes com um biomarcador específico. Qual é a vantagem e risco desta abordagem?",
     dataSignals: [
-      { label: "BASELINE_PREDICTION", value: 82, unit: "%", state: "high", category: "biomarker" },
-      { label: "MID_TREATMENT_PREDICTION", value: 45, unit: "%", state: "medium", category: "biomarker" },
-      { label: "CLONAL_EVOLUTION", value: 75, unit: "%", state: "high", category: "clinical" },
+      { label: "BIOMARKER_ENRICHMENT", value: 95, unit: "%", state: "high", category: "biomarker" },
+      { label: "STATISTICAL_POWER", value: 88, unit: "%", state: "high", category: "biomarker" },
+      { label: "GENERALIZABILITY", value: 25, unit: "%", state: "low", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Biomarker is unreliable", textPt: "Biomarcador é pouco confiável" },
-      { id: "a2", text: "Clonal evolution and selection may alter biomarker landscape", textPt: "Evolução clonal e seleção podem alterar paisagem de biomarcador" },
-      { id: "a3", text: "Measurement drift", textPt: "Desvio de medição" },
+      { id: "enrichment_tradeoff", text: "Advantage: power; Risk: limited generalizability to biomarker-negative patients", textPt: "Vantagem: poder; Risco: generalizabilidade limitada a pacientes biomarker-negativos" },
+      { id: "enrichment_only_good", text: "Biomarker enrichment is purely beneficial", textPt: "Enriquecimento de biomarcador é puramente benéfico" },
+      { id: "enrichment_only_bad", text: "Biomarker enrichment reduces statistical power", textPt: "Enriquecimento de biomarcador reduz poder estatístico" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Sophisticated longitudinal biomarker understanding. Treatment selects for resistant clones with different biomarker profiles. Baseline biomarkers may not predict response of emerging resistant populations. Dynamic biomarker monitoring (ctDNA, circulating proteins) is essential for tracking clonal evolution.",
-    explanationPt:
-      "Compreensão sofisticada de biomarcador longitudinal. O tratamento seleciona clones resistentes com perfis de biomarcador diferentes. Biomarcadores baseline podem não prever resposta de populações resistentes emergentes. Monitorização dinâmica de biomarcador (ctDNA, proteínas circulantes) é essencial para rastrear evolução clonal.",
+    correctAnswerId: "enrichment_tradeoff",
+    explanation: "Biomarker enrichment increases power but limits generalizability to the broader population.",
+    explanationPt: "Enriquecimento de biomarcador aumenta poder mas limita generalizabilidade à população mais ampla.",
+    explanations: {
+      enrichment_tradeoff: {
+        en: "Correct assessment. Biomarker enrichment increases statistical power (fewer patients needed) but creates a tradeoff: results apply only to biomarker-positive patients. Efficacy in biomarker-negative patients remains unknown.",
+        pt: "Avaliação correta. Enriquecimento de biomarcador aumenta poder estatístico (menos pacientes necessários) mas cria um tradeoff: resultados aplicam-se apenas a pacientes biomarker-positivos. Eficácia em pacientes biomarker-negativos permanece desconhecida.",
+      },
+      enrichment_only_good: {
+        en: "Incomplete. While enrichment increases power, it limits generalizability. This is a real tradeoff that must be acknowledged.",
+        pt: "Incompleto. Embora enriquecimento aumente poder, limita generalizabilidade. Este é um tradeoff real que deve ser reconhecido.",
+      },
+      enrichment_only_bad: {
+        en: "Incorrect. Biomarker enrichment increases power by focusing on responsive patients. The tradeoff is generalizability, not power.",
+        pt: "Incorreto. Enriquecimento de biomarcador aumenta poder focando em pacientes responsivos. O tradeoff é generalizabilidade, não poder.",
+      },
+    },
+    mode: "clinical_decision",
     difficulty: "hard",
-    tags: ["biomarker", "longitudinal", "clonal_evolution", "expert"],
+    tags: ["clinical_trial", "biomarker", "trial_design"],
   },
   {
     id: "exp_r3q7",
     round: 3,
-    title: "Biomarker Mission: Artificial Intelligence Integration",
-    titlePt: "Missão de Biomarcador: Integração de Inteligência Artificial",
+    title: "Advanced Pattern: Phenotypic Plasticity",
+    titlePt: "Padrão Avançado: Plasticidade Fenotípica",
     scenario:
-      "AI model trained on 1000 patients predicts treatment response with 95% accuracy on training data but only 60% on new patients. What is the likely problem?",
+      "Genetically identical cells show different phenotypes depending on microenvironment. What is the mechanism?",
     scenarioPt:
-      "Modelo de IA treinado em 1000 pacientes prediz resposta ao tratamento com 95% de precisão em dados de treino mas apenas 60% em novos pacientes. Qual é o provável problema?",
+      "Células geneticamente idênticas mostram fenótipos diferentes dependendo do microambiente. Qual é o mecanismo?",
     dataSignals: [
-      { label: "TRAINING_ACCURACY", value: 95, unit: "%", state: "high", category: "clinical" },
-      { label: "VALIDATION_ACCURACY", value: 60, unit: "%", state: "medium", category: "clinical" },
-      { label: "OVERFITTING_RISK", value: 88, unit: "%", state: "high", category: "clinical" },
+      { label: "GENETIC_IDENTITY", value: 100, unit: "%", state: "high", category: "gene_expression" },
+      { label: "PHENOTYPE_DIVERSITY", value: 85, unit: "%", state: "high", category: "gene_expression" },
+      { label: "EPIGENETIC_VARIATION", value: 78, unit: "%", state: "high", category: "gene_expression" },
     ],
     answerOptions: [
-      { id: "a1", text: "AI is always accurate", textPt: "IA é sempre precisa" },
-      { id: "a2", text: "Likely overfitting; requires external validation and regularization", textPt: "Provável overfitting; requer validação externa e regularização" },
-      { id: "a3", text: "New patients are different", textPt: "Novos pacientes são diferentes" },
+      { id: "epigenetic_plasticity", text: "Epigenetic plasticity: different chromatin states in different environments", textPt: "Plasticidade epigenética: diferentes estados de cromatina em diferentes ambientes" },
+      { id: "genetic_mutation", text: "Genetic mutations accumulating in different environments", textPt: "Mutações genéticas acumulando em diferentes ambientes" },
+      { id: "measurement_error", text: "Measurement error in phenotyping", textPt: "Erro de medição em fenotipagem" },
     ],
-    correctAnswerId: "a3",
-    explanation:
-      "Critical AI literacy. Large performance gaps between training and validation sets indicate overfitting. The model learned training data noise rather than generalizable patterns. Rigorous external validation, cross-validation, and regularization are essential before clinical deployment.",
-    explanationPt:
-      "Alfabetização crítica em IA. Grandes lacunas de desempenho entre conjuntos de treino e validação indicam overfitting. O modelo aprendeu ruído de dados de treino em vez de padrões generalizáveis. Validação externa rigorosa, validação cruzada e regularização são essenciais antes do desdobramento clínico.",
+    correctAnswerId: "epigenetic_plasticity",
+    explanation: "Phenotypic diversity in genetically identical cells indicates epigenetic regulation responding to environmental signals.",
+    explanationPt: "Diversidade fenotípica em células geneticamente idênticas indica regulação epigenética respondendo a sinais ambientais.",
+    explanations: {
+      epigenetic_plasticity: {
+        en: "Correct interpretation. Genetically identical cells with different phenotypes demonstrate epigenetic plasticity. Different chromatin states, DNA methylation, and histone modifications in different microenvironments produce phenotypic diversity.",
+        pt: "Interpretação correta. Células geneticamente idênticas com fenótipos diferentes demonstram plasticidade epigenética. Diferentes estados de cromatina, metilação de DNA, e modificações de histona em diferentes microambientes produzem diversidade fenotípica.",
+      },
+      genetic_mutation: {
+        en: "Unlikely. Mutations accumulate slowly and randomly. The rapid, reversible phenotypic changes in response to environment indicate epigenetic, not genetic, mechanisms.",
+        pt: "Improvável. Mutações acumulam lentamente e aleatoriamente. As mudanças fenotípicas rápidas e reversíveis em resposta ao ambiente indicam mecanismos epigenéticos, não genéticos.",
+      },
+      measurement_error: {
+        en: "Unlikely. Consistent phenotypic differences in different environments indicate real biological variation, not measurement error.",
+        pt: "Improvável. Diferenças fenotípicas consistentes em diferentes ambientes indicam variação biológica real, não erro de medição.",
+      },
+    },
+    mode: "pattern_interpretation",
     difficulty: "hard",
-    tags: ["biomarker", "AI", "validation", "expert"],
+    tags: ["epigenetics", "plasticity", "systems_biology"],
   },
   {
     id: "exp_r3q8",
     round: 3,
-    title: "Biomarker Mission: Multi-Omics Integration",
-    titlePt: "Missão de Biomarcador: Integração Multi-Ómicas",
+    title: "Methodology: Research Integrity and Reproducibility",
+    titlePt: "Metodologia: Integridade de Investigação e Reprodutibilidade",
     scenario:
-      "Genomics, transcriptomics, and proteomics show discordant results for the same patient. How should this be interpreted?",
+      "A researcher's published results cannot be reproduced by independent labs. What should happen next?",
     scenarioPt:
-      "Genómica, transcriptómica e proteómica mostram resultados discordantes para o mesmo paciente. Como isto deve ser interpretado?",
+      "Os resultados publicados de um investigador não podem ser reproduzidos por laboratórios independentes. O que deve acontecer a seguir?",
     dataSignals: [
-      { label: "GENOMICS_SIGNAL", value: 75, unit: "%", state: "high", category: "gene_expression" },
-      { label: "TRANSCRIPTOMICS_SIGNAL", value: 45, unit: "%", state: "medium", category: "gene_expression" },
-      { label: "PROTEOMICS_SIGNAL", value: 25, unit: "%", state: "low", category: "biomarker" },
+      { label: "REPLICATION_ATTEMPTS", value: 5, unit: "n", state: "high", category: "biomarker" },
+      { label: "REPLICATION_SUCCESS", value: 0, unit: "%", state: "low", category: "biomarker" },
+      { label: "ORIGINAL_CITATIONS", value: 95, unit: "%", state: "high", category: "biomarker" },
     ],
     answerOptions: [
-      { id: "a1", text: "Only genomics is reliable", textPt: "Apenas genómica é confiável" },
-      { id: "a2", text: "Discordance reveals regulatory complexity; integration needed for full understanding", textPt: "Discordância revela complexidade regulatória; integração necessária para compreensão completa" },
-      { id: "a3", text: "Data are unreliable", textPt: "Dados são pouco confiáveis" },
+      { id: "investigate_methods", text: "Investigate methods, data, and assumptions; consider retraction if fraud is found", textPt: "Investigar métodos, dados, e suposições; considerar retração se fraude é encontrada" },
+      { id: "citations_validate", text: "High citations validate the original findings", textPt: "Citações elevadas validam os achados originais" },
+      { id: "replicators_wrong", text: "The replicators must be using wrong methods", textPt: "Os replicadores devem estar usando métodos errados" },
     ],
-    correctAnswerId: "a2",
-    explanation:
-      "Sophisticated systems biology. Genomics, transcriptomics, and proteomics measure different regulatory layers. Discordance is expected and informative: it reveals post-transcriptional/translational regulation. True understanding requires integrated multi-omics analysis, not single-layer interpretation.",
-    explanationPt:
-      "Biologia de sistemas sofisticada. Genómica, transcriptómica e proteómica medem camadas regulatórias diferentes. Discordância é esperada e informativa: revela regulação pós-transcricional/translacional. Compreensão verdadeira requer análise multi-ómicas integrada, não interpretação de camada única.",
+    correctAnswerId: "investigate_methods",
+    explanation: "Replication failure requires investigation of original methods and data to identify the source of non-reproducibility.",
+    explanationPt: "Falha de replicação requer investigação de métodos e dados originais para identificar a fonte de não reprodutibilidade.",
+    explanations: {
+      investigate_methods: {
+        en: "Correct response. Replication failure by multiple independent labs is strong evidence of a problem with the original work. Investigate methods, data, and assumptions. If fraud is found, retraction is appropriate.",
+        pt: "Resposta correta. Falha de replicação por múltiplos laboratórios independentes é evidência forte de um problema com o trabalho original. Investigar métodos, dados, e suposições. Se fraude é encontrada, retração é apropriada.",
+      },
+      citations_validate: {
+        en: "Incorrect. Citations reflect visibility, not validity. Many fraudulent findings are heavily cited before replication failures expose them.",
+        pt: "Incorreto. Citações refletem visibilidade, não validade. Muitos achados fraudulentos são fortemente citados antes de falhas de replicação os exporem.",
+      },
+      replicators_wrong: {
+        en: "Unlikely excuse. Multiple independent labs failing to replicate suggests the problem is with the original study, not coordinated error across labs.",
+        pt: "Desculpa improvável. Múltiplos laboratórios independentes falhando em replicar sugere que o problema é com o estudo original, não erro coordenado entre labs.",
+      },
+    },
+    mode: "methodological_judgement",
     difficulty: "hard",
-    tags: ["biomarker", "multi_omics", "systems_biology", "expert"],
+    tags: ["research_integrity", "replication", "reproducibility"],
   },
 ];

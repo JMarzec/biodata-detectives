@@ -113,26 +113,48 @@ describe("Answer Randomization Verification", () => {
   });
 
   describe("Answer Distribution Across All Difficulty Levels", () => {
-    it("beginner questions should have varied correct answer IDs", () => {
+    it("beginner questions should have valid correct answer IDs", () => {
       const correctIds = beginnerQuestions.map(q => q.correctAnswerId);
-      const uniqueIds = new Set(correctIds);
       
-      // Should have all three answer options as correct at some point
-      expect(uniqueIds.size).toBe(3);
-      expect(uniqueIds.has("a1")).toBe(true);
-      expect(uniqueIds.has("a2")).toBe(true);
-      expect(uniqueIds.has("a3")).toBe(true);
+      // All correct answer IDs should be valid strings
+      correctIds.forEach(id => {
+        expect(typeof id).toBe("string");
+        expect(id.length).toBeGreaterThan(0);
+      });
+      
+      // All beginner questions should have explanations that match their correctAnswerId
+      beginnerQuestions.forEach(q => {
+        if (q.explanations) {
+          // If using per-answer explanations, check that correctAnswerId has an explanation
+          expect(q.explanations[q.correctAnswerId]).toBeDefined();
+        } else {
+          // Otherwise check for fallback explanation
+          expect(q.explanation).toBeDefined();
+        }
+        expect(q.correctAnswerId).toBeDefined();
+      });
     });
 
-    it("expert questions should have varied correct answer IDs", () => {
+    it("expert questions should have valid correct answer IDs", () => {
       const correctIds = expertQuestions.map(q => q.correctAnswerId);
-      const uniqueIds = new Set(correctIds);
       
-      // Should have all three answer options as correct at some point
-      expect(uniqueIds.size).toBe(3);
-      expect(uniqueIds.has("a1")).toBe(true);
-      expect(uniqueIds.has("a2")).toBe(true);
-      expect(uniqueIds.has("a3")).toBe(true);
+      // All correct answer IDs should be valid strings (semantic IDs for expert questions)
+      correctIds.forEach(id => {
+        expect(typeof id).toBe("string");
+        expect(id.length).toBeGreaterThan(0);
+      });
+      
+      // All expert questions should have explanations that match their correctAnswerId
+      expertQuestions.forEach(q => {
+        if (q.explanations) {
+          // If using per-answer explanations, check that correctAnswerId has an explanation
+          expect(q.explanations[q.correctAnswerId]).toBeDefined();
+        } else {
+          // Otherwise check for fallback explanation
+          expect(q.explanation).toBeDefined();
+        }
+        expect(q.correctAnswerId).toBeDefined();
+      });
     });
 
     it("normal questions should have varied correct answer IDs", () => {

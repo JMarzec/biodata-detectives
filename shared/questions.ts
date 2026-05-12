@@ -28,10 +28,17 @@ export type Question = {
   dataSignals: DataSignal[];
   answerOptions: AnswerOption[];
   correctAnswerId: string;
-  explanation: string; // Shown when answer is correct
-  explanationPt: string; // Shown when answer is correct (PT)
-  wrongAnswerExplanation?: string; // Shown when answer is wrong
-  wrongAnswerExplanationPt?: string; // Shown when answer is wrong (PT)
+  explanation: string; // Shown when answer is correct (fallback)
+  explanationPt: string; // Shown when answer is correct (PT, fallback)
+  wrongAnswerExplanation?: string; // Shown when answer is wrong (fallback)
+  wrongAnswerExplanationPt?: string; // Shown when answer is wrong (PT, fallback)
+  explanations?: { // Per-answer explanations keyed by answer ID
+    [answerId: string]: {
+      en: string;
+      pt: string;
+    };
+  };
+  mode?: "pattern_interpretation" | "methodological_judgement" | "clinical_decision";
   difficulty: "easy" | "medium" | "hard";
   tags: string[];
 };

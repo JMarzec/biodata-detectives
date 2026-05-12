@@ -81,7 +81,12 @@ export default function GameRound({
   };
 
   const getExplanation = () => {
-    // Show wrong answer explanation if available and answer is incorrect
+    // If per-answer explanations exist, use them
+    if (question.explanations && selectedAnswer && question.explanations[selectedAnswer]) {
+      const explanation = question.explanations[selectedAnswer];
+      return language === "en" ? explanation.en : explanation.pt;
+    }
+    // Fallback to old explanation fields
     if (!isCorrect && selectedAnswer) {
       const wrongExplanation = language === "en" ? question.wrongAnswerExplanation : question.wrongAnswerExplanationPt;
       if (wrongExplanation) {

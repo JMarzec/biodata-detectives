@@ -6,6 +6,7 @@ import { selectGameQuestions } from "@shared/gameEngine";
 import { questions } from "@shared/questions";
 import { expertQuestions } from "@shared/expertQuestions";
 import { beginnerQuestions } from "@shared/beginnerQuestions";
+import { normalQuestions } from "@shared/normalQuestions";
 import MissionBriefing from "@/components/MissionBriefing";
 import GameRound from "@/components/GameRound";
 import ResultsScreen from "@/components/ResultsScreen";
@@ -60,7 +61,7 @@ export default function Game() {
     setStartTime(Date.now());
 
     // Select random questions based on difficulty
-    let questionBank = questions;
+    let questionBank = normalQuestions;
     if (diff === "expert") {
       questionBank = expertQuestions;
     } else if (diff === "beginner") {
